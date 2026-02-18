@@ -1,0 +1,884 @@
+[2026-02-18T14:09:32.112Z] 404 - Not Found - /api/goals/undefined/toggle
+Stack: Error: Not Found - /api/goals/undefined/toggle
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:09:35.377Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:09:36.543Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:09:54.494Z] 404 - Not Found - /api/goals/undefined/toggle
+Stack: Error: Not Found - /api/goals/undefined/toggle
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:09:55.092Z] 404 - Not Found - /api/goals/undefined/toggle
+Stack: Error: Not Found - /api/goals/undefined/toggle
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:09:57.344Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:09:58.059Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:14:02.277Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:14:03.194Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:14:04.325Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:14:06.528Z] 404 - Not Found - /api/goals/undefined/toggle
+Stack: Error: Not Found - /api/goals/undefined/toggle
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:14:15.244Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:16:35.727Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:17:56.460Z] 404 - Not Found - /api/goals/undefined/toggle
+Stack: Error: Not Found - /api/goals/undefined/toggle
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:17:58.378Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:17:59.075Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:17:59.308Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:18:00.642Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:18:08.760Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:18:09.642Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:20:18.018Z] 404 - Not Found - /api/goals/undefined/toggle
+Stack: Error: Not Found - /api/goals/undefined/toggle
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:21:22.523Z] 404 - Not Found - /api/goals/undefined/toggle
+Stack: Error: Not Found - /api/goals/undefined/toggle
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:21:24.542Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:21:25.327Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:21:25.607Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:21:25.792Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:21:51.359Z] 404 - Not Found - /api/goals/undefined/toggle
+Stack: Error: Not Found - /api/goals/undefined/toggle
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:23:09.248Z] 404 - Not Found - /api/goals/debug/reset
+Stack: Error: Not Found - /api/goals/debug/reset
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:23:16.708Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:23:17.158Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:23:17.342Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:24:20.809Z] 404 - Not Found - /api/goals/undefined/toggle
+Stack: Error: Not Found - /api/goals/undefined/toggle
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:26:02.164Z] 404 - Not Found - /api/goals/debug/reset
+Stack: Error: Not Found - /api/goals/debug/reset
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:26:10.858Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:26:11.306Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:26:11.490Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T14:26:13.460Z] 404 - Not Found - /api/goals/debug/reset
+Stack: Error: Not Found - /api/goals/debug/reset
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T17:18:19.344Z] 404 - Not Found - /api/goals/undefined/toggle
+Stack: Error: Not Found - /api/goals/undefined/toggle
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T17:18:20.793Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T17:18:21.141Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T17:18:21.292Z] 404 - Not Found - /api/goals/undefined
+Stack: Error: Not Found - /api/goals/undefined
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T17:18:23.749Z] 404 - Not Found - /api/goals/debug/reset
+Stack: Error: Not Found - /api/goals/debug/reset
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T17:49:09.193Z] 404 - Not Found - /api/goals/debug/reset
+Stack: Error: Not Found - /api/goals/debug/reset
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:28:54.142Z] 404 - Not Found - /api/interview/699052ae9f0fac536b4c1009
+Stack: Error: Not Found - /api/interview/699052ae9f0fac536b4c1009
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:28:54.146Z] 404 - Not Found - /api/interview/699052ae9f0fac536b4c1009
+Stack: Error: Not Found - /api/interview/699052ae9f0fac536b4c1009
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:39:43.998Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:39:44.001Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:39:47.582Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Non-Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Non-Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:39:50.766Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:40:15.330Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:40:15.332Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:53:17.628Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:53:17.631Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:53:37.496Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:53:37.498Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:54:01.592Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T18:54:01.594Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T19:00:00.806Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T19:00:00.807Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T19:15:12.584Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T19:15:12.587Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T19:15:14.776Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Non-Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Non-Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T19:18:34.733Z] 404 - Not Found - /api/interview/699050109f0fac536b4c1005
+Stack: Error: Not Found - /api/interview/699050109f0fac536b4c1005
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T19:18:34.777Z] 404 - Not Found - /api/interview/699050109f0fac536b4c1005
+Stack: Error: Not Found - /api/interview/699050109f0fac536b4c1005
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T19:18:46.209Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T19:18:46.210Z] 404 - Not Found - /api/interview/history?page=1&limit=10&type=Technical
+Stack: Error: Not Found - /api/interview/history?page=1&limit=10&type=Technical
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T19:18:59.915Z] 404 - Not Found - /api/interview/generate
+Stack: Error: Not Found - /api/interview/generate
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-18T19:18:59.918Z] 404 - Not Found - /api/interview/generate
+Stack: Error: Not Found - /api/interview/generate
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+

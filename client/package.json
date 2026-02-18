@@ -21,6 +21,7 @@
         "@vladmandic/face-api": "^1.7.15",
         "autoprefixer": "^10.4.24",
         "axios": "^1.13.5",
+        "canvas-confetti": "^1.9.4",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "framer-motion": "^12.34.0",

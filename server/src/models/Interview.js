@@ -9,6 +9,11 @@ const interviewSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    type: {
+        type: String,
+        enum: ['Technical', 'Non-Technical'],
+        default: 'Technical'
+    },
     questions: {
         type: [String],
         required: true,

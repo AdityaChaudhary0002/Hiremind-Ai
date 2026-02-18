@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express'); // Force Restart
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -14,14 +14,11 @@ app.use(morgan('dev'));
 
 const healthRoutes = require('./routes/healthRoutes');
 const interviewRoutes = require('./routes/interviewRoutes');
-const resumeRoutes = require('./routes/resumeRoutes');
-const goalRoutes = require('./routes/goalRoutes');
+const goalsRoutes = require('./routes/goalsRoutes');
 
-// Routes
 app.use('/api/health', healthRoutes);
 app.use('/api/interview', interviewRoutes);
-app.use('/api/resume', resumeRoutes);
-app.use('/api/goals', goalRoutes);
+app.use('/api/goals', goalsRoutes);
 app.get('/', (req, res) => {
     res.json({ message: 'API is running...' });
 });
@@ -31,3 +28,4 @@ app.use(notFound);
 app.use(errorHandler);
 
 module.exports = app;
+console.log("Server module reloaded");

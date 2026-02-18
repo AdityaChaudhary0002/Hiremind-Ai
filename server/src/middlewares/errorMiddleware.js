@@ -4,8 +4,21 @@ const notFound = (req, res, next) => {
     next(error);
 };
 
+const fs = require('fs');
+const path = require('path');
+
 const errorHandler = (err, req, res, next) => {
     const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+
+    // Log to file
+    try {
+        const logPath = path.join(__dirname, '../../fatal_error.log');
+        const logMsg = `[${new Date().toISOString()}] ${statusCode} - ${err.message}\nStack: ${err.stack}\n\n`;
+        fs.appendFileSync(logPath, logMsg);
+    } catch (e) {
+        console.error("Failed to write to fatal_error.log", e);
+    }
+
     res.status(statusCode);
     res.json({
         message: err.message,

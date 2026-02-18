@@ -20,10 +20,10 @@ const FeedbackScreen = () => {
         const fetchFeedback = async () => {
             try {
                 const token = await getToken();
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/interview/feedback/${interviewId}`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/interview/${interviewId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
-                setFeedback(response.data);
+                setFeedback(response.data.feedback);
             } catch (error) {
                 console.error("Error fetching feedback:", error);
             } finally {
@@ -42,12 +42,18 @@ const FeedbackScreen = () => {
         </div>
     );
 
-    if (!feedback) return (
-        <div className="min-h-screen flex items-center justify-center text-white">Report Not Found.</div>
+    if (!feedback || !feedback.questions) return (
+        <div className="min-h-screen flex items-center justify-center text-white">
+            <div className="text-center">
+                <div className="text-xl font-bold mb-2">Analysis Pending</div>
+                <div className="text-white/50">The report is still being generated or is unavailable.</div>
+                <Button onClick={() => navigate('/dashboard')} className="mt-4 bg-white text-black">Return Home</Button>
+            </div>
+        </div>
     );
 
-    const scoreColor = feedback.overallScore >= 80 ? 'text-green-400' : feedback.overallScore >= 60 ? 'text-yellow-400' : 'text-red-400';
-    const scoreBorder = feedback.overallScore >= 80 ? 'border-green-400/20' : feedback.overallScore >= 60 ? 'border-yellow-400/20' : 'border-red-400/20';
+    const scoreColor = (feedback.overallScore || 0) >= 80 ? 'text-green-400' : (feedback.overallScore || 0) >= 60 ? 'text-yellow-400' : 'text-red-400';
+    const scoreBorder = (feedback.overallScore || 0) >= 80 ? 'border-green-400/20' : (feedback.overallScore || 0) >= 60 ? 'border-yellow-400/20' : 'border-red-400/20';
 
     return (
         <div className="min-h-screen relative flex flex-col overflow-hidden selection:bg-white/20">
@@ -113,7 +119,7 @@ const FeedbackScreen = () => {
                         animate="visible"
                         className="lg:col-span-2 space-y-6"
                     >
-                        {feedback.questions.map((q, i) => (
+                        {(feedback.questions || []).map((q, i) => (
                             <motion.div
                                 key={i}
                                 variants={MOTION.drift}

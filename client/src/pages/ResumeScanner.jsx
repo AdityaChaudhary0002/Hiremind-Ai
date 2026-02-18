@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@clerk/clerk-react';
 import axios from 'axios';
-import { Upload, FileText, Scan, ShieldCheck, AlertCircle, CheckCircle2, X } from 'lucide-react';
+import { Upload, FileText, Scan, ShieldCheck, AlertCircle, CheckCircle2, X, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MOTION, STYLES } from '@/lib/design-system';
 import Logo from '@/components/ui/logo';
@@ -247,11 +247,113 @@ const ResumeScan = () => {
                                         </button>
                                     </div>
                                 </div>
+                                <CoverLetterGenerator resumeText={analysis?.text} />
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </div>
 
+            </div>
+        </div>
+    );
+};
+
+// --- SUB-COMPONENT: Cover Letter Generator ---
+const CoverLetterGenerator = ({ resumeText }) => {
+    const { getToken } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const [coverLetter, setCoverLetter] = useState('');
+    const [role, setRole] = useState('');
+    const [company, setCompany] = useState('');
+
+    const handleGenerate = async () => {
+        if (!resumeText) return;
+        setLoading(true);
+        try {
+            const token = await getToken();
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/resume/cover-letter`, {
+                resumeText,
+                jobRole: role,
+                companyName: company
+            }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setCoverLetter(res.data.coverLetter);
+        } catch (err) {
+            console.error("Cover Letter Error:", err);
+            alert("Failed to generate cover letter.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="mt-8 w-full">
+            <div className={`${STYLES.glass_card} p-8 border border-white/10`}>
+                <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 bg-purple-500/10 rounded-lg border border-purple-500/20">
+                        <FileText className="w-5 h-5 text-purple-400" />
+                    </div>
+                    <div>
+                        <h3 className="text-lg font-heading font-bold text-white">AI Cover Letter Generator</h3>
+                        <p className="text-xs text-white/40 font-mono">Instant semantic generation based on your resume.</p>
+                    </div>
+                </div>
+
+                {!coverLetter ? (
+                    <div className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input
+                                type="text"
+                                placeholder="Target Role (e.g. Senior Developer)"
+                                value={role}
+                                onChange={(e) => setRole(e.target.value)}
+                                className="bg-[#0a0a0c] border border-white/10 rounded-lg p-3 text-white text-sm outline-none focus:border-primary transition-colors"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Company Name (Optional)"
+                                value={company}
+                                onChange={(e) => setCompany(e.target.value)}
+                                className="bg-[#0a0a0c] border border-white/10 rounded-lg p-3 text-white text-sm outline-none focus:border-primary transition-colors"
+                            />
+                        </div>
+                        <Button
+                            onClick={handleGenerate}
+                            disabled={loading}
+                            className="w-full h-12 bg-white text-black hover:bg-zinc-200 font-bold rounded-lg shadow-lg flex items-center justify-center gap-2"
+                        >
+                            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Scan className="w-4 h-4" />}
+                            {loading ? "GENERATING..." : "GENERATE COVER LETTER"}
+                        </Button>
+                    </div>
+                ) : (
+                    <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                        <div className="bg-[#0a0a0c] border border-white/10 rounded-xl p-6 relative group">
+                            <textarea
+                                readOnly
+                                value={coverLetter}
+                                className="w-full h-64 bg-transparent resize-none outline-none text-white/80 text-sm leading-relaxed font-sans custom-scrollbar"
+                            />
+                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <Button
+                                    size="sm"
+                                    onClick={() => navigator.clipboard.writeText(coverLetter)}
+                                    className="bg-white/10 hover:bg-white/20 text-white text-xs border border-white/10 backdrop-blur-md"
+                                >
+                                    Copy Text
+                                </Button>
+                            </div>
+                        </div>
+                        <Button
+                            onClick={() => setCoverLetter('')}
+                            variant="ghost"
+                            className="text-white/40 hover:text-white text-xs"
+                        >
+                            Generate New
+                        </Button>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -135,7 +135,7 @@ const Dashboard = () => {
 
 
     return (
-        <div className="min-h-screen relative flex flex-col overflow-hidden selection:bg-white/20">
+        <div className="min-h-screen relative flex flex-col overflow-x-hidden selection:bg-white/20">
 
             {/* Top Minimal Header */}
             <div className="absolute top-0 left-0 right-0 p-8 flex justify-between items-center z-50 pointer-events-none">

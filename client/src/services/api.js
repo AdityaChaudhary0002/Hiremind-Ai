@@ -7,16 +7,25 @@ const getAuthHeaders = (token) => ({
     headers: { Authorization: `Bearer ${token}` }
 });
 
+// Create Axios Instance with Timeout
+const client = axios.create({
+    baseURL: API_URL,
+    timeout: 30000, // 30s timeout
+});
+
 const api = {
     // --- INTERVIEW FLOW ---
 
     /**
      * Generate interview questions based on role and difficulty
      */
-    generateQuestions: async (role, difficulty, token) => {
-        const response = await axios.post(
-            `${API_URL}/api/interview/generate`,
-            { role, difficulty },
+    generateQuestions: async (role, difficulty, token, resumeText = null) => {
+        const payload = { role, difficulty };
+        if (resumeText) payload.resumeText = resumeText;
+
+        const response = await client.post(
+            `/api/interview/generate`,
+            payload,
             getAuthHeaders(token)
         );
         return response.data;
@@ -27,8 +36,8 @@ const api = {
      */
     submitFollowup: async (data, token) => {
         // data: { question, answer, role, difficulty }
-        return axios.post(
-            `${API_URL}/api/interview/followup`,
+        return client.post(
+            `/api/interview/followup`,
             data,
             getAuthHeaders(token)
         );
@@ -38,8 +47,8 @@ const api = {
      * Finalize and submit the entire interview
      */
     submitInterview: async (interviewId, answers, token) => {
-        return axios.post(
-            `${API_URL}/api/interview/submit`,
+        return client.post(
+            `/api/interview/submit`,
             { interviewId, answers },
             getAuthHeaders(token)
         );
@@ -50,10 +59,13 @@ const api = {
     /**
      * Fetch all past interviews for the user
      */
-    getUserInterviews: async (token) => {
-        const response = await axios.get(
-            `${API_URL}/api/interview/user-interviews`,
-            getAuthHeaders(token)
+    getUserInterviews: async (token, page = 1, limit = 10, type) => {
+        const response = await client.get(
+            `/api/interview/history`, // Updated endpoint to match route
+            {
+                ...getAuthHeaders(token),
+                params: { page, limit, type }
+            }
         );
         return response.data;
     },
@@ -62,8 +74,8 @@ const api = {
      * Fetch a specific interview by ID
      */
     getInterviewById: async (id, token) => {
-        const response = await axios.get(
-            `${API_URL}/api/interview/${id}`,
+        const response = await client.get(
+            `/api/interview/${id}`,
             getAuthHeaders(token)
         );
         return response.data;
@@ -71,8 +83,60 @@ const api = {
 
     // --- GOALS ---
     getGoals: async (token) => {
-        const response = await axios.get(
-            `${API_URL}/api/goals`,
+        const response = await client.get(
+            `/api/goals`,
+            getAuthHeaders(token)
+        );
+        return response.data;
+    },
+
+    createGoal: async (title, category, token) => {
+        const response = await client.post(
+            `/api/goals`,
+            { title, category },
+            getAuthHeaders(token)
+        );
+        return response.data;
+    },
+
+    toggleGoal: async (id, token) => {
+        const response = await client.patch(
+            `/api/goals/${id}/toggle`,
+            {},
+            getAuthHeaders(token)
+        );
+        return response.data;
+    },
+
+    togglePriority: async (id, token) => {
+        const response = await client.patch(
+            `/api/goals/${id}/priority`,
+            {},
+            getAuthHeaders(token)
+        );
+        return response.data;
+    },
+
+    generateStrategy: async (id, token) => {
+        const response = await client.post(
+            `/api/goals/${id}/strategize`,
+            {},
+            getAuthHeaders(token)
+        );
+        return response.data;
+    },
+
+    deleteGoal: async (id, token) => {
+        const response = await client.delete(
+            `/api/goals/${id}`,
+            getAuthHeaders(token)
+        );
+        return response.data;
+    },
+
+    deleteAllGoals: async (token) => {
+        const response = await client.delete(
+            `/api/goals/debug/reset`,
             getAuthHeaders(token)
         );
         return response.data;

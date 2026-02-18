@@ -114,37 +114,37 @@ const VoiceRecorder = ({ onAnswerComplete, isListening, setIsListening }) => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center gap-6 w-full h-full relative">
-            <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center justify-center gap-2 w-full h-full relative">
+            <div className="flex flex-col items-center gap-2">
                 <Button
                     onClick={handleToggle}
-                    className={`h-16 px-8 rounded-full text-lg font-bold tracking-wider transition-all shadow-lg ${isListening
+                    className={`h-14 px-8 rounded-full text-sm font-bold tracking-wider transition-all shadow-lg ${isListening
                         ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse shadow-red-500/20'
                         : 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-emerald-500/20'
                         }`}
                 >
                     {isListening ? (
-                        <div className="flex items-center gap-3">
-                            <MicOff className="w-6 h-6" /> STOP SPEAKING
+                        <div className="flex items-center gap-2">
+                            <MicOff className="w-5 h-5" /> STOP
                         </div>
                     ) : (
-                        <div className="flex items-center gap-3">
-                            <Mic className="w-6 h-6" /> START SPEAKING
+                        <div className="flex items-center gap-2">
+                            <Mic className="w-5 h-5" /> START SPEAKING
                         </div>
                     )}
                 </Button>
 
-                <div className="text-center h-8 flex flex-col items-center justify-center">
+                <div className="text-center h-6 flex flex-col items-center justify-center overflow-visible">
                     {error ? (
-                        <span className="text-red-400 text-xs font-bold bg-red-950/50 px-3 py-1 rounded border border-red-500/30 flex items-center gap-2">
+                        <span className="text-red-400 text-[10px] font-bold bg-red-950/50 px-2 py-0.5 rounded border border-red-500/30 flex items-center gap-1">
                             <AlertCircle className="w-3 h-3" /> {error}
                         </span>
                     ) : isListening ? (
-                        <span className="text-emerald-400 text-xs font-mono animate-pulse flex items-center gap-2">
+                        <span className="text-emerald-400 text-[10px] font-mono animate-pulse flex items-center gap-2">
                             <Activity className="w-3 h-3" /> LISTENING...
                         </span>
                     ) : (
-                        <span className="text-muted-foreground text-xs font-mono">
+                        <span className="text-white/20 text-[10px] font-mono tracking-tight">
                             Microphone Ready
                         </span>
                     )}

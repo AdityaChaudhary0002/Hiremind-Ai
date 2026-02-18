@@ -2,6 +2,12 @@ const Groq = require("groq-sdk");
 const Interview = require('../models/Interview.js');
 const pdf = require("pdf-parse");
 
+// Helper to sanitize LLM JSON output (strips markdown code blocks)
+const cleanJSON = (text) => {
+    if (!text) return "{}";
+    return text.replace(/```json/g, '').replace(/```/g, '').trim();
+};
+
 // Initialize Groq SDK (Ensure API Key is available)
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -38,9 +44,15 @@ const generateQuestions = async (req, res, next) => {
         const text = completion.choices[0]?.message?.content || "{}";
         const content = JSON.parse(text);
 
+        // Determine Type
+        const lowerRole = role.toLowerCase();
+        const nonTechKeywords = ['hr', 'manager', 'sales', 'marketing', 'behavioral', 'leadership', 'design', 'product owner'];
+        const type = nonTechKeywords.some(k => lowerRole.includes(k)) ? 'Non-Technical' : 'Technical';
+
         const interview = await Interview.create({
             role,
             difficulty,
+            type,
             questions: content.questions,
             userId: req.auth.userId,
             feedback: {} // Initialize empty
@@ -117,7 +129,7 @@ const submitInterview = async (req, res, next) => {
             response_format: { type: "json_object" },
         });
 
-        const feedback = JSON.parse(completion.choices[0]?.message?.content || "{}");
+        const feedback = JSON.parse(cleanJSON(completion.choices[0]?.message?.content || "{}"));
 
         interview.feedback = feedback;
         await interview.save();
@@ -143,16 +155,21 @@ const getInterview = async (req, res, next) => {
 
 const getUserInterviews = async (req, res, next) => {
     try {
+        console.log("GET /history request received", req.query, req.auth);
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
+        const type = req.query.type; // 'Technical' or 'Non-Technical'
         const skip = (page - 1) * limit;
 
-        const total = await Interview.countDocuments({ userId: req.auth.userId });
-        const interviews = await Interview.find({ userId: req.auth.userId })
+        const query = { userId: req.auth.userId };
+        if (type) query.type = type;
+
+        const total = await Interview.countDocuments(query);
+        const interviews = await Interview.find(query)
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit)
-            .select('role difficulty createdAt feedback.overallScore');
+            .select('role difficulty createdAt feedback.overallScore type');
 
         res.status(200).json({
             interviews,
@@ -216,4 +233,26 @@ const generateFollowUp = async (req, res, next) => {
     }
 };
 
-module.exports = { generateQuestions, addMoreQuestions, submitInterview, getInterview, getUserInterviews, parseResume, generateFollowUp };
+const deleteInterview = async (req, res, next) => {
+    try {
+        const interview = await Interview.findOneAndDelete({ _id: req.params.id, userId: req.auth.userId });
+        if (!interview) {
+            res.status(404);
+            throw new Error('Interview not found');
+        }
+        res.status(200).json({ message: 'Interview deleted' });
+    } catch (error) {
+        next(error);
+    }
+};
+
+const clearHistory = async (req, res, next) => {
+    try {
+        await Interview.deleteMany({ userId: req.auth.userId });
+        res.status(200).json({ message: 'History cleared' });
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports = { generateQuestions, addMoreQuestions, submitInterview, getInterview, getUserInterviews, parseResume, generateFollowUp, deleteInterview, clearHistory };

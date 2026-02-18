@@ -13,67 +13,96 @@ const InterviewRightPanel = ({
     language, setLanguage,
     output, setOutput,
     runCode,
-    handleSubmitAnswer
+    handleSubmitAnswer,
+    isCodingInterview = true, // Default to true
+    isAnalyzing = false
 }) => {
     return (
         <div className="flex-1 flex flex-col relative z-10 bg-[#050505]/50 backdrop-blur-sm">
 
-            {/* INPUT MODE TABS */}
-            <div className="flex items-center gap-2 p-4 border-b border-white/5">
-                <div className="p-1 rounded-lg bg-white/5 border border-white/5 flex gap-1">
-                    <button
-                        onClick={() => setMode('speech')}
-                        className={`px-4 py-1.5 rounded-md text-xs font-medium transition-all flex items-center gap-2 ${mode === 'speech' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-white/40 hover:text-white hover:bg-white/5'}`}
-                    >
-                        <Mic className="w-3.5 h-3.5" /> Verbal
-                    </button>
-                    <button
-                        onClick={() => setMode('code')}
-                        className={`px-4 py-1.5 rounded-md text-xs font-medium transition-all flex items-center gap-2 ${mode === 'code' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-white/40 hover:text-white hover:bg-white/5'}`}
-                    >
-                        <CodeIcon className="w-3.5 h-3.5" /> Code Environment
-                    </button>
+            {/* INPUT MODE TABS - Only show if Coding Interview */}
+            {isCodingInterview && (
+                <div className="flex items-center gap-2 p-4 border-b border-white/5">
+                    <div className="p-1 rounded-lg bg-white/5 border border-white/5 flex gap-1">
+                        <button
+                            onClick={() => setMode('speech')}
+                            className={`px-4 py-1.5 rounded-md text-xs font-medium transition-all flex items-center gap-2 ${mode === 'speech' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-white/40 hover:text-white hover:bg-white/5'}`}
+                        >
+                            <Mic className="w-3.5 h-3.5" /> Verbal
+                        </button>
+                        <button
+                            onClick={() => setMode('code')}
+                            className={`px-4 py-1.5 rounded-md text-xs font-medium transition-all flex items-center gap-2 ${mode === 'code' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-white/40 hover:text-white hover:bg-white/5'}`}
+                        >
+                            <CodeIcon className="w-3.5 h-3.5" /> Code Environment
+                        </button>
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* ACTIVE INPUT AREA */}
             <div className="flex-1 relative overflow-hidden">
                 {mode === 'speech' ? (
-                    <div className="h-full flex flex-col">
-                        <textarea
-                            value={transcript}
-                            onChange={(e) => setTranscript(e.target.value)}
-                            placeholder="Start speaking or type your response here..."
-                            className="flex-1 w-full bg-transparent p-8 resize-none outline-none text-xl leading-relaxed text-white/80 placeholder:text-white/10 font-sans selection:bg-purple-900/50"
-                            disabled={isRecording}
-                        />
-                        {/* Bottom Controls */}
-                        <div className="p-6 border-t border-white/5 bg-gradient-to-t from-black/80 to-transparent">
-                            <div className="flex items-center justify-between gap-6 max-w-3xl mx-auto">
-                                <div className="flex items-center gap-4 flex-1">
-                                    <div className="relative group">
-                                        <VoiceRecorder
-                                            isListening={isRecording}
-                                            setIsListening={setIsRecording}
-                                            onAnswerComplete={setTranscript}
-                                        />
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className={`text-xs font-bold tracking-widest uppercase ${isRecording ? 'text-red-500 animate-pulse' : 'text-white/40'}`}>
-                                            {isRecording ? 'Recording Active' : 'Mic Off'}
+                    <div className="h-full flex flex-col pt-6 pb-0">
+                        {/* Transcript / Notes Area */}
+                        <div className="flex-1 w-full max-w-5xl mx-auto px-6 mb-6">
+                            <div className="h-full relative group">
+                                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-2xl pointer-events-none" />
+                                <textarea
+                                    value={transcript}
+                                    onChange={(e) => setTranscript(e.target.value)}
+                                    placeholder="Transcription appears here. You can also type your notes..."
+                                    className="w-full h-full bg-[#0a0a0c]/80 backdrop-blur-md rounded-2xl border border-white/10 p-8 resize-none outline-none text-lg leading-loose text-white/90 placeholder:text-white/10 font-sans shadow-inner transition-all focus:border-white/20 focus:bg-[#0a0a0c]"
+                                    disabled={isRecording}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Fixed Footer Dock */}
+                        <div className="h-28 bg-[#050505] border-t border-white/5 flex items-center justify-center relative shrink-0 z-20">
+                            <div className="w-full max-w-5xl px-6 grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+                                {/* Left: Status / Info */}
+                                <div className="hidden md:flex flex-col justify-center">
+                                    <div className="flex items-center gap-2">
+                                        <div className={`w-2 h-2 rounded-full ${isRecording ? 'bg-red-500 animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]' : 'bg-zinc-700'}`} />
+                                        <span className={`text-xs font-bold tracking-widest uppercase ${isRecording ? 'text-white' : 'text-zinc-500'}`}>
+                                            {isRecording ? 'RECORDING' : 'READY'}
                                         </span>
-                                        <span className="text-white/20 text-[10px]">Click orb to toggle</span>
                                     </div>
+                                    <span className="text-[10px] text-zinc-600 mt-1 pl-4 truncate">System Nominal</span>
+                                </div>
+                                <div className="md:hidden"></div> {/* Spacer for mobile */}
+
+                                {/* Center: Voice Recorder Trigger */}
+                                <div className="flex justify-center">
+                                    <VoiceRecorder
+                                        isListening={isRecording}
+                                        setIsListening={setIsRecording}
+                                        onAnswerComplete={setTranscript}
+                                    />
                                 </div>
 
-                                <Button
-                                    onClick={handleSubmitAnswer}
-                                    disabled={isRecording ? false : !transcript}
-                                    className="h-12 px-8 rounded-full bg-white text-black hover:bg-gray-200 font-bold transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
-                                >
-                                    {isRecording ? "Stop & Submit" : "Submit Answer"}
-                                    <ChevronRight className="w-4 h-4 ml-2" />
-                                </Button>
+                                {/* Right: Submit Action */}
+                                <div className="flex justify-end">
+                                    <Button
+                                        onClick={handleSubmitAnswer}
+                                        disabled={isRecording || isAnalyzing ? true : !transcript}
+                                        className={`h-12 md:h-14 px-6 md:px-8 rounded-full font-bold transition-all flex items-center gap-3 ${transcript && !isAnalyzing
+                                            ? 'bg-white text-black hover:bg-zinc-200 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-105'
+                                            : 'bg-zinc-900 text-zinc-500 border border-white/5 hover:bg-zinc-800'
+                                            }`}
+                                    >
+                                        <span className="text-xs md:text-sm tracking-wide whitespace-nowrap">
+                                            {isAnalyzing ? 'ANALYZING...' : (transcript ? 'SUBMIT' : 'NO ANSWER')}
+                                        </span>
+                                        {!isAnalyzing && (
+                                            <div className="w-6 h-6 rounded-full bg-black/10 flex items-center justify-center">
+                                                <ChevronRight className="w-4 h-4" />
+                                            </div>
+                                        )}
+                                        {isAnalyzing && <Loader2 className="w-4 h-4 animate-spin" />}
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -110,12 +139,14 @@ const InterviewRightPanel = ({
                             )}
                         </div>
 
-                        <div className="h-16 bg-[#18181b] border-t border-white/10 flex items-center justify-end px-8 shrink-0">
+                        <div className="h-20 bg-[#18181b] border-t border-white/10 flex items-center justify-end px-8 shrink-0">
                             <Button
                                 onClick={handleSubmitAnswer}
-                                className="rounded-full bg-white text-black hover:bg-gray-200 font-bold px-8 shadow-lg shadow-white/10"
+                                disabled={isAnalyzing}
+                                className="h-12 rounded-full bg-white text-black hover:bg-gray-200 font-bold px-10 shadow-lg shadow-white/10 flex items-center gap-2 hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100"
                             >
-                                Submit Solution <ChevronRight className="w-4 h-4 ml-2" />
+                                <span>{isAnalyzing ? 'Processing...' : 'Submit Solution'}</span>
+                                {isAnalyzing ? <Loader2 className="w-4 h-4 animate-spin" /> : <ChevronRight className="w-4 h-4" />}
                             </Button>
                         </div>
                     </div>

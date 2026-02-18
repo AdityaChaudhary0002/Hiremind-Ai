@@ -55,9 +55,19 @@ const AnimatedRoutes = () => {
           <Route path="/feedback/:interviewId" element={<PageTransition><FeedbackScreen /></PageTransition>} />
         </Route>
 
-        {/* Interview Screen */}
+        {/* Interview Routes */}
         <Route
           path="/interview"
+          element={
+            <PageTransition>
+              <SignedIn>
+                <InterviewScreen />
+              </SignedIn>
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/interview/:interviewId"
           element={
             <PageTransition>
               <SignedIn>

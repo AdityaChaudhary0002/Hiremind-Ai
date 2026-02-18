@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '@clerk/clerk-react';
 import api from '../services/api';
 import { Loader2, CircleAlert } from 'lucide-react';
@@ -37,7 +37,7 @@ const InterviewScreen = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { getToken } = useAuth();
-    const { role, difficulty } = location.state || {};
+    // State destructuring moved below to include resumeText
 
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -54,21 +54,102 @@ const InterviewScreen = () => {
     const [interviewId, setInterviewId] = useState(null);
     const [mode, setMode] = useState('speech');
 
-    // --- EFFECT: Initialization ---
-    useEffect(() => {
-        if (!role || !difficulty) {
-            navigate('/role-selection');
-            return;
-        }
+    const [role, setRole] = useState(location.state?.role || null);
+    const [difficulty, setDifficulty] = useState(location.state?.difficulty || null);
+    const [resumeText, setResumeText] = useState(location.state?.resumeText || null); // State for consistency
 
-        const fetchQuestions = async () => {
+    // --- EFFECT: Audio Cleanup on Unmount ---
+    useEffect(() => {
+        return () => {
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+        };
+    }, []);
+
+    // --- EFFECT: Initialization ---
+    const { interviewId: paramInterviewId } = useParams();
+
+    // --- EFFECT: Initialization (Create or Resume) ---
+    useEffect(() => {
+        const initializeSession = async () => {
             try {
                 const token = await getToken();
-                const data = await api.generateQuestions(role, difficulty, token);
 
+                // CASE A: Resuming existing session via URL
+                if (paramInterviewId) {
+                    setLoading(true);
+                    const data = await api.getInterviewById(paramInterviewId, token);
+
+                    if (data) {
+                        setInterviewId(data._id);
+                        setQuestions(data.questions || []);
+                        setUserAnswers(data.answers || []);
+                        // Restore role/difficulty for UI context if missing
+                        if (!role) {
+                            setRole(data.role);
+                            setDifficulty(data.difficulty);
+                        }
+
+                        // Resume from last unanswered
+                        const answeredCount = (data.answers || []).filter(a => a).length;
+                        if (answeredCount < data.questions.length) {
+                            setCurrentQuestionIndex(answeredCount);
+                        } else {
+                            if (data.feedback && data.feedback.overallScore) {
+                                navigate(`/feedback/${data._id}`);
+                            } else {
+                                setCurrentQuestionIndex(data.questions.length - 1);
+                            }
+                        }
+                        setLoading(false);
+                    }
+                    return;
+                }
+
+                // CASE B: Creating new session
+                // Check if we need to recover from session storage
+                if (!role || !difficulty) {
+                    const saved = sessionStorage.getItem('pendingInterview');
+                    if (saved) {
+                        try {
+                            const parsed = JSON.parse(saved);
+                            setRole(parsed.role);
+                            setDifficulty(parsed.difficulty);
+                            setResumeText(parsed.resumeText);
+                            console.log("♻️ Recovered pending interview config.");
+
+                            // Continued execution will happen on next render or we can force it here?
+                            // Actually, state updates are async. We should probably NOT return yet if we found it.
+                            // But for safety, we used local vars before. 
+                            // Let's use local refs for the API call to ensure execution THIS render.
+                            var localRole = parsed.role;
+                            var localDiff = parsed.difficulty;
+                            var localResume = parsed.resumeText;
+                        } catch (e) {
+                            console.error("Failed to parse pending session", e);
+                        }
+                    }
+                } else {
+                    var localRole = role;
+                    var localDiff = difficulty;
+                    var localResume = resumeText;
+                }
+
+                if (!localRole || !localDiff) {
+                    navigate('/role-selection');
+                    return;
+                }
+
+                // 2. BACKUP: Save config to survive refresh until ID is generated
+                sessionStorage.setItem('pendingInterview', JSON.stringify({ role: localRole, difficulty: localDiff, resumeText: localResume }));
+
+                // Pass resumeText if available
+                const data = await api.generateQuestions(localRole, localDiff, token, localResume);
                 if (data.questions?.length > 0) {
                     setQuestions(data.questions);
                     setInterviewId(data._id);
+                    // Update URL without reload to save state
+                    navigate(`/interview/${data._id}`, { replace: true });
+                    sessionStorage.removeItem('pendingInterview'); // Cleanup
                     setLoading(false);
                 } else {
                     setError("No questions generated. Please try again.");
@@ -81,8 +162,9 @@ const InterviewScreen = () => {
                 setLoading(false);
             }
         };
-        fetchQuestions();
-    }, [role, difficulty, getToken, navigate]);
+
+        initializeSession();
+    }, [paramInterviewId, getToken, navigate]); // Removed dependencies to prevent loops, logic handles state checks
 
 
     // --- STATE: Audio Context Unlock ---
@@ -91,6 +173,21 @@ const InterviewScreen = () => {
     const lastSpokenIndex = React.useRef(-1);
 
 
+
+    // --- DETECT ROLE TYPE ---
+    const isCodingInterview = React.useMemo(() => {
+        if (!role) return false;
+        const lower = role.toLowerCase();
+        // List of non-coding roles to explicitly exclude
+        const nonCoding = ['hr', 'manager', 'sales', 'marketing', 'behavioral', 'leadership'];
+        if (nonCoding.some(r => lower.includes(r))) return false;
+        return true;
+    }, [role]);
+
+    // Force Speech Mode if non-coding
+    useEffect(() => {
+        if (!isCodingInterview) setMode('speech');
+    }, [isCodingInterview]);
 
     // --- FUNCTION: Speak Question ---
     const speakQuestion = React.useCallback((text) => {
@@ -112,9 +209,15 @@ const InterviewScreen = () => {
         utterance.onstart = () => setIsSpeaking(true);
         utterance.onend = () => setIsSpeaking(false);
         utterance.onerror = (e) => {
+            // CRITICAL FIX: Do not disable audio for interruptions
+            if (e.error === 'interrupted' || e.error === 'canceled') {
+                console.log("ℹ️ Audio interrupted (normal navigation).");
+                setIsSpeaking(false);
+                return;
+            }
             console.warn("⚠️ Audio Playback Failed. Disabling Audio Engine.", e);
             setIsSpeaking(false);
-            setIsAudioEnabled(false); // STOP FUTURE ERRORS
+            // setIsAudioEnabled(false); // OPTIONAL: Keep it robust, only disable on real errors
         };
 
         // Speak with delay
@@ -163,6 +266,9 @@ const InterviewScreen = () => {
 
     // --- FUNCTION: Submit Answer ---
     const handleSubmitAnswer = async () => {
+        // 1. Immediately Stop Audio
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+
         if (isRecording) setIsRecording(false);
         const currentAnswer = mode === 'code'
             ? `[CODE - ${language}]:\n${code}\n[OUTPUT]:\n${output?.run?.stdout || ''}`
@@ -208,7 +314,11 @@ const InterviewScreen = () => {
     if (loading) return (
         <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center text-white font-sans">
             <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
-            <div className="text-xs font-mono uppercase tracking-widest text-white/50">Initializing Environment...</div>
+            <div className="text-xs font-mono uppercase tracking-widest text-white/50">
+                {userAnswers.length > 0 && userAnswers.length >= questions.length
+                    ? "Generating Performance Report..."
+                    : "Initializing Environment..."}
+            </div>
         </div>
     );
     if (error) return (
@@ -247,7 +357,7 @@ const InterviewScreen = () => {
         <div className="h-screen bg-[#050505] text-white overflow-hidden flex flex-col font-sans selection:bg-purple-500/30">
             <InterviewHeader role={role} difficulty={difficulty} currentQuestionIndex={currentQuestionIndex} />
 
-            <div className="flex-1 flex pt-14 relative bg-[#050505]">
+            <div className="flex-1 flex flex-col lg:flex-row pt-14 relative bg-[#050505] overflow-hidden">
                 {/* Unified Noise Overlay */}
                 <div className="bg-noise !absolute !inset-0 !z-0 !opacity-[0.05] mix-blend-overlay pointer-events-none" />
 
@@ -274,6 +384,8 @@ const InterviewScreen = () => {
                         output={output} setOutput={setOutput}
                         runCode={runCode}
                         handleSubmitAnswer={handleSubmitAnswer}
+                        isCodingInterview={isCodingInterview}
+                        isAnalyzing={isAnalyzing || loading}
                     />
                 </ErrorBoundary>
             </div>

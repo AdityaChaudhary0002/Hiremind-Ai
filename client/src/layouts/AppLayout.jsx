@@ -112,7 +112,7 @@ const AppLayout = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/30 relative flex flex-col overflow-hidden">
+        <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/30 relative flex flex-col overflow-x-hidden">
             {/* AMBIENT CURSOR LIGHT */}
             <div
                 ref={spotlightRef}

@@ -169,7 +169,10 @@ const RoleSelection = () => {
                                 <motion.div
                                     variants={MOTION.drift}
                                     onClick={() => setCategory('tech')}
-                                    className="group cursor-pointer bg-white/5 border border-white/10 hover:border-white/30 rounded-[30px] p-10 flex flex-col justify-between hover:bg-white/10 transition-all duration-500"
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setCategory('tech')}
+                                    className="group cursor-pointer bg-white/5 border border-white/10 hover:border-white/30 rounded-[30px] p-10 flex flex-col justify-between hover:bg-white/10 transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-white/50"
                                 >
                                     <div className="w-16 h-16 rounded-2xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
                                         <Cpu className="w-8 h-8" />
@@ -183,7 +186,10 @@ const RoleSelection = () => {
                                 <motion.div
                                     variants={MOTION.drift}
                                     onClick={() => setCategory('non-tech')}
-                                    className="group cursor-pointer bg-white/5 border border-white/10 hover:border-white/30 rounded-[30px] p-10 flex flex-col justify-between hover:bg-white/10 transition-all duration-500"
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setCategory('non-tech')}
+                                    className="group cursor-pointer bg-white/5 border border-white/10 hover:border-white/30 rounded-[30px] p-10 flex flex-col justify-between hover:bg-white/10 transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-white/50"
                                 >
                                     <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
                                         <UserCircle className="w-8 h-8" />
@@ -205,7 +211,7 @@ const RoleSelection = () => {
                                 className="grid grid-cols-1 md:grid-cols-2 gap-4"
                             >
                                 {/* Custom Upload Card */}
-                                <motion.div variants={MOTION.drift} className={`${STYLES.glass_card} p-1 border-dashed border-white/20 hover:border-white/50 group cursor-pointer relative overflow-hidden bg-white/5`}>
+                                <motion.div variants={MOTION.drift} className={`${STYLES.glass_card} p-1 border-dashed border-white/20 hover:border-white/50 group cursor-pointer relative overflow-hidden bg-white/5 focus-within:ring-2 focus-within:ring-white/50`}>
                                     <input
                                         type="file"
                                         accept=".pdf"
@@ -227,10 +233,13 @@ const RoleSelection = () => {
                                 {/* Role Cards */}
                                 {currentRoles.map((role) => (
                                     <motion.div
-                                        key={role.id}
                                         variants={MOTION.drift}
                                         onClick={() => setSelectedRole(role)}
-                                        className={`${STYLES.glass_card} p-1 cursor-pointer group relative overflow-hidden transition-all duration-500`}
+                                        role="button"
+                                        tabIndex={0}
+                                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setSelectedRole(role)}
+                                        aria-pressed={selectedRole?.id === role.id}
+                                        className={`${STYLES.glass_card} p-1 cursor-pointer group relative overflow-hidden transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-white/50`}
                                     >
                                         <div className={`absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
