@@ -1,59 +1,41 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Code2, Globe, Database, Smartphone, Cloud, Shield, Upload, FileText, CheckCircle, Loader2, ArrowRight } from 'lucide-react';
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
-import { useAuth, UserButton } from '@clerk/clerk-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Code2, Globe, Database, Smartphone, Cloud, Shield, Upload, ArrowRight, Check, Sparkles, Briefcase, Megaphone, Handshake, Users, Settings, Headphones, ChevronLeft, Cpu, UserCircle } from 'lucide-react';
+import { useAuth } from '@clerk/clerk-react';
 import axios from 'axios';
+import { Button } from "@/components/ui/button";
+import { MOTION, STYLES } from '@/lib/design-system';
+import Logo from '@/components/ui/logo';
 
 const RoleSelection = () => {
     const navigate = useNavigate();
     const { getToken } = useAuth();
+    const [category, setCategory] = useState(null); // 'tech' | 'non-tech'
     const [selectedRole, setSelectedRole] = useState(null);
     const [difficulty, setDifficulty] = useState('Medium');
     const [isUploading, setIsUploading] = useState(false);
     const [uploadError, setUploadError] = useState(null);
-    const [resumeName, setResumeName] = useState(null);
 
-    const roles = [
-        {
-            id: 'frontend',
-            title: 'Frontend Developer',
-            icon: <Globe className="w-5 h-5" />,
-            desc: 'React, Vue, CSS mastery'
-        },
-        {
-            id: 'backend',
-            title: 'Backend Developer',
-            icon: <Database className="w-5 h-5" />,
-            desc: 'Node, Python, Go, SQL'
-        },
-        {
-            id: 'fullstack',
-            title: 'Full Stack',
-            icon: <Code2 className="w-5 h-5" />,
-            desc: 'The complete package'
-        },
-        {
-            id: 'mobile',
-            title: 'Mobile Dev',
-            icon: <Smartphone className="w-5 h-5" />,
-            desc: 'iOS, Android, React Native'
-        },
-        {
-            id: 'devops',
-            title: 'DevOps Engineer',
-            icon: <Cloud className="w-5 h-5" />,
-            desc: 'CI/CD, Docker, K8s'
-        },
-        {
-            id: 'cybersecurity',
-            title: 'Cyber Security',
-            icon: <Shield className="w-5 h-5" />,
-            desc: 'Pen-testing, InfoSec'
-        },
+    const techRoles = [
+        { id: 'frontend', title: 'Frontend Systems', icon: Globe, desc: 'React, Architecture, Perf' },
+        { id: 'backend', title: 'Backend Logic', icon: Database, desc: 'API, DB, Scalability' },
+        { id: 'fullstack', title: 'Full Stack Core', icon: Code2, desc: 'End-to-End Systems' },
+        { id: 'mobile', title: 'Mobile Nexus', icon: Smartphone, desc: 'iOS, Android, React Native' },
+        { id: 'devops', title: 'DevOps Pipeline', icon: Cloud, desc: 'CI/CD, Infrastructure' },
+        { id: 'cybersecurity', title: 'Security Ops', icon: Shield, desc: 'Pen-testing, InfoSec' },
     ];
+
+    const nonTechRoles = [
+        { id: 'pm', title: 'Product Manager', icon: Briefcase, desc: 'Strategy, Roadmap, Execution' },
+        { id: 'marketing', title: 'Marketing Lead', icon: Megaphone, desc: 'Growth, Brand, Analytics' },
+        { id: 'sales', title: 'Sales Executive', icon: Handshake, desc: 'Negotiation, CRM, Closing' },
+        { id: 'hr', title: 'Human Resources', icon: Users, desc: 'Recruiting, Culture, Compliance' },
+        { id: 'operations', title: 'Operations Manager', icon: Settings, desc: 'Logistics, Process, Efficiency' },
+        { id: 'customer_success', title: 'Customer Success', icon: Headphones, desc: 'Support, Retention, Upsell' },
+    ];
+
+    const currentRoles = category === 'tech' ? techRoles : nonTechRoles;
 
     const handleStartInterview = () => {
         if (selectedRole) {
@@ -64,166 +46,224 @@ const RoleSelection = () => {
     const handleFileUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
-
         if (file.type !== 'application/pdf') {
-            setUploadError("Please upload a PDF file.");
+            setUploadError("Protocol Mismatch: PDF Required.");
             return;
         }
 
         setIsUploading(true);
         setUploadError(null);
-
         const formData = new FormData();
         formData.append('resume', file);
 
         try {
             const token = await getToken();
-            const response = await axios.post('/api/resume/upload', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    Authorization: `Bearer ${token}`
-                }
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/resume/upload`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${token}` }
             });
-
-            console.log("Resume parsed:", response.data);
-            setResumeName(file.name);
             navigate('/interview', {
-                state: {
-                    role: 'Resume Based',
-                    difficulty,
-                    resumeText: response.data.text
-                }
+                state: { role: 'Resume Protocol', difficulty, resumeText: response.data.text }
             });
-
         } catch (error) {
             console.error("Upload error:", error);
-            setUploadError("Failed to upload resume. Please try again.");
+            setUploadError("Upload Failed. Retrying recommended.");
         } finally {
             setIsUploading(false);
         }
     };
 
     return (
-        <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground transition-colors duration-300">
+        <div className="min-h-screen relative flex flex-col overflow-hidden selection:bg-white/20">
 
-            {/* Header */}
-            <div className="max-w-5xl mx-auto px-6 pt-12 mb-16 flex justify-between items-center">
-                <Button
-                    variant="ghost"
-                    onClick={() => navigate('/dashboard')}
-                    className="text-muted-foreground hover:text-foreground hover:bg-muted rounded-md -ml-4"
-                >
-                    <ArrowRight className="w-4 h-4 rotate-180 mr-2" /> Back to Dashboard
-                </Button>
-                <div className="flex items-center gap-4">
-                    <ThemeToggle />
-                    <UserButton afterSignOutUrl="/login" />
+            {/* Top HUD */}
+            <div className="absolute top-0 left-0 right-0 p-8 flex justify-between items-start z-50 pointer-events-none">
+                <div className="pointer-events-auto">
+                    <Logo className="scale-75 origin-top-left opacity-50 hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="text-[10px] font-mono text-white/30 tracking-[0.2em] uppercase hidden md:block">
+                    Module Selection // Phase 1
                 </div>
             </div>
 
-            <main className="max-w-5xl mx-auto px-6 pb-24">
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-24 flex flex-col md:flex-row gap-16">
 
-                {/* Intro */}
-                <div className="mb-16">
-                    <h1 className="text-4xl font-heading font-bold tracking-tight mb-4">Select Track</h1>
-                    <p className="text-muted-foreground max-w-xl text-lg font-body">
-                        Choose a predefined engineering track or upload a resume for a custom-tailored technical assessment.
-                    </p>
-                </div>
+                {/* LEFT: The Narrative & Config */}
+                <div className="md:w-1/3 flex flex-col justify-center sticky top-24 h-fit">
+                    <motion.div variants={MOTION.drift} initial="hidden" animate="visible">
+                        {category && (
+                            <button
+                                onClick={() => { setCategory(null); setSelectedRole(null); }}
+                                className="flex items-center gap-2 text-white/40 hover:text-white mb-6 transition-colors text-xs font-mono uppercase tracking-widest"
+                            >
+                                <ChevronLeft className="w-4 h-4" /> Back to Categories
+                            </button>
+                        )}
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                        <h1 className={`${STYLES.h1_hero} text-5xl md:text-6xl mb-6 leading-tight`}>
+                            {category ? (category === 'tech' ? 'Technical' : 'Business') : 'Choose'}
+                            <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white/80 to-transparent">
+                                {category ? 'Protocol.' : 'Your Path.'}
+                            </span>
+                        </h1>
+                        <p className={`${STYLES.p_body} mb-12 max-w-sm`}>
+                            {category
+                                ? "Select your specialization or upload a dossier for a custom simulation."
+                                : "Define the scope of your simulation. Technical architectures or Business operations."}
+                        </p>
 
-                    {/* Role Selection List */}
-                    <div className="lg:col-span-2 space-y-4">
-                        <div className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">Available Tracks</div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {roles.map((role) => (
-                                <div
-                                    key={role.id}
-                                    onClick={() => setSelectedRole(role)}
-                                    className={`p-6 border rounded-lg cursor-pointer transition-all duration-200 group relative overflow-hidden ${selectedRole?.id === role.id
-                                            ? 'bg-primary text-primary-foreground border-primary'
-                                            : 'bg-card border-border hover:border-muted-foreground text-muted-foreground hover:text-foreground'
-                                        }`}
-                                >
-                                    <div className="flex justify-between items-start mb-4">
-                                        <div className={`${selectedRole?.id === role.id ? 'text-primary-foreground' : 'text-foreground'}`}>
-                                            {role.icon}
-                                        </div>
-                                        {selectedRole?.id === role.id && (
-                                            <div className="w-2 h-2 rounded-full bg-primary-foreground animate-pulse" />
-                                        )}
-                                    </div>
-                                    <h3 className="font-heading font-bold text-lg mb-1">{role.title}</h3>
-                                    <p className={`text-sm font-body ${selectedRole?.id === role.id ? 'text-primary-foreground/80' : 'text-muted-foreground group-hover:text-foreground'}`}>
-                                        {role.desc}
-                                    </p>
+                        {/* Difficulty Selector (Visible only if category selected) */}
+                        {category && (
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-12">
+                                <div className="text-xs font-mono text-white/30 uppercase tracking-widest mb-4">Simulation Intensity</div>
+                                <div className="flex gap-2 bg-white/5 p-1 rounded-full border border-white/5 w-fit">
+                                    {['Easy', 'Medium', 'Hard'].map(d => (
+                                        <button
+                                            key={d}
+                                            onClick={() => setDifficulty(d)}
+                                            className={`px-6 py-2 rounded-full text-xs font-bold tracking-wide transition-all ${difficulty === d
+                                                ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]'
+                                                : 'text-white/40 hover:text-white hover:bg-white/5'
+                                                }`}
+                                        >
+                                            {d.toUpperCase()}
+                                        </button>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                    </div>
+                            </motion.div>
+                        )}
 
-                    {/* Sidebar: Resume & Difficulty */}
-                    <div className="space-y-8">
-                        <div>
-                            <div className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">Custom Assessment</div>
-                            <div className="border border-dashed border-border rounded-lg p-8 text-center hover:bg-muted/50 transition-colors relative cursor-pointer group">
-                                <input
-                                    type="file"
-                                    accept=".pdf"
-                                    onChange={handleFileUpload}
-                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                                    disabled={isUploading}
-                                />
-                                {isUploading ? (
-                                    <Loader2 className="w-8 h-8 text-primary animate-spin mx-auto mb-4" />
+                        {/* Action Button */}
+                        {category && (
+                            <Button
+                                onClick={handleStartInterview}
+                                disabled={!selectedRole}
+                                className={`w-full h-14 rounded-full font-heading font-bold text-lg tracking-wide transition-all ${selectedRole
+                                    ? 'bg-white text-black hover:bg-white/90 shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-105'
+                                    : 'bg-white/5 text-white/20 border border-white/5 cursor-not-allowed'
+                                    }`}
+                            >
+                                {selectedRole ? (
+                                    <span className="flex items-center gap-2">INITIATE SIMULATION <ArrowRight className="w-5 h-5" /></span>
                                 ) : (
-                                    <Upload className="w-8 h-8 text-muted-foreground group-hover:text-foreground transition-colors mx-auto mb-4" />
+                                    "SELECT A PROTOCOL"
                                 )}
-                                <div className="font-heading font-semibold text-foreground mb-2">Upload Resume</div>
-                                <p className="text-xs text-muted-foreground">PDF Format only. Max 5MB.</p>
-                                {uploadError && <p className="text-destructive text-xs mt-2">{uploadError}</p>}
-                            </div>
-                        </div>
-
-                        {/* Configuration */}
-                        <div className={`transition-opacity duration-300 ${selectedRole ? 'opacity-100' : 'opacity-30 pointer-events-none'}`}>
-                            <div className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">Configuration</div>
-                            <div className="space-y-4">
-                                <div>
-                                    <div className="text-sm text-muted-foreground mb-2">Selected Role</div>
-                                    <div className="font-heading font-bold text-foreground text-lg">{selectedRole?.title || "None Selected"}</div>
-                                </div>
-                                <div>
-                                    <div className="text-sm text-muted-foreground mb-2">Difficulty</div>
-                                    <div className="flex gap-2">
-                                        {['Easy', 'Medium', 'Hard'].map(d => (
-                                            <button
-                                                key={d}
-                                                onClick={() => setDifficulty(d)}
-                                                className={`px-4 py-2 rounded-md text-sm border transition-colors font-body ${difficulty === d
-                                                        ? 'bg-foreground text-background border-foreground font-medium'
-                                                        : 'bg-card text-muted-foreground border-border hover:border-muted-foreground'
-                                                    }`}
-                                            >
-                                                {d}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <Button
-                                    onClick={handleStartInterview}
-                                    className="w-full h-12 bg-primary text-primary-foreground hover:bg-primary/90 mt-4 rounded-md font-medium text-lg"
-                                    disabled={!selectedRole}
-                                >
-                                    Start Session <ArrowRight className="w-4 h-4 ml-2" />
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
+                            </Button>
+                        )}
+                    </motion.div>
                 </div>
-            </main>
+
+                {/* RIGHT: The Holographic Deck */}
+                <div className="md:w-2/3">
+                    <AnimatePresence mode="wait">
+                        {!category ? (
+                            // CATEGORY SELECTION
+                            <motion.div
+                                key="categories"
+                                variants={MOTION.container}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden"
+                                className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full min-h-[400px]"
+                            >
+                                <motion.div
+                                    variants={MOTION.drift}
+                                    onClick={() => setCategory('tech')}
+                                    className="group cursor-pointer bg-white/5 border border-white/10 hover:border-white/30 rounded-[30px] p-10 flex flex-col justify-between hover:bg-white/10 transition-all duration-500"
+                                >
+                                    <div className="w-16 h-16 rounded-2xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+                                        <Cpu className="w-8 h-8" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-3xl font-heading font-bold text-white mb-2">Technical</h3>
+                                        <p className="text-white/50 text-sm">Engineering, DevOps, Systems Architecture, and Coding Infrastructure.</p>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div
+                                    variants={MOTION.drift}
+                                    onClick={() => setCategory('non-tech')}
+                                    className="group cursor-pointer bg-white/5 border border-white/10 hover:border-white/30 rounded-[30px] p-10 flex flex-col justify-between hover:bg-white/10 transition-all duration-500"
+                                >
+                                    <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                                        <UserCircle className="w-8 h-8" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-3xl font-heading font-bold text-white mb-2">Non-Technical</h3>
+                                        <p className="text-white/50 text-sm">Management, Operations, HR, Sales, and Leadership Roles.</p>
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+                        ) : (
+                            // ROLE SELECTION GRID
+                            <motion.div
+                                key="roles"
+                                variants={MOTION.container}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden"
+                                className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                            >
+                                {/* Custom Upload Card */}
+                                <motion.div variants={MOTION.drift} className={`${STYLES.glass_card} p-1 border-dashed border-white/20 hover:border-white/50 group cursor-pointer relative overflow-hidden bg-white/5`}>
+                                    <input
+                                        type="file"
+                                        accept=".pdf"
+                                        onChange={handleFileUpload}
+                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
+                                        disabled={isUploading}
+                                    />
+                                    <div className="h-full bg-black/40 rounded-[20px] p-6 flex flex-col items-center justify-center text-center gap-4 group-hover:bg-black/30 transition-colors">
+                                        <div className={`w-12 h-12 rounded-full flex items-center justify-center border transition-all ${isUploading ? 'border-primary text-primary animate-pulse' : 'border-white/10 bg-white/5 text-white/40 group-hover:scale-110 group-hover:text-white'}`}>
+                                            {isUploading ? <Sparkles className="w-6 h-6 animate-spin" /> : <Upload className="w-6 h-6" />}
+                                        </div>
+                                        <div>
+                                            <h3 className="font-heading font-bold text-white text-lg">Upload Dossier</h3>
+                                            <p className="text-sm text-white/40 mt-1">AI-Tailored from Resume (PDF)</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Role Cards */}
+                                {currentRoles.map((role) => (
+                                    <motion.div
+                                        key={role.id}
+                                        variants={MOTION.drift}
+                                        onClick={() => setSelectedRole(role)}
+                                        className={`${STYLES.glass_card} p-1 cursor-pointer group relative overflow-hidden transition-all duration-500`}
+                                    >
+                                        <div className={`absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+
+                                        <div className={`h-full rounded-[20px] p-6 flex flex-col justify-between relative z-10 transition-all ${selectedRole?.id === role.id ? 'bg-white/10 border-white/20' : 'bg-transparent'
+                                            }`}>
+                                            <div className="flex justify-between items-start">
+                                                <role.icon className={`w-8 h-8 transition-colors ${selectedRole?.id === role.id ? 'text-white' : 'text-white/40 group-hover:text-white/80'}`} />
+                                                {selectedRole?.id === role.id && <Check className="w-5 h-5 text-white" />}
+                                            </div>
+
+                                            <div className="mt-8">
+                                                <h3 className={`font-heading font-bold text-xl mb-1 transition-colors ${selectedRole?.id === role.id ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
+                                                    {role.title}
+                                                </h3>
+                                                <p className="text-xs font-mono text-white/30 uppercase tracking-widest">{role.desc}</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Active Glow */}
+                                        {selectedRole?.id === role.id && (
+                                            <motion.div
+                                                layoutId="activeGlow"
+                                                className="absolute inset-0 border-2 border-white/50 rounded-3xl shadow-[0_0_30px_rgba(255,255,255,0.1)] pointer-events-none"
+                                            />
+                                        )}
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+            </div>
         </div>
     );
 };

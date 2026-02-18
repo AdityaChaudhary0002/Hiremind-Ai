@@ -18,14 +18,14 @@ const generateQuestions = async (req, res, next) => {
             throw new Error('GROQ_API_KEY is missing.');
         }
 
-        let prompt = `Generate 10 structured technical interview questions for a ${difficulty} level ${role} position. Return ONLY a JSON object with this format: { "questions": ["Q1", "Q2", ...] }. No markdown.`;
+        let prompt = `Generate 10 structured interview questions for a ${difficulty} level ${role} position. Return ONLY a JSON object with this format: { "questions": ["Q1", "Q2", ...] }. No markdown.`;
 
         if (resumeText) {
             prompt = `CRITICAL INSTRUCTION: You are generating interview questions based on a specific candidate resume.
             Resume Content: """${resumeText.substring(0, 4000)}"""
             .
-            Based STRICTLY on the resume above, generate 10 highly specific technical interview questions for a ${difficulty} level ${role} position.
-            Ask about specific projects, technologies, and claims made in the resume.
+            Based STRICTLY on the resume above, generate 10 highly specific interview questions for a ${difficulty} level ${role} position.
+            Ask about specific projects, skills, and claims made in the resume.
             Return ONLY a JSON object: { "questions": [...] }. No markdown.`;
         }
 
@@ -182,4 +182,38 @@ const parseResume = async (req, res, next) => {
     }
 };
 
-module.exports = { generateQuestions, addMoreQuestions, submitInterview, getInterview, getUserInterviews, parseResume };
+const generateFollowUp = async (req, res, next) => {
+    const { question, answer, role, difficulty } = req.body;
+
+    try {
+        const prompt = `
+        You are an expert interviewer. 
+        Current Question: "${question}"
+        Candidate Answer: "${answer}"
+        Role: ${role} (${difficulty})
+
+        Task: Analyze the answer.
+        1. If it is vague, generic, or mentions a specific technology (if applicable) without explaining "Why" or "How", generate a short, sharp follow-up question to probe deeper.
+        2. If the answer is complete and satisfactory, return null.
+
+        Return JSON ONLY: { "followUp": "Question string" or null }
+        `;
+
+        const completion = await groq.chat.completions.create({
+            messages: [{ role: "user", content: prompt }],
+            model: "llama-3.3-70b-versatile",
+            response_format: { type: "json_object" },
+        });
+
+        const text = completion.choices[0]?.message?.content || "{}";
+        const content = JSON.parse(text);
+
+        res.status(200).json({ followUp: content.followUp });
+    } catch (error) {
+        console.error("Follow-up generation error:", error);
+        // Fallback: Continue without follow-up on error
+        res.status(200).json({ followUp: null });
+    }
+};
+
+module.exports = { generateQuestions, addMoreQuestions, submitInterview, getInterview, getUserInterviews, parseResume, generateFollowUp };

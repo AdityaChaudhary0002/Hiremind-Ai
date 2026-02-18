@@ -1,184 +1,162 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useAuth } from '@clerk/clerk-react';
 import axios from 'axios';
-import { useAuth, UserButton } from '@clerk/clerk-react';
-import { ThemeToggle } from "@/components/theme-toggle";
+import { CheckCircle, XCircle, ChevronRight, Activity, Zap, Brain, MessageSquare, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { Loader2, ArrowLeft, Download, Share2, CheckCircle, XCircle, AlertTriangle, TrendingUp, Award } from 'lucide-react';
-import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import { MOTION, STYLES } from '@/lib/design-system';
+import Logo from '@/components/ui/logo';
+import Confetti from 'react-confetti';
 
 const FeedbackScreen = () => {
     const { interviewId } = useParams();
     const navigate = useNavigate();
-    const { getToken, userId } = useAuth();
+    const { getToken } = useAuth();
     const [feedback, setFeedback] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchFeedback = async () => {
             try {
                 const token = await getToken();
-                const response = await axios.get(`/api/interview/${interviewId}`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/interview/feedback/${interviewId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setFeedback(response.data);
-            } catch (err) {
-                console.error("Error fetching feedback:", err);
-                setError("Failed to load feedback analysis.");
+            } catch (error) {
+                console.error("Error fetching feedback:", error);
             } finally {
                 setLoading(false);
             }
         };
-
-        if (interviewId) {
-            fetchFeedback();
-        }
+        fetchFeedback();
     }, [interviewId, getToken]);
 
-    const downloadPDF = () => {
-        const input = document.getElementById('feedback-report');
-        html2canvas(input, { scale: 2 }).then((canvas) => {
-            const imgData = canvas.toDataURL('image/png');
-            const pdf = new jsPDF('p', 'mm', 'a4');
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-
-            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save(`HireMind_Report_${interviewId}.pdf`);
-        });
-    };
-
     if (loading) return (
-        <div className="min-h-screen bg-background flex items-center justify-center">
-            <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+        <div className="min-h-screen flex items-center justify-center bg-black/50">
+            <div className="text-center">
+                <Loader2 className="w-10 h-10 animate-spin text-primary mx-auto mb-4" />
+                <div className="text-xs font-mono text-white/50 uppercase tracking-widest">Compiling Mission Report...</div>
+            </div>
         </div>
     );
 
-    if (error) return (
-        <div className="min-h-screen bg-background flex flex-col items-center justify-center text-destructive">
-            <AlertTriangle className="w-12 h-12 mb-4" />
-            <p>{error}</p>
-            <Button onClick={() => navigate('/dashboard')} variant="outline" className="mt-4">Return Home</Button>
-        </div>
+    if (!feedback) return (
+        <div className="min-h-screen flex items-center justify-center text-white">Report Not Found.</div>
     );
 
-    const score = feedback?.feedback?.overallScore || 0;
-    const scoreColor = score >= 80 ? 'text-green-500' : score >= 60 ? 'text-yellow-500' : 'text-red-500';
-    const chartData = [
-        { name: 'Technical', value: feedback?.feedback?.technicalScore || 0, fullMark: 100 },
-        { name: 'Communication', value: feedback?.feedback?.communicationScore || 0, fullMark: 100 },
-        { name: 'Overall', value: feedback?.feedback?.overallScore || 0, fullMark: 100 },
-    ];
+    const scoreColor = feedback.overallScore >= 80 ? 'text-green-400' : feedback.overallScore >= 60 ? 'text-yellow-400' : 'text-red-400';
+    const scoreBorder = feedback.overallScore >= 80 ? 'border-green-400/20' : feedback.overallScore >= 60 ? 'border-yellow-400/20' : 'border-red-400/20';
 
     return (
-        <div className="min-h-screen bg-background text-foreground font-sans transition-colors duration-300">
-            {/* Header */}
-            <header className="border-b border-border bg-background/50 backdrop-blur sticky top-0 z-10 px-6 h-16 flex justify-between items-center print:hidden">
-                <Button variant="ghost" onClick={() => navigate('/dashboard')} className="text-muted-foreground hover:text-foreground">
-                    <ArrowLeft className="w-4 h-4 mr-2" /> Dashboard
-                </Button>
-                <div className="font-heading font-bold text-lg">Performance Analysis</div>
-                <div className="flex items-center gap-2">
-                    <Button variant="outline" size="sm" onClick={downloadPDF} className="bg-background border-border hover:bg-muted">
-                        <Download className="w-4 h-4 mr-2" /> PDF
-                    </Button>
-                    <ThemeToggle />
+        <div className="min-h-screen relative flex flex-col overflow-hidden selection:bg-white/20">
+            {feedback.overallScore >= 80 && <Confetti recycle={false} numberOfPieces={200} colors={['#ffffff', '#818cf8']} />}
+
+            {/* HUD */}
+            <div className="absolute top-0 left-0 right-0 p-8 flex justify-between items-start z-50 pointer-events-none">
+                <div className="pointer-events-auto">
+                    <Logo className="scale-75 origin-top-left opacity-50 hover:opacity-100 transition-opacity" />
                 </div>
-            </header>
+                <div className="text-[10px] font-mono text-white/30 uppercase tracking-[0.2em]">Mission Debrief // ID: {interviewId.slice(-6)}</div>
+            </div>
 
-            <main className="max-w-5xl mx-auto p-6 space-y-8" id="feedback-report">
+            <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-24">
 
-                {/* Hero Score Card */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="md:col-span-2 space-y-6">
-                        <div className="bg-card border border-border rounded-xl p-8 shadow-sm">
-                            <div className="flex items-center gap-3 mb-4">
-                                <Award className="w-6 h-6 text-primary" />
-                                <h2 className="text-xl font-heading font-bold">Executive Summary</h2>
+                {/* Header */}
+                <motion.div variants={MOTION.drift} initial="hidden" animate="visible" className="text-center mb-16">
+                    <h1 className={`${STYLES.h1_hero} text-5xl md:text-7xl mb-4`}>Performance Analysis</h1>
+                    <p className={`${STYLES.p_body} max-w-2xl mx-auto`}>
+                        Simulation complete. Review your tactical decisions and linguistic patterns below.
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                    {/* LEFT: Score Card */}
+                    <motion.div
+                        variants={MOTION.drift}
+                        initial="hidden"
+                        animate="visible"
+                        className="lg:col-span-1"
+                    >
+                        <div className={`${STYLES.glass_card} p-8 text-center flex flex-col items-center justify-center h-fit sticky top-24`}>
+                            <div className="text-xs font-mono text-white/40 uppercase tracking-widest mb-6">Overall Rating</div>
+
+                            <div className={`w-40 h-40 rounded-full flex items-center justify-center border-4 ${scoreBorder} mb-6 shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-black/20`}>
+                                <div className={`text-6xl font-heading font-bold ${scoreColor}`}>
+                                    {feedback.overallScore}
+                                </div>
                             </div>
-                            <p className="text-muted-foreground text-lg leading-relaxed font-body">
-                                {feedback?.feedback?.summary || "No summary available."}
-                            </p>
-                        </div>
 
-                        {/* Improvements */}
-                        <div className="bg-card border border-border rounded-xl p-8 shadow-sm">
-                            <div className="flex items-center gap-3 mb-6">
-                                <TrendingUp className="w-6 h-6 text-primary" />
-                                <h2 className="text-xl font-heading font-bold">Key Improvements</h2>
+                            <div className="grid grid-cols-2 gap-4 w-full mt-4">
+                                <div className="bg-white/5 p-4 rounded-xl">
+                                    <div className="text-xs text-white/40 uppercase mb-1">Duration</div>
+                                    <div className="text-xl font-mono text-white">24m</div>
+                                </div>
+                                <div className="bg-white/5 p-4 rounded-xl">
+                                    <div className="text-xs text-white/40 uppercase mb-1">Status</div>
+                                    <div className="text-xl font-mono text-white">PASSED</div>
+                                </div>
                             </div>
-                            <ul className="space-y-4">
-                                {feedback?.feedback?.improvements?.map((imp, i) => (
-                                    <li key={i} className="flex items-start gap-3 text-muted-foreground">
-                                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                                        <span>{imp}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
 
-                    {/* Score Circle */}
-                    <div className="bg-card border border-border rounded-xl p-8 flex flex-col items-center justify-center shadow-sm text-center">
-                        <div className="relative w-48 h-48 flex items-center justify-center mb-6">
-                            {/* Placeholder for Circular Progress - Replace with Recharts Pie if simpler */}
-                            <div className="w-full h-full rounded-full border-8 border-muted flex items-center justify-center relative">
-                                <div className={`w-full h-full rounded-full border-8 border-current absolute top-0 left-0 ${scoreColor} opacity-20`} />
-                                <div className="text-5xl font-heading font-bold text-foreground">{score}</div>
-                            </div>
+                            <Button onClick={() => navigate('/dashboard')} className="w-full mt-8 bg-white text-black hover:bg-white/90 font-bold">
+                                Return to Command
+                            </Button>
                         </div>
-                        <h3 className="text-lg font-bold text-foreground">Overall Rating</h3>
-                        <div className="text-sm text-muted-foreground mt-2 uppercase tracking-widest font-mono">
-                            {score >= 80 ? "Excellent" : score >= 60 ? "Average" : "Needs Work"}
-                        </div>
-                    </div>
-                </div>
+                    </motion.div>
 
-                {/* Detailed Breakdown */}
-                <h3 className="text-2xl font-heading font-bold pt-8">Question Analysis</h3>
-                <div className="space-y-6">
-                    {feedback?.questions?.map((q, i) => {
-                        const qRaw = typeof q === 'string' ? q : q.question; // Handle legacy format
-                        const answer = feedback?.responses?.[i] || "No Answer";
-                        const feedbackItem = feedback?.feedback?.questionAnalysis?.[i];
+                    {/* RIGHT: Detailed Analysis */}
+                    <motion.div
+                        variants={MOTION.container}
+                        initial="hidden"
+                        animate="visible"
+                        className="lg:col-span-2 space-y-6"
+                    >
+                        {feedback.questions.map((q, i) => (
+                            <motion.div
+                                key={i}
+                                variants={MOTION.drift}
+                                className={`${STYLES.glass_card} p-6 relative overflow-hidden group`}
+                            >
+                                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity" />
 
-                        return (
-                            <div key={i} className="bg-card border border-border p-6 rounded-lg hover:border-primary/50 transition-colors">
-                                <div className="flex justify-between items-start mb-4">
-                                    <h4 className="font-heading font-bold text-lg text-foreground max-w-3xl">Q{i + 1}: {qRaw}</h4>
-                                    <div className="px-3 py-1 bg-muted rounded font-mono text-sm font-bold text-foreground">
-                                        {feedbackItem?.score || 0}/10
+                                <div className="flex items-start gap-4 mb-4">
+                                    <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white/60">
+                                        Q{i + 1}
                                     </div>
+                                    <h3 className="text-lg font-medium text-white/90 leading-relaxed">
+                                        {q.question}
+                                    </h3>
                                 </div>
 
-                                <div className="space-y-4">
-                                    <div className="bg-muted/30 p-4 rounded border-l-2 border-primary">
-                                        <div className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Your Response</div>
-                                        <p className="text-foreground/90 font-mono text-sm">{answer}</p>
+                                <div className="bg-black/30 rounded-xl p-4 mb-4 border-l-2 border-primary/50">
+                                    <div className="flex items-center gap-2 text-xs font-mono text-primary uppercase tracking-widest mb-2">
+                                        <MessageSquare className="w-3 h-3" /> Your Response
                                     </div>
+                                    <p className="text-white/70 italic text-sm">"{q.userAnswer}"</p>
+                                </div>
 
-                                    {feedbackItem && (
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            <div className="text-sm text-muted-foreground">
-                                                <strong className="text-foreground block mb-1">Feedback</strong>
-                                                {feedbackItem.feedback}
-                                            </div>
-                                            <div className="text-sm text-muted-foreground">
-                                                <strong className="text-foreground block mb-1">Ideal Approach</strong>
-                                                {feedbackItem.idealAnswer}
-                                            </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="bg-green-500/10 rounded-xl p-4 border border-green-500/10">
+                                        <div className="flex items-center gap-2 text-xs font-mono text-green-400 uppercase tracking-widest mb-2">
+                                            <CheckCircle className="w-3 h-3" /> Strengths
                                         </div>
-                                    )}
+                                        <p className="text-sm text-white/80">{q.feedback}</p>
+                                    </div>
+                                    <div className="bg-yellow-500/10 rounded-xl p-4 border border-yellow-500/10">
+                                        <div className="flex items-center gap-2 text-xs font-mono text-yellow-400 uppercase tracking-widest mb-2">
+                                            <Brain className="w-3 h-3" /> Improvement
+                                        </div>
+                                        <p className="text-sm text-white/80">{q.improvement}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
-                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
 
-            </main>
+                </div>
+            </div>
         </div>
     );
 };

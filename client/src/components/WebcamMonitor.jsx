@@ -87,29 +87,29 @@ const WebcamMonitor = () => {
 
     if (!cameraActive) {
         return (
-            <div className="fixed bottom-4 right-4 z-50">
-                <Button variant="outline" size="icon" className="rounded-full h-12 w-12 bg-background/80 backdrop-blur border-primary/20 shadow-lg hover:bg-primary/20" onClick={() => setCameraActive(true)}>
-                    <CameraOff className="w-5 h-5 text-muted-foreground" />
+            <div className="w-full h-full flex items-center justify-center bg-black/40 backdrop-blur-sm rounded-xl border border-white/5">
+                <Button variant="ghost" size="icon" className="rounded-full h-12 w-12 hover:bg-white/10 text-white/50 hover:text-white" onClick={() => setCameraActive(true)}>
+                    <CameraOff className="w-6 h-6" />
                 </Button>
             </div>
         )
     }
 
     return (
-        <div className="fixed bottom-4 right-4 z-50 w-64 bg-black/80 backdrop-blur-md rounded-xl border border-zinc-800 shadow-2xl overflow-hidden font-mono">
+        <div className="relative w-full h-full bg-black/80 backdrop-blur-md rounded-xl border border-white/10 shadow-2xl overflow-hidden font-mono group">
             {/* Header */}
-            <div className="flex items-center justify-between px-3 py-2 bg-zinc-900/50 border-b border-zinc-800">
+            <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-3 py-2 bg-gradient-to-b from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                    <span className="text-[10px] text-zinc-400 uppercase tracking-wider">Live Analysis</span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                    <span className="text-[10px] text-white/60 uppercase tracking-wider">REC</span>
                 </div>
-                <button onClick={() => setCameraActive(false)} className="text-zinc-500 hover:text-white transition-colors">
+                <button onClick={() => setCameraActive(false)} className="text-white/40 hover:text-white transition-colors">
                     <Camera className="w-3 h-3" />
                 </button>
             </div>
 
             {/* Video Feed */}
-            <div className="relative aspect-video bg-black">
+            <div className="relative w-full h-full bg-black">
                 <Webcam
                     ref={webcamRef}
                     audio={false}
@@ -119,30 +119,30 @@ const WebcamMonitor = () => {
                 />
 
                 {/* Overlay Stats */}
-                <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/90 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
                     <div className="flex items-end justify-between">
                         <div>
-                            <div className="text-[10px] text-zinc-400">Confidence Score</div>
-                            <div className={`text-xl font-bold leading-none ${getStatusColor()}`}>
+                            <div className="text-[10px] text-white/40 mb-0.5">Confidence</div>
+                            <div className={`text-lg font-bold leading-none ${getStatusColor()}`}>
                                 {confidence}%
                             </div>
                         </div>
                         <div className="text-right">
                             {confidence > 80 ? (
-                                <ShieldCheck className="w-5 h-5 text-green-500 mb-1 ml-auto" />
+                                <ShieldCheck className="w-4 h-4 text-emerald-500 mb-1 ml-auto" />
                             ) : (
-                                <AlertTriangle className="w-5 h-5 text-yellow-500 mb-1 ml-auto" />
+                                <AlertTriangle className="w-4 h-4 text-yellow-500 mb-1 ml-auto" />
                             )}
-                            <div className="text-[9px] text-zinc-500 uppercase">{status}</div>
+                            <div className="text-[9px] text-white/40 uppercase">{status}</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             {/* Progress Bar */}
-            <div className="h-1 bg-zinc-800 w-full">
+            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10 w-full">
                 <div
-                    className={`h-full transition-all duration-500 ${confidence > 80 ? 'bg-green-500' : confidence > 50 ? 'bg-yellow-500' : 'bg-red-500'}`}
+                    className={`h-full transition-all duration-500 ${confidence > 80 ? 'bg-emerald-500' : confidence > 50 ? 'bg-yellow-500' : 'bg-red-500'}`}
                     style={{ width: `${confidence}%` }}
                 />
             </div>
