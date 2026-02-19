@@ -111,8 +111,8 @@ const HistoryPage = () => {
                                 key={tab}
                                 onClick={() => { setActiveTab(tab); setPage(1); }}
                                 className={`px-6 py-2 text-[10px] font-mono uppercase tracking-widest rounded-full transition-all ${activeTab === tab
-                                        ? 'bg-white text-black shadow-lg scale-105 font-bold'
-                                        : 'text-white/50 hover:text-white'
+                                    ? 'bg-white text-black shadow-lg scale-105 font-bold'
+                                    : 'text-white/50 hover:text-white'
                                     }`}
                             >
                                 {tab}
@@ -164,7 +164,7 @@ const HistoryPage = () => {
                                         transition={{ delay: index * 0.05, type: "spring", stiffness: 50, damping: 20 }}
                                         whileHover={{ y: -10, transition: { duration: 0.2 } }}
                                         className="group relative bg-[#050505] border border-white/10 p-8 hover:bg-white/[0.05] hover:border-white/20 transition-all cursor-pointer overflow-hidden rounded-[2.5rem]"
-                                        onClick={() => navigate(`/feedback/${log._id}`)}
+                                        onClick={() => navigate(`/history/${log._id}`)}
                                     >
                                         <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                                             <button
@@ -194,7 +194,7 @@ const HistoryPage = () => {
                                         </div>
 
                                         <div className="flex items-center gap-2 text-xs font-mono text-white/50 group-hover:text-white transition-colors border-t border-white/10 pt-6 uppercase tracking-widest font-medium">
-                                            Access Report <ArrowRight className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0" />
+                                            View Breakdown <span className="ml-2 text-[8px] bg-red-500 text-white px-1.5 py-0.5 rounded-full animate-pulse">NEW</span> <ArrowRight className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0" />
                                         </div>
                                     </motion.div>
                                 ))}

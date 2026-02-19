@@ -35,7 +35,7 @@ const api = {
      * Submit a single Q&A pair for background processing
      */
     submitFollowup: async (data, token) => {
-        // data: { question, answer, role, difficulty }
+        // data: { question, answer, role, difficulty, history }
         return client.post(
             `/api/interview/followup`,
             data,
@@ -79,6 +79,20 @@ const api = {
             getAuthHeaders(token)
         );
         return response.data;
+    },
+
+    deleteInterview: async (id, token) => {
+        return client.delete(
+            `/api/interview/${id}`,
+            getAuthHeaders(token)
+        );
+    },
+
+    clearHistory: async (token) => {
+        return client.delete(
+            `/api/interview`,
+            getAuthHeaders(token)
+        );
     },
 
     // --- GOALS ---

@@ -9,6 +9,7 @@ import FeedbackScreen from './pages/FeedbackScreen';
 import AuthLayout from './pages/AuthLayout';
 import Dashboard from './pages/Dashboard';
 import HistoryPage from './pages/HistoryPage';
+import InterviewBreakdown from './pages/InterviewBreakdown';
 import GoalsPage from './pages/GoalsPage';
 import ResumeScanner from './pages/ResumeScanner';
 import AppLayout from './layouts/AppLayout';
@@ -50,6 +51,7 @@ const AnimatedRoutes = () => {
           <Route path="/dashboard" element={<PageTransition><Dashboard /></PageTransition>} />
           <Route path="/role-selection" element={<PageTransition><RoleSelection /></PageTransition>} />
           <Route path="/history" element={<PageTransition><HistoryPage /></PageTransition>} />
+          <Route path="/history/:interviewId" element={<PageTransition><InterviewBreakdown /></PageTransition>} />
           <Route path="/goals" element={<PageTransition><GoalsPage /></PageTransition>} />
           <Route path="/resume-scan" element={<PageTransition><ResumeScanner /></PageTransition>} />
           <Route path="/feedback/:interviewId" element={<PageTransition><FeedbackScreen /></PageTransition>} />

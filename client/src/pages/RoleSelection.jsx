@@ -233,6 +233,7 @@ const RoleSelection = () => {
                                 {/* Role Cards */}
                                 {currentRoles.map((role) => (
                                     <motion.div
+                                        key={role.id}
                                         variants={MOTION.drift}
                                         onClick={() => setSelectedRole(role)}
                                         role="button"

@@ -45,82 +45,48 @@ Whether you're a Recruit or a System Legend, HireMind AI adapts to your level, p
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React.js, Tailwind CSS, Framer Motion (for complex animations & drift effects).
-- **Backend**: Node.js, Express.js.
-- **Database**: MongoDB (Mongoose ODM).
-- **AI & ML**: 
-  - **Groq API** (Llama 3.3 70B Versatile) for ultra-fast inference.
-  - **Google Gemini** (Contextual assistance).
-  - **Multimedia**: Web Speech API for Speech-to-Text & Text-to-Speech.
-- **Authentication**: Clerk (Secure, seamless user management).
+- **Frontend**: React, TailwindCSS, Framer Motion, Lucide React
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **AI**: Groq (Llama 3), Google Gemini
+- **Auth**: Clerk
 
----
+## 📦 Installation
 
-## ⚡ Installation & Setup
-
-1. **Clone the Repository**
+1. **Clone the repo**
    ```bash
-   git clone https://github.com/AdityaChaudhary0002/Hiremind-Ai.git
-   cd Hiremind-Ai
+   git clone https://github.com/AdityaChaudhary0002/Hiremind-ai.git
    ```
 
 2. **Install Dependencies**
    ```bash
-   # Install server dependencies
+   # Root
+   npm install
+   
+   # Server
    cd server
    npm install
-
-   # Install client dependencies
+   
+   # Client
    cd ../client
    npm install
    ```
 
 3. **Environment Setup**
-    Create `.env` files in both `server` and `client` directories.
+   Create `.env` in `client` and `server` directories with your keys (Clerk, MongoDB, Groq).
 
-    **Server (`/server/.env`)**:
-    ```env
-    PORT=5001
-    MONGO_URI=your_mongodb_connection_string
-    GROQ_API_KEY=your_groq_api_key
-    CLERK_SECRET_KEY=your_clerk_secret_key
-    ```
-
-    **Client (`/client/.env`)**:
-    ```env
-    VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-    VITE_API_URL=http://localhost:5001
-    ```
-
-4. **Ignite the System**
+4. **Run**
    ```bash
-   # Run Backend (from /server)
-   npm start
+   # Terminal 1 (Server)
+   cd server && npm start
 
-   # Run Frontend (from /client)
-   npm run dev
+   # Terminal 2 (Client)
+   cd client && npm run dev
    ```
 
----
+## 🛡️ Robustness
 
-## 📸 Glimpse of the Interface
-
-*(Add screenshots here manually after pushing)*
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-<div align="center">
-  <p>Built with ❤️ and ☕ by <b>Aditya Chaudhary</b></p>
-</div>
+- **Validation**: Strict schema validation using Joi.
+- **Rate Limiting**: Protection against API abuse.
+- **Error Handling**: Centralized error management and fatal logging.
+- **Safe State**: Navigation guards preventing data loss during interviews.

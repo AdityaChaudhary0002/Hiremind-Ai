@@ -1,64 +1,43 @@
-import React, { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { MeshDistortMaterial, Float, Sparkles, PerspectiveCamera } from '@react-three/drei';
+import React from 'react';
 
-const AnimatedSphere = () => {
-    const meshRef = useRef();
-
-    useFrame((state) => {
-        if (meshRef.current) {
-            // Subtle rotation
-            meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.2;
-            meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.3;
-        }
-    });
-
-    return (
-        <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-            <mesh ref={meshRef} scale={1.8}>
-                <sphereGeometry args={[1, 64, 64]} />
-                {/* Liquid Metal / Living Intelligence Material */}
-                <MeshDistortMaterial
-                    color="#e0e0e0" // Silver-White
-                    attach="material"
-                    distort={0.4} // Wobbly effect
-                    speed={2} // Morph speed
-                    roughness={0.1}
-                    metalness={0.9}
-                    bumpScale={0.005}
-                    clearcoat={1}
-                    clearcoatRoughness={0.1}
-                    radius={1}
-                />
-            </mesh>
-        </Float>
-    );
-};
-
+// Pure CSS replacement for the 3D sphere — eliminates WebGL context crashes entirely
 const AiCore3D = ({ className }) => {
     return (
-        <div className={`w-full h-full ${className}`}>
-            <Canvas dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
-                <PerspectiveCamera makeDefault position={[0, 0, 5]} />
+        <div className={`w-full h-full flex items-center justify-center ${className}`}>
+            <div className="relative w-[420px] h-[420px]">
+                {/* Outer glow ring */}
+                <div className="absolute inset-0 rounded-full border border-white/5 animate-[spin_20s_linear_infinite]" />
 
-                {/* Lighting System */}
-                <ambientLight intensity={0.4} />
-                <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" />
-                <pointLight position={[-10, -10, -5]} intensity={0.5} color="#4a4aff" /> {/* Subtle blue rim light for depth */}
-
-                {/* The Core */}
-                <AnimatedSphere />
-
-                {/* Atmosphere */}
-                <Sparkles
-                    count={30}
-                    scale={6}
-                    size={2}
-                    speed={0.5}
-                    opacity={0.4}
-                    color="#ffffff"
+                {/* Mid ring with pulse */}
+                <div
+                    className="absolute inset-[10%] rounded-full border border-white/10"
+                    style={{ animation: 'spin 12s linear infinite reverse' }}
                 />
-            </Canvas>
+
+                {/* Core sphere — CSS radial gradient */}
+                <div
+                    className="absolute inset-[20%] rounded-full"
+                    style={{
+                        background: 'radial-gradient(circle at 35% 35%, #e0e0e0 0%, #888 40%, #222 80%, #000 100%)',
+                        boxShadow: '0 0 80px 20px rgba(180,180,255,0.08), inset 0 0 40px rgba(255,255,255,0.05)',
+                        animation: 'pulse 4s ease-in-out infinite',
+                    }}
+                />
+
+                {/* Sparkle dots */}
+                {[...Array(6)].map((_, i) => (
+                    <div
+                        key={i}
+                        className="absolute w-1 h-1 rounded-full bg-white/30"
+                        style={{
+                            top: `${20 + Math.sin(i * 60 * Math.PI / 180) * 40}%`,
+                            left: `${50 + Math.cos(i * 60 * Math.PI / 180) * 40}%`,
+                            animation: `pulse ${2 + i * 0.4}s ease-in-out infinite`,
+                            animationDelay: `${i * 0.3}s`,
+                        }}
+                    />
+                ))}
+            </div>
         </div>
     );
 };

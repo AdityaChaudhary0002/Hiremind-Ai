@@ -147,7 +147,6 @@ const getGoals = async (req, res, next) => {
 const createGoal = async (req, res, next) => {
     try {
         const { title, category } = req.body;
-        console.log("[DEBUG] createGoal Body:", req.body);
 
         if (!title) {
             return res.status(400).json({ message: "Title is required" });
@@ -162,11 +161,9 @@ const createGoal = async (req, res, next) => {
         };
 
         const newGoal = await Goal.create(goalData);
-        console.log("[DEBUG] Goal Created:", newGoal);
 
         return res.status(201).json(newGoal);
     } catch (error) {
-        console.error("[DEBUG] Create Goal Error:", error);
         next(error);
     }
 };

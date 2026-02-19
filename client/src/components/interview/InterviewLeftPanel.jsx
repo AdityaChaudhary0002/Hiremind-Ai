@@ -36,8 +36,6 @@ const InterviewLeftPanel = ({
                 {/* Avatar Frame */}
                 <div className="aspect-video w-full rounded-2xl bg-black/40 border border-white/10 relative overflow-hidden shadow-[inset_0_0_40px_rgba(0,0,0,0.8)]">
                     {/* Grid Background */}
-                    <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")` }} />
-
                     <ComponentErrorBoundary>
                         <Suspense fallback={
                             <div className="flex items-center justify-center w-full h-full text-xs font-mono text-white/20 animate-pulse">
