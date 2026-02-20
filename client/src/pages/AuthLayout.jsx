@@ -11,25 +11,24 @@ const AuthLayout = () => {
     return (
         <div className="min-h-screen w-full flex bg-background text-foreground overflow-hidden font-sans">
 
-            {/* Left Panel: Marketing (Hidden on Mobile) */}
-            <div className="hidden lg:flex w-1/2 relative flex-col justify-between p-12 bg-black border-r border-white/10">
+            {/* Left Panel: System Features (Hidden on Mobile) */}
+            <div className="hidden lg:flex w-1/2 relative flex-col justify-between p-12 bg-[#050505] border-r border-white/5">
 
-                {/* Background Effects */}
+                {/* Tactical Effects */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
-                    <div className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] bg-violet-600/20 rounded-full blur-[120px] animate-pulse" />
-                    <div className="absolute bottom-[-20%] right-[-20%] w-[80%] h-[80%] bg-pink-600/20 rounded-full blur-[120px] animate-pulse delay-1000" />
-                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
+                    <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]" />
+                    <div className="absolute top-1/2 left-1/2 w-3/4 h-3/4 bg-emerald-500/5 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
 
                 {/* Content */}
                 <div className="relative z-10 h-full flex flex-col justify-between">
                     {/* Logo area */}
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-600 to-pink-600 flex items-center justify-center shadow-lg shadow-violet-500/20">
-                            <BrainCircuit className="w-6 h-6 text-white" />
+                        <div className="w-10 h-10 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center">
+                            <BrainCircuit className="w-5 h-5 text-white/80" />
                         </div>
-                        <span className="text-2xl font-bold font-heading tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-                            Hiremind AI
+                        <span className="text-xl font-mono tracking-[0.2em] uppercase text-white/90">
+                            Hiremind
                         </span>
                     </div>
 
@@ -39,28 +38,29 @@ const AuthLayout = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="text-5xl font-heading font-bold leading-tight"
+                            className="text-4xl lg:text-5xl font-heading font-bold leading-[1.1] text-white/90"
                         >
-                            Master your interview skills with <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-400">AI Intelligence</span>
+                            Neural simulation <br />
+                            <span className="text-white/40">environment online.</span>
                         </motion.h1>
 
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             <FeatureItem
-                                icon={<BrainCircuit className="w-5 h-5 text-violet-400" />}
-                                title="Real-Time Analysis"
-                                description="Get instant feedback on your confidence, tone, and answers."
+                                icon={<BrainCircuit className="w-4 h-4 text-emerald-400" />}
+                                title="System Analysis"
+                                description="Real-time evaluation of cognitive responses and technical accuracy."
                                 delay={0.3}
                             />
                             <FeatureItem
-                                icon={<Code2 className="w-5 h-5 text-pink-400" />}
-                                title="Interactive Code Sandbox"
-                                description="Solve technical challenges in a live, execute-ready environment."
+                                icon={<Code2 className="w-4 h-4 text-white/70" />}
+                                title="Code Verification"
+                                description="Interactive IDE matrix for logic and algorithm stress tests."
                                 delay={0.4}
                             />
                             <FeatureItem
-                                icon={<Users className="w-5 h-5 text-blue-400" />}
-                                title="3D Neural Avatar"
-                                description="Practice with a realistic AI interviewer that reacts to you."
+                                icon={<Users className="w-4 h-4 text-white/70" />}
+                                title="Synthetic Agents"
+                                description="Adversarial network of AI personas generating adaptive queries."
                                 delay={0.5}
                             />
                         </div>
@@ -84,8 +84,8 @@ const AuthLayout = () => {
             </div>
 
             {/* Right Panel: Auth Form */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-background relative">
-                <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]" />
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-black relative">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] z-0 pointer-events-none" />
 
                 <div className="w-full max-w-md relative z-10">
                     <motion.div
@@ -95,26 +95,30 @@ const AuthLayout = () => {
                     >
                         {/* Centered Logo for Mobile */}
                         <div className="lg:hidden flex justify-center mb-8">
-                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600 to-pink-600 flex items-center justify-center shadow-lg shadow-violet-500/20">
-                                <BrainCircuit className="w-7 h-7 text-white" />
+                            <div className="w-10 h-10 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center">
+                                <BrainCircuit className="w-5 h-5 text-emerald-500" />
                             </div>
                         </div>
 
+                        {/* Minimal Auth Card matching Dashboard UI */}
                         {isRegister ? (
                             <SignUp
                                 signInUrl="/login"
                                 appearance={{
                                     elements: {
                                         rootBox: "w-full",
-                                        card: "bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl w-full",
-                                        headerTitle: "text-white font-heading font-bold",
-                                        headerSubtitle: "text-muted-foreground",
-                                        socialButtonsBlockButton: "bg-white/5 hover:bg-white/10 border-white/10 text-white",
-                                        socialButtonsBlockButtonText: "text-white font-medium",
-                                        formFieldLabel: "text-muted-foreground",
-                                        formFieldInput: "bg-white/5 border-white/10 text-white focus:border-violet-500 focus:ring-violet-500/20",
-                                        footerActionLink: "text-violet-400 hover:text-violet-300",
-                                        formButtonPrimary: "bg-gradient-to-r from-violet-600 to-pink-600 hover:from-violet-500 hover:to-pink-500 text-white font-bold shadow-lg shadow-violet-500/20 border-0"
+                                        card: "bg-[#0a0a0a] border border-white/10 shadow-2xl rounded-sm w-full",
+                                        headerTitle: "text-white font-mono uppercase tracking-widest text-sm",
+                                        headerSubtitle: "text-white/40 font-mono text-xs mt-2",
+                                        socialButtonsBlockButton: "bg-white/5 hover:bg-white/10 border-white/10 text-white rounded-none",
+                                        socialButtonsBlockButtonText: "text-white font-mono text-xs uppercase tracking-wider",
+                                        dividerLine: "bg-white/10",
+                                        dividerText: "text-white/30 font-mono text-xs",
+                                        formFieldLabel: "text-white/50 font-mono text-[10px] uppercase tracking-widest",
+                                        formFieldInput: "bg-black border-white/10 text-white focus:border-white/30 rounded-none h-10 font-mono text-sm shadow-none",
+                                        footerActionLink: "text-white hover:text-white/70 font-mono text-xs underline decoration-white/30 underline-offset-4",
+                                        footerActionText: "text-white/50 font-mono text-xs",
+                                        formButtonPrimary: "bg-white hover:bg-white/90 text-black font-mono text-xs uppercase tracking-widest rounded-none h-12 mt-4"
                                     }
                                 }}
                             />
@@ -124,15 +128,18 @@ const AuthLayout = () => {
                                 appearance={{
                                     elements: {
                                         rootBox: "w-full",
-                                        card: "bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl w-full",
-                                        headerTitle: "text-white font-heading font-bold",
-                                        headerSubtitle: "text-muted-foreground",
-                                        socialButtonsBlockButton: "bg-white/5 hover:bg-white/10 border-white/10 text-white",
-                                        socialButtonsBlockButtonText: "text-white font-medium",
-                                        formFieldLabel: "text-muted-foreground",
-                                        formFieldInput: "bg-white/5 border-white/10 text-white focus:border-violet-500 focus:ring-violet-500/20",
-                                        footerActionLink: "text-violet-400 hover:text-violet-300",
-                                        formButtonPrimary: "bg-gradient-to-r from-violet-600 to-pink-600 hover:from-violet-500 hover:to-pink-500 text-white font-bold shadow-lg shadow-violet-500/20 border-0"
+                                        card: "bg-[#0a0a0a] border border-white/10 shadow-2xl rounded-sm w-full",
+                                        headerTitle: "text-white font-mono uppercase tracking-widest text-sm",
+                                        headerSubtitle: "text-white/40 font-mono text-xs mt-2",
+                                        socialButtonsBlockButton: "bg-white/5 hover:bg-white/10 border-white/10 text-white rounded-none",
+                                        socialButtonsBlockButtonText: "text-white font-mono text-xs uppercase tracking-wider",
+                                        dividerLine: "bg-white/10",
+                                        dividerText: "text-white/30 font-mono text-xs",
+                                        formFieldLabel: "text-white/50 font-mono text-[10px] uppercase tracking-widest",
+                                        formFieldInput: "bg-black border-white/10 text-white focus:border-white/30 rounded-none h-10 font-mono text-sm shadow-none",
+                                        footerActionLink: "text-white hover:text-white/70 font-mono text-xs underline decoration-white/30 underline-offset-4",
+                                        footerActionText: "text-white/50 font-mono text-xs",
+                                        formButtonPrimary: "bg-white hover:bg-white/90 text-black font-mono text-xs uppercase tracking-widest rounded-none h-12 mt-4"
                                     }
                                 }}
                             />
@@ -149,14 +156,14 @@ const FeatureItem = ({ icon, title, description, delay }) => (
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay }}
-        className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors backdrop-blur-sm"
+        className="flex items-start gap-4 p-4 rounded-sm bg-[#0a0a0a] border border-white/5 hover:border-white/20 transition-colors"
     >
-        <div className="mt-1 p-2 rounded-lg bg-white/5 text-white">
+        <div className="mt-1">
             {icon}
         </div>
         <div>
-            <h3 className="text-lg font-bold text-white mb-1">{title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <h3 className="text-sm font-mono tracking-wide text-white/90 mb-1">{title}</h3>
+            <p className="text-xs font-mono text-white/40 leading-relaxed uppercase tracking-widest">
                 {description}
             </p>
         </div>

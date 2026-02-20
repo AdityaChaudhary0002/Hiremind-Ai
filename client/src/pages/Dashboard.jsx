@@ -30,6 +30,7 @@ const Dashboard = () => {
     const { interviews, latestFull, stats, insight, intelligence, loading, insightLoading, orbState, greeting, user } = useDashboardEngine();
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [orbPanelOpen, setOrbPanelOpen] = useState(false);
+    const [showInsights, setShowInsights] = useState(false);
 
     // --- MICRO PARALLAX ---
     useEffect(() => {
@@ -95,7 +96,7 @@ const Dashboard = () => {
                 animate="visible"
             >
                 {/* LEFT: Intelligent Narrative Spire */}
-                <div className="lg:w-5/12 flex flex-col justify-center h-[85vh] z-20 space-y-12">
+                <div className="lg:w-5/12 flex flex-col justify-center min-h-[85vh] py-12 z-20 space-y-12">
 
                     {/* Time Greeting + Title */}
                     <div className="space-y-4">
@@ -133,40 +134,73 @@ const Dashboard = () => {
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="relative"
+                                className="relative w-full max-w-lg"
                             >
                                 <div className={`absolute -left-[27px] top-0 bottom-0 w-1 ${insight?.type === 'warning' ? 'bg-amber-500' : 'bg-emerald-500'}`} />
-                                <div className="space-y-4">
-                                    <p className="text-xl text-white/90 font-light leading-relaxed max-w-md">
-                                        {insight?.message}
-                                    </p>
 
-                                    {/* INTELLIGENCE VISIBILITY */}
-                                    {(intelligence && (intelligence.improvement !== 0 || weakZones.length > 0)) && (
-                                        <div className="pt-2">
-                                            {/* Improvement Metric */}
-                                            {intelligence.improvement !== 0 && (
-                                                <div className="flex items-center gap-2 mb-3">
-                                                    <TrendingUp className={`w-4 h-4 ${intelligence.improvement > 0 ? 'text-emerald-500' : 'text-amber-500'}`} />
-                                                    <span className={`text-sm font-mono ${intelligence.improvement > 0 ? 'text-emerald-400' : 'text-amber-400'}`}>
-                                                        {intelligence.improvement > 0 ? '+' : ''}{intelligence.improvement}% vs previous average
-                                                    </span>
-                                                </div>
-                                            )}
-
-                                            {/* Weak Zones Minimal */}
-                                            {weakZones.length > 0 && (
-                                                <div className="flex flex-wrap gap-2">
-                                                    {weakZones.map(zone => (
-                                                        <span key={zone} className="text-[10px] font-mono text-white/50 bg-white/5 border border-white/10 px-2 py-1 rounded-sm">
-                                                            Needs Focus: {zone}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            )}
+                                {!showInsights ? (
+                                    <button
+                                        onClick={() => setShowInsights(true)}
+                                        className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 text-white/80 hover:text-white hover:bg-white/10 transition-all text-sm font-mono group w-fit backdrop-blur-md shadow-lg"
+                                    >
+                                        <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                                            <Sparkles className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
                                         </div>
-                                    )}
-                                </div>
+                                        Reveal AI Analysis
+                                    </button>
+                                ) : (
+                                    <div className="relative animate-in fade-in zoom-in-95 duration-300">
+                                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-3xl blur-md" />
+                                        <div className="relative bg-[#0a0a0a] border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl overflow-hidden group">
+
+                                            {/* decorative background element */}
+                                            <div className="absolute -top-10 -right-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                                            <p className="text-lg md:text-xl text-white/90 font-light leading-relaxed mb-6">
+                                                {insight?.message}
+                                            </p>
+
+                                            {/* INTELLIGENCE VISIBILITY */}
+                                            {(intelligence && (intelligence.improvement !== 0 || weakZones.length > 0)) && (
+                                                <div className="pt-4 border-t border-white/10">
+                                                    {/* Improvement Metric */}
+                                                    {intelligence.improvement !== 0 && (
+                                                        <div className="flex items-center gap-2 mb-4">
+                                                            <div className={`p-1.5 rounded-md ${intelligence.improvement > 0 ? 'bg-emerald-500/20' : 'bg-amber-500/20'}`}>
+                                                                <TrendingUp className={`w-4 h-4 ${intelligence.improvement > 0 ? 'text-emerald-400' : 'text-amber-400'}`} />
+                                                            </div>
+                                                            <span className={`text-sm font-bold ${intelligence.improvement > 0 ? 'text-emerald-400' : 'text-amber-400'}`}>
+                                                                {intelligence.improvement > 0 ? '+' : ''}{intelligence.improvement}% trajectory
+                                                                <span className="text-white/40 font-normal ml-1">vs previous baseline</span>
+                                                            </span>
+                                                        </div>
+                                                    )}
+
+                                                    {/* Weak Zones Minimal */}
+                                                    {weakZones.length > 0 && (
+                                                        <div className="flex flex-col gap-2 mb-6">
+                                                            <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">Identified Vulnerabilities</span>
+                                                            <div className="flex flex-wrap gap-2">
+                                                                {weakZones.map(zone => (
+                                                                    <span key={zone} className="text-xs font-medium text-white/70 bg-white/5 hover:bg-white/10 border border-white/10 px-3 py-1.5 rounded-lg transition-colors cursor-default">
+                                                                        {zone}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+
+                                            <button
+                                                onClick={() => setShowInsights(false)}
+                                                className="w-full mt-2 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-mono text-white/50 hover:text-white uppercase tracking-widest transition-all"
+                                            >
+                                                Close Analysis
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
                             </motion.div>
                         )}
                     </div>
@@ -228,8 +262,62 @@ const Dashboard = () => {
                         <motion.div
                             whileHover={{ scale: 1.02 }}
                             onClick={() => setOrbPanelOpen(!orbPanelOpen)}
-                            className="relative w-full h-full cursor-pointer transition-transform duration-500 preserve-3d"
+                            className="relative w-full h-full cursor-pointer transition-transform duration-500 preserve-3d group"
                         >
+                            {/* INTELLIGENT VISUALIZER SVG */}
+                            {(() => {
+                                const avgScore = stats?.avgScore || 0;
+                                const velocity = intelligence?.projection?.velocity || 0;
+                                const hasData = interviews && interviews.length > 0;
+
+                                const radius = 220;
+                                const circumference = 2 * Math.PI * radius;
+                                const strokeDashoffset = hasData ? circumference - (avgScore / 100) * circumference : circumference;
+
+                                // Velocity mapping: base speed 10s. High pos velocity = fast (5s). Neg velocity = slow (15s).
+                                const speedModifier = Math.max(-5, Math.min(5, velocity / 2));
+                                const pulseDuration = Math.max(3, 8 - speedModifier);
+                                const spinDuration = Math.max(8, 20 - speedModifier * 2);
+
+                                return (
+                                    <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center">
+                                        <svg className="absolute w-full h-full -rotate-90 opacity-40 group-hover:opacity-80 transition-opacity duration-1000" viewBox="0 0 600 600">
+                                            {/* Background Track */}
+                                            <circle cx="300" cy="300" r={radius} stroke="rgba(255,255,255,0.05)" strokeWidth="1" fill="none" />
+                                            {/* Performance Arc */}
+                                            <circle cx="300" cy="300" r={radius}
+                                                stroke={avgScore >= 80 ? "#10b981" : avgScore >= 60 ? "#f59e0b" : "#ef4444"}
+                                                strokeWidth="2" strokeLinecap="round" fill="none"
+                                                strokeDasharray={circumference} strokeDashoffset={strokeDashoffset}
+                                                className="transition-all duration-[2000ms] ease-out drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]"
+                                            />
+                                            {/* Neural Pulse Nodes */}
+                                            {hasData && Array.from({ length: 6 }).map((_, i) => {
+                                                const angle = (i * 60) * (Math.PI / 180);
+                                                const nx = 300 + Math.cos(angle) * (radius - 12);
+                                                const ny = 300 + Math.sin(angle) * (radius - 12);
+                                                return (
+                                                    <circle key={i} cx={nx} cy={ny} r="2" fill="#10b981"
+                                                        className="animate-pulse"
+                                                        style={{ animationDuration: `${pulseDuration}s`, animationDelay: `${i * 0.4}s` }}
+                                                    />
+                                                );
+                                            })}
+                                        </svg>
+
+                                        {/* Dynamic CSS Inner Breathing Glow */}
+                                        {hasData && (
+                                            <div
+                                                className="absolute inset-[20%] rounded-full border border-emerald-500/10 mix-blend-screen opacity-50"
+                                                style={{
+                                                    animation: `spin ${spinDuration}s linear infinite, ping ${pulseDuration}s cubic-bezier(0, 0, 0.2, 1) infinite`
+                                                }}
+                                            />
+                                        )}
+                                    </div>
+                                );
+                            })()}
+
                             <ThreeErrorBoundary fallback={<AiCore />}>
                                 <Suspense fallback={<AiCore />}>
                                     <AiCore3D />

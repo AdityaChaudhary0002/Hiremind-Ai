@@ -2,36 +2,30 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Logo = ({ className = "" }) => {
-    // Neural Grid Animation
-    const dotVariants = {
-        initial: { opacity: 0.2, scale: 0.8 },
-        animate: (i) => ({
-            opacity: [0.2, 1, 0.2],
-            scale: [0.8, 1.2, 0.8],
-            transition: {
-                duration: 2,
-                repeat: Infinity,
-                delay: i * 0.2, // Staggered ripple
-                ease: "easeInOut"
-            }
-        })
-    };
-
     return (
         <div className={`flex items-center gap-3 select-none ${className}`}>
-            {/* The Icon: 3x3 Neural Grid */}
-            <div className="grid grid-cols-2 gap-1 w-6 h-6 rotate-45">
-                {[0, 1, 2, 3].map((i) => (
-                    <motion.div
-                        key={i}
-                        custom={i}
-                        variants={dotVariants}
-                        initial="initial"
-                        animate="animate"
-                        className="w-full h-full bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.6)]"
-                    />
-                ))}
-            </div>
+            {/* The Icon: Neural Orb SVG */}
+            <motion.div
+                initial={{ rotate: 0 }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="w-8 h-8 text-white flex-shrink-0"
+            >
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                    {/* Outer Orb */}
+                    <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="4" fill="none" opacity="0.4" />
+
+                    {/* Neural Nodes */}
+                    <circle cx="50" cy="25" r="5" fill="currentColor" />
+                    <circle cx="25" cy="65" r="5" fill="currentColor" />
+                    <circle cx="75" cy="65" r="5" fill="currentColor" />
+
+                    {/* Connections */}
+                    <line x1="50" y1="25" x2="25" y2="65" stroke="currentColor" strokeWidth="3" />
+                    <line x1="50" y1="25" x2="75" y2="65" stroke="currentColor" strokeWidth="3" />
+                    <line x1="25" y1="65" x2="75" y2="65" stroke="currentColor" strokeWidth="3" />
+                </svg>
+            </motion.div>
 
             {/* The Wordmark: Tracked & Gradient Masked */}
             <div className="flex flex-col">
