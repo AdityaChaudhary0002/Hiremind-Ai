@@ -5,6 +5,7 @@ const pdf = require("pdf-parse");
 
 // --- INITIAL CONFIG ---
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const IdempotencyKey = require('../models/IdempotencyKey');
 
 // UPGRADE 7: IN-MEMORY CACHE
 const intelligenceCache = new Map();
@@ -163,18 +164,35 @@ const addMoreQuestions = async (req, res, next) => {
 const { updateAnalyticsInternal } = require('./analyticsController');
 
 const submitInterview = async (req, res, next) => {
-    const { interviewId, userAnswers } = req.body;
+    const { interviewId, userAnswers, sessionId } = req.body;
 
     try {
-        const interview = await Interview.findOne({ _id: interviewId, userId: req.auth.userId });
-        if (!interview) return res.status(404).json({ message: 'Interview not found' });
+        const userId = req.auth.userId;
 
-        // UPGRADE 5: IDEMPOTENCY PROTECTION
-        // Prevent duplicate AI analysis on re-submissions.
-        if (interview.status === 'Completed') {
-            console.log('[ENGINE] Idempotency Kick In: Returning cached feedback');
-            return res.status(200).json(interview.feedback);
+        // UPGRADE 5: STRICT SESSION IDEMPOTENCY PROTECTION
+        // Prevent duplicate AI analysis on network retries or double clicks
+        if (sessionId) {
+            try {
+                await IdempotencyKey.create({ userId, sessionId });
+            } catch (idempotencyErr) {
+                if (idempotencyErr.code === 11000) {
+                    console.log(`[ENGINE] Idempotency Kick In: Duplicate sessionId ${sessionId} blocked. Returning cached response.`);
+                    const cachedInterview = await Interview.findOne({ _id: interviewId, userId }).select('feedback status');
+
+                    // Return gracefully even if AI generation hasn't completed yet
+                    if (cachedInterview && cachedInterview.status === 'Completed') {
+                        return res.status(200).json(cachedInterview.feedback);
+                    } else {
+                        // If it's still 'In-Progress', we return a 202 Accepted to tell frontend we are already working on it.
+                        return res.status(202).json({ message: "Analysis already in progress." });
+                    }
+                }
+                throw idempotencyErr; // Re-throw if it's a different DB error
+            }
         }
+
+        const interview = await Interview.findOne({ _id: interviewId, userId });
+        if (!interview) return res.status(404).json({ message: 'Interview not found' });
 
         interview.answers = userAnswers;
 

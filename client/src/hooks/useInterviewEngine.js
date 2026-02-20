@@ -38,6 +38,9 @@ const useInterviewEngine = () => {
     const initializingRef = useRef(false);
     const hasSpoken = useRef({});
 
+    // UPGRADE 5: STRICT SESSION IDEMPOTENCY
+    const sessionId = useRef(crypto.randomUUID());
+
     // ====================
     //   INITIALIZATION (FSM: GENERATING -> IDLE)
     // ====================
@@ -261,7 +264,7 @@ const useInterviewEngine = () => {
                 setStatus(INTERVIEW_STATUS.COMPLETED);
                 const token = await getToken();
                 try {
-                    await api.submitInterview(interviewId, {}, token);
+                    await api.submitInterview(interviewId, {}, sessionId.current, token);
                 } catch (err) {
                     if (err.response?.status === 409) {
                         console.log('[ENGINE] Idempotency: Session already completed on server.');

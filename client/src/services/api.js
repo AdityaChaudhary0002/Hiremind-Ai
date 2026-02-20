@@ -46,10 +46,10 @@ const api = {
     /**
      * Finalize and submit the entire interview
      */
-    submitInterview: async (interviewId, answers, token) => {
+    submitInterview: async (interviewId, answers, sessionId, token) => {
         return client.post(
             `/api/interview/submit`,
-            { interviewId, answers },
+            { interviewId, answers, sessionId },
             getAuthHeaders(token)
         );
     },

@@ -34,7 +34,8 @@ const schemas = {
 
     interviewSubmit: z.object({
         interviewId: z.string().min(1, "Interview ID is required"),
-        userAnswers: z.array(z.string()).min(1, "At least one answer is required")
+        userAnswers: z.array(z.string()).min(1, "At least one answer is required"),
+        sessionId: z.string().uuid("Invalid Session ID format").optional()
     }),
 
     interviewFollowUp: z.object({
