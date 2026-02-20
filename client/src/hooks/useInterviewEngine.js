@@ -2,107 +2,17 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@clerk/clerk-react';
 import api from '../services/api';
+import TTS from '../services/audioEngine';
 
-// --- CONSTANTS ---
+// --- RIGID FINITE STATE MACHINE (FSM) ---
 export const INTERVIEW_STATUS = {
-    IDLE: 'idle',
-    INITIALIZING: 'initializing',
-    THINKING: 'thinking',
-    SPEAKING: 'speaking',
-    LISTENING: 'listening',
-    PROCESSING: 'processing',
-    COMPLETED: 'completed'
+    IDLE: 'idle',               // Waiting to start the session (System Online)
+    GENERATING: 'generating',   // Preparing environment / fetching data
+    ASKING: 'asking',           // Engine is speaking the question aloud
+    RECORDING: 'recording',     // Waiting for candidate response (Mic Active)
+    EVALUATING: 'evaluating',   // Processing submission & checking for follow-up
+    COMPLETED: 'completed'      // Session over, sending feedback
 };
-
-// ============================================================
-// MODULE-LEVEL TTS MANAGER
-// Lives OUTSIDE React — component crashes can't touch it.
-// ============================================================
-const TTS = {
-    _speaking: false,
-    _currentText: '',
-
-    speak(text, onStart, onEnd, onError) {
-        const synth = window.speechSynthesis;
-        if (!synth || !text) return;
-
-        // Already speaking the same thing? Do nothing.
-        if (this._speaking && this._currentText === text) {
-            console.log('[TTS] Already speaking this text, ignoring duplicate');
-            return;
-        }
-
-        // Already speaking something ELSE? Also ignore — don't interrupt.
-        if (synth.speaking && !synth.paused) {
-            console.log('[TTS] Synth busy, ignoring');
-            return;
-        }
-
-        this._speaking = true;
-        this._currentText = text;
-
-        const utterance = new SpeechSynthesisUtterance(text);
-
-        // Pick a voice
-        const voices = synth.getVoices();
-        const pick = voices.find(v =>
-            v.name.includes('Google US English') ||
-            v.name.includes('Microsoft David') ||
-            v.name.includes('Samantha')
-        ) || voices[0];
-        if (pick) utterance.voice = pick;
-
-        utterance.rate = 1.0;
-        utterance.pitch = 1.0;
-        utterance.volume = 1.0;
-
-        utterance.onstart = () => {
-            console.log('[TTS] ▶ Speaking started');
-            this._speaking = true;
-            if (onStart) onStart();
-        };
-        utterance.onend = () => {
-            console.log('[TTS] ■ Speaking ended');
-            this._speaking = false;
-            this._currentText = '';
-            if (onEnd) onEnd();
-        };
-        utterance.onerror = (e) => {
-            // 'interrupted' and 'canceled' are expected when user skips/stops
-            if (e.error === 'interrupted' || e.error === 'canceled') {
-                console.log('[TTS] Speech interrupted (expected)');
-            } else {
-                console.error('[TTS] ✖ Unexpected error:', e.error);
-            }
-            this._speaking = false;
-            this._currentText = '';
-            if (onError) onError(e.error);
-        };
-
-        // DO NOT call synth.cancel() here! That's the bug.
-        // Just speak. The queue will handle it.
-        synth.speak(utterance);
-
-        // Chrome bug: if it auto-paused, resume
-        if (synth.paused) synth.resume();
-
-        // Keep utterance reference alive (prevents GC)
-        window.__ttsUtterance = utterance;
-    },
-
-    stop() {
-        const synth = window.speechSynthesis;
-        if (synth) synth.cancel();
-        this._speaking = false;
-        this._currentText = '';
-    },
-
-    isBusy() {
-        return this._speaking || window.speechSynthesis?.speaking;
-    }
-};
-
-// ============================================================
 
 const useInterviewEngine = () => {
     const navigate = useNavigate();
@@ -129,14 +39,15 @@ const useInterviewEngine = () => {
     const hasSpoken = useRef({});
 
     // ====================
-    //   INITIALIZATION
+    //   INITIALIZATION (FSM: GENERATING -> IDLE)
     // ====================
     useEffect(() => {
         const initialize = async () => {
-            if (status !== INTERVIEW_STATUS.IDLE || initializingRef.current) return;
+            if (status !== INTERVIEW_STATUS.IDLE && status !== INTERVIEW_STATUS.GENERATING) return;
+            if (initializingRef.current) return;
             initializingRef.current = true;
 
-            setStatus(INTERVIEW_STATUS.INITIALIZING);
+            setStatus(INTERVIEW_STATUS.GENERATING);
 
             try {
                 const token = await getToken();
@@ -196,19 +107,20 @@ const useInterviewEngine = () => {
     }, []);
 
     // ====================
-    //   SPEAK — via module-level TTS manager
+    //   SPEAK & STATE TRANSITIONS
     // ====================
     const speakCurrentQuestion = useCallback(() => {
         const text = questions[currentQuestionIndex];
         if (!text) return;
 
         console.log(`[TTS] Speak Q${currentQuestionIndex}: "${text.substring(0, 40)}..."`);
+        setStatus(INTERVIEW_STATUS.ASKING);
 
         TTS.speak(
             text,
-            () => setStatus(INTERVIEW_STATUS.SPEAKING),
-            () => setStatus(INTERVIEW_STATUS.LISTENING),
-            () => setStatus(INTERVIEW_STATUS.LISTENING)
+            null, // onStart is fired internally in TTS
+            () => setStatus(INTERVIEW_STATUS.RECORDING), // onEnd
+            () => setStatus(INTERVIEW_STATUS.RECORDING)  // onError
         );
     }, [questions, currentQuestionIndex]);
 
@@ -216,48 +128,49 @@ const useInterviewEngine = () => {
         TTS.stop();
     }, []);
 
-    // ====================
-    //   AUTO-SPEAK on THINKING
-    // ====================
+    // FSM: Auto-trigger asking if we navigate to a new question 
+    // AND we are not idle, not evaluating, not completed.
     useEffect(() => {
-        if (status !== INTERVIEW_STATUS.THINKING) return;
+        // If we are evaluating, generating, completed, or idle, do not auto-speak.
+        if (
+            status === INTERVIEW_STATUS.IDLE ||
+            status === INTERVIEW_STATUS.GENERATING ||
+            status === INTERVIEW_STATUS.COMPLETED ||
+            status === INTERVIEW_STATUS.EVALUATING
+        ) return;
+
         if (questions.length === 0) return;
 
+        // Dedup: Ensure we don't speak the same question twice
         if (hasSpoken.current[currentQuestionIndex]) {
-            console.log(`[TTS] Q${currentQuestionIndex} already spoken, → LISTENING`);
-            setStatus(INTERVIEW_STATUS.LISTENING);
+            if (status !== INTERVIEW_STATUS.RECORDING) {
+                setStatus(INTERVIEW_STATUS.RECORDING);
+            }
             return;
         }
 
         hasSpoken.current[currentQuestionIndex] = true;
 
-        // Use a timeout so the render settles first
         const timer = setTimeout(() => {
             speakCurrentQuestion();
         }, 500);
 
         return () => clearTimeout(timer);
-    }, [status, questions, currentQuestionIndex, speakCurrentQuestion]);
+    }, [status, questions.length, currentQuestionIndex, speakCurrentQuestion]);
 
     // ====================
-    //   ACTIONS
+    //   ACTIONS: START
     // ====================
     const startSession = useCallback(() => {
-        console.log('[ENGINE] startSession called');
-        if (questions.length === 0) {
-            console.warn('[ENGINE] No questions loaded');
-            return;
-        }
-        // Guard: prevent double-click
         if (status !== INTERVIEW_STATUS.IDLE) return;
+        if (questions.length === 0) return;
 
-        // Reset dedup
-        hasSpoken.current = {};
+        hasSpoken.current = {}; // Reset dedup
 
-        // The button click IS the user gesture — that's enough for Chrome.
-        // Just go straight to THINKING. The auto-speak effect handles the rest.
-        setStatus(INTERVIEW_STATUS.THINKING);
-    }, [questions, status]);
+        // This triggers the useEffect above because it moves away from IDLE
+        // We set to recording temporarily, the useEffect intercepts the fresh index and triggers ASKING
+        setStatus(INTERVIEW_STATUS.RECORDING);
+    }, [status, questions.length]);
 
     const executeCode = useCallback(async () => {
         if (!code) return;
@@ -276,23 +189,20 @@ const useInterviewEngine = () => {
 
     const submitAnswer = useCallback(async () => {
         if (!transcript.trim()) return;
-        setStatus(INTERVIEW_STATUS.PROCESSING);
+
+        // FSM: Shift to EVALUATING
+        setStatus(INTERVIEW_STATUS.EVALUATING);
         TTS.stop();
 
         try {
-            // 1. Capture current interaction
             const currentQ = questions[currentQuestionIndex];
             const currentA = transcript;
-
             setTranscript('');
 
-            // 2. Check for Adaptive Follow-up
             let nextIndex = currentQuestionIndex + 1;
 
-            // Only generate follow-up if we are NOT already on the last question
-            // (or maybe we allow one last follow-up even at the end? Let's stick to flow for now)
-            if (currentQuestionIndex < questions.length) { // Allow growing
-                console.log('[ENGINE] Analyzing for Follow-up...');
+            if (currentQuestionIndex < questions.length) {
+                console.log('[ENGINE] Evaluating response...');
 
                 const token = await getToken();
                 const analysis = await api.submitFollowup({
@@ -300,12 +210,11 @@ const useInterviewEngine = () => {
                     answer: currentA,
                     role,
                     difficulty,
-                    history: memory // Pass accumulated memory
+                    history: memory
                 }, token);
 
                 const { followUp, confidenceScore, weakTopics } = analysis.data;
 
-                // 3. Update Memory
                 const newMemory = [
                     ...memory,
                     {
@@ -318,60 +227,48 @@ const useInterviewEngine = () => {
                 ];
                 setMemory(newMemory);
 
-                // 4. Handle Follow-up Injection
                 if (followUp) {
-                    console.log('[ENGINE] ⚡️ Adaptive Event Triggered:', followUp);
-                    // Inject follow-up at next index
+                    console.log('[ENGINE] ⚡️ Adaptive Follow-up Triggered');
                     setQuestions(prev => {
                         const updated = [...prev];
                         updated.splice(currentQuestionIndex + 1, 0, followUp);
                         return updated;
                     });
-                    // We will naturally advance to this new question at nextIndex
                 }
             }
 
-            // 5. Advance or Complete
-            if (nextIndex < questions.length + (questions.length > currentQuestionIndex + 1 ? 0 : 0)) { // Logic check: Questions array might have grown!
-                // We re-check length after update provided via functional update? 
-                // Actually `questions` in closure is stale. 
-                // But we used setQuestions. 
-                // We need to rely on the fact that if we added a question, the length increased.
-                // But we can't see it yet.
-                // We just blindly go to nextIndex.
-                setCurrentQuestionIndex(prev => prev + 1);
-                setStatus(INTERVIEW_STATUS.THINKING);
-            } else {
-                // Check if we exhausted the (potentially grown) list
-                // Since we can't see the new length in this closure, we might need a useEffect or a refs?
-                // OR simpler: compare nextIndex with *current* length + 1 if followUp existed?
-                // Let's rely on effect? No, we need explicit nav.
-
-                // Hack/Fix: If we added a question, we definitely aren't done.
-                // If we didn't, we might be done.
-                // We'll trust the state update will allow rendering the new question.
-                // But we need to know IF we are done.
-
-                setCurrentQuestionIndex(prev => prev + 1); // This moves to next.
-                // The useEffect for `questions` change might be needed? 
-                // `startSession` or `auto-speak` depends on index changing.
-                setStatus(INTERVIEW_STATUS.THINKING);
-            }
+            // FSM: Evaluate next move (continue or finish)
+            setCurrentQuestionIndex(prev => prev + 1);
+            setStatus(INTERVIEW_STATUS.RECORDING);
 
         } catch (err) {
             console.error('Submission Error:', err);
             setCurrentQuestionIndex(prev => prev + 1);
-            setStatus(INTERVIEW_STATUS.THINKING);
+            setStatus(INTERVIEW_STATUS.RECORDING);
         }
     }, [transcript, questions, currentQuestionIndex, interviewId, getToken, role, difficulty, memory]);
 
-    // Check for completion in an effect
+    // FSM: Handle generic Completion
     useEffect(() => {
-        if (currentQuestionIndex >= questions.length && questions.length > 0 && status !== INTERVIEW_STATUS.COMPLETED && status !== INTERVIEW_STATUS.PROCESSING) {
+        // If we crossed the boundary of total questions, finalize
+        if (
+            questions.length > 0 &&
+            currentQuestionIndex >= questions.length &&
+            status !== INTERVIEW_STATUS.COMPLETED &&
+            status !== INTERVIEW_STATUS.EVALUATING // Wait for evaluating to finish before marking complete
+        ) {
             const finalize = async () => {
                 setStatus(INTERVIEW_STATUS.COMPLETED);
                 const token = await getToken();
-                await api.submitInterview(interviewId, {}, token);
+                try {
+                    await api.submitInterview(interviewId, {}, token);
+                } catch (err) {
+                    if (err.response?.status === 409) {
+                        console.log('[ENGINE] Idempotency: Session already completed on server.');
+                    } else {
+                        console.error('Finalization Error:', err);
+                    }
+                }
             };
             finalize();
         }
@@ -395,9 +292,9 @@ const useInterviewEngine = () => {
             transcript,
             role,
             difficulty,
-            isSpeaking: status === INTERVIEW_STATUS.SPEAKING,
-            isAnalyzing: status === INTERVIEW_STATUS.PROCESSING,
-            isRecording: status === INTERVIEW_STATUS.LISTENING,
+            isSpeaking: status === INTERVIEW_STATUS.ASKING,
+            isAnalyzing: status === INTERVIEW_STATUS.EVALUATING,
+            isRecording: status === INTERVIEW_STATUS.RECORDING,
             code,
             language,
             output,
@@ -413,7 +310,7 @@ const useInterviewEngine = () => {
             skipQuestion: () => {
                 TTS.stop();
                 setCurrentQuestionIndex(p => Math.min(p + 1, questions.length - 1));
-                setStatus(INTERVIEW_STATUS.THINKING);
+                setStatus(INTERVIEW_STATUS.RECORDING);
             },
             setCode,
             setLanguage,

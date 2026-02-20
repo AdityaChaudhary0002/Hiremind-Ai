@@ -42,7 +42,7 @@ const InterviewScreen = () => {
     const {
         status, questions, currentQuestionIndex, role, difficulty,
         transcript, code, language, output, mode,
-        isSpeaking, isAnalyzing, error, isCodingInterview
+        isSpeaking, isAnalyzing, isRecording, error, isCodingInterview
     } = state;
 
     // Destructure Actions
@@ -51,18 +51,9 @@ const InterviewScreen = () => {
         startSession, submitAnswer, executeCode, speakQuestion
     } = actions;
 
-    // Derived UI States
-    // In strict hook logic, recording state might be local to UI controls if it just toggles the microphone
-    // But for now we map it to the engine's notion if needed, or keep a local UI toggle for the mic button visual
-    const [isRecordingUI, setIsRecordingUI] = React.useState(false);
-
-    // Sync recording UI with engine status if needed, or purely manage mic visibility
-    // Here we wrap the setRecording to also update local UI state
-    const handleSetRecording = (val) => setIsRecordingUI(val);
-
 
     // --- RENDER: Loading / Error ---
-    if (status === INTERVIEW_STATUS.INITIALIZING) return (
+    if (status === INTERVIEW_STATUS.GENERATING) return (
         <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center text-white font-sans">
             <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
             <div className="text-xs font-mono uppercase tracking-widest text-white/50">
@@ -71,7 +62,7 @@ const InterviewScreen = () => {
         </div>
     );
 
-    if (status === INTERVIEW_STATUS.ANALYZING && questions.length === 0) return (
+    if (status === INTERVIEW_STATUS.EVALUATING && questions.length === 0) return (
         <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center text-white font-sans">
             <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
             <div className="text-xs font-mono uppercase tracking-widest text-white/50">
@@ -127,7 +118,7 @@ const InterviewScreen = () => {
                         questions={questions}
                         currentQuestionIndex={currentQuestionIndex}
                         isSpeaking={isSpeaking}
-                        isRecording={isRecordingUI}
+                        isRecording={isRecording}
                         isAnalyzing={isAnalyzing}
                         speakQuestion={speakQuestion}
                     />
@@ -137,14 +128,13 @@ const InterviewScreen = () => {
                     <InterviewRightPanel
                         mode={mode} setMode={setMode}
                         transcript={transcript} setTranscript={setTranscript}
-                        isRecording={isRecordingUI} setIsRecording={handleSetRecording}
+                        isRecording={isRecording} setIsRecording={() => { }} // Controlled strictly by FSM Engine now
                         code={code} setCode={setCode}
                         language={language} setLanguage={setLanguage}
                         output={output} setOutput={setOutput}
                         runCode={executeCode}
                         handleSubmitAnswer={() => {
                             if (isAnalyzing) return; // Prevent double submission
-                            setIsRecordingUI(false);
                             submitAnswer();
                         }}
                         isCodingInterview={isCodingInterview}

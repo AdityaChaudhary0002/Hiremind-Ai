@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '@clerk/clerk-react';
 import axios from 'axios';
-import { CheckCircle, XCircle, ChevronRight, Activity, Zap, Brain, MessageSquare, ArrowRight, Loader2 } from 'lucide-react';
+import { CheckCircle, XCircle, ChevronRight, Activity, Zap, Brain, MessageSquare, ArrowRight, Loader2, Target } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { MOTION, STYLES } from '@/lib/design-system';
 import Logo from '@/components/ui/logo';
@@ -110,6 +110,33 @@ const FeedbackScreen = () => {
                                 Return to Command
                             </Button>
                         </div>
+
+                        {/* SMART SUGGESTION CARD */}
+                        {feedback.suggestedGoal && (
+                            <motion.div
+                                variants={MOTION.drift}
+                                initial="hidden"
+                                animate="visible"
+                                className="mt-8 relative group cursor-pointer"
+                                onClick={() => navigate('/goals', { state: { prefillGoal: feedback.suggestedGoal } })}
+                            >
+                                <div className={`${STYLES.glass_card} p-6 border-primary/20 hover:border-primary/50 transition-all overflow-hidden relative`}>
+                                    <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <div className="flex items-center gap-2 text-[10px] font-mono text-primary uppercase tracking-widest mb-4">
+                                        <Zap className="w-3 h-3 fill-primary" /> System Suggestion
+                                    </div>
+                                    <h4 className="text-white text-lg font-medium mb-2 pr-8 leading-snug">
+                                        Focus Area Identified: <br /> {feedback.suggestedGoal.title}
+                                    </h4>
+                                    <p className="text-white/50 text-xs font-mono mb-6">
+                                        This topic has been flagged in your recent simulations.
+                                    </p>
+                                    <Button variant="outline" className="w-full border-white/10 hover:bg-white hover:text-black hover:border-white font-mono text-xs uppercase transition-all flex items-center gap-2">
+                                        <Target className="w-3 h-3" /> SET AS GOAL
+                                    </Button>
+                                </div>
+                            </motion.div>
+                        )}
                     </motion.div>
 
                     {/* RIGHT: Detailed Analysis */}

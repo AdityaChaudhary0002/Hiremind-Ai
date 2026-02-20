@@ -71,6 +71,17 @@ const api = {
     },
 
     /**
+     * Fetch intelligence data
+     */
+    getIntelligence: async (token) => {
+        const response = await client.get(
+            `/api/interview/intelligence`,
+            getAuthHeaders(token)
+        );
+        return response.data;
+    },
+
+    /**
      * Fetch a specific interview by ID
      */
     getInterviewById: async (id, token) => {

@@ -15,7 +15,8 @@ export const useDashboardEngine = () => {
             streak: 0,
             lastDate: null
         },
-        insight: null
+        insight: null,
+        intelligence: null
     });
 
     const [loading, setLoading] = useState(true);
@@ -95,6 +96,7 @@ export const useDashboardEngine = () => {
     };
 
     // --- 2. DATA FETCHING ---
+
     useEffect(() => {
         let isMounted = true;
         let safetyTimer;
@@ -115,16 +117,20 @@ export const useDashboardEngine = () => {
 
             try {
                 const token = await getToken();
-                // 1. Fetch List
+                // 1. Fetch List and Intelligence
                 console.log("Dashboard Engine: Fetching data...");
-                const res = await api.getUserInterviews(token, 1, 50);
+                const [res, intelligenceRes] = await Promise.all([
+                    api.getUserInterviews(token, 1, 50).catch(() => ({ interviews: [] })),
+                    api.getIntelligence(token).catch(() => null)
+                ]);
+
                 const list = res.interviews || (Array.isArray(res) ? res : []);
 
                 if (!isMounted) return;
 
                 const stats = computeStats(list);
 
-                setData(prev => ({ ...prev, interviews: list, stats }));
+                setData(prev => ({ ...prev, interviews: list, stats, intelligence: intelligenceRes }));
                 setLoading(false);
 
                 // 2. Fetch Deep Details (Insight)

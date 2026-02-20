@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import api from '../services/api';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import LevelUpOverlay from '@/components/LevelUpOverlay';
 
@@ -77,6 +77,7 @@ const MissionRadar = ({ level, progress }) => {
 const GoalsPage = () => {
     const { getToken, userId, isLoaded } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState(null);
 
@@ -119,6 +120,18 @@ const GoalsPage = () => {
         if (isLoaded && userId) fetchData();
         else if (isLoaded && !userId) setLoading(false);
     }, [userId, isLoaded, getToken]);
+
+    // Handle Prefill from Smart Suggestion
+    useEffect(() => {
+        if (location.state?.prefillGoal) {
+            setNewGoal(location.state.prefillGoal.title);
+            if (location.state.prefillGoal.category) {
+                setSelectedCategory(location.state.prefillGoal.category);
+            }
+            // Optional: clear state so it doesn't linger on refresh
+            window.history.replaceState({}, document.title)
+        }
+    }, [location.state]);
 
     const handleAddGoal = async () => {
         if (!newGoal.trim()) return;

@@ -882,3 +882,311 @@ Stack: Error: Not Found - /api/interview/generate
     at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
     at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
 
+[2026-02-20T06:35:45.212Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:38:08.780Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:38:08.786Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:39:31.273Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:39:31.279Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:41:56.744Z] 404 - Not Found - /api/debug/token
+Stack: Error: Not Found - /api/debug/token
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-20T06:41:56.756Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+[2026-02-20T06:42:41.417Z] 404 - Not Found - /api/debug/token
+Stack: Error: Not Found - /api/debug/token
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-20T06:42:41.431Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+[2026-02-20T06:43:24.153Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:43:24.158Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:43:44.936Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:43:44.941Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:53:30.215Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:53:30.224Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:57:02.211Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:58:32.529Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T06:58:32.533Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T07:07:14.241Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T07:07:14.247Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T07:20:36.779Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T07:20:36.784Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T07:30:10.823Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T07:32:32.692Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+[2026-02-20T07:33:42.357Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+[2026-02-20T07:34:00.099Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+[2026-02-20T07:36:57.052Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+[2026-02-20T07:41:34.714Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+
+[2026-02-20T07:43:40.421Z] 500 - Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string) at path "_id" for model "Interview"
+    at SchemaObjectId.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schema/objectId.js:253:11)
+    at SchemaType.applySetters (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1280:12)
+    at SchemaType.castForQuery (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/schemaType.js:1706:17)
+    at cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/cast.js:386:32)
+    at Query.cast (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:5088:12)
+    at Query._castConditions (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2376:10)
+    at model.Query._findOne (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:2716:8)
+    at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
+    at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
+

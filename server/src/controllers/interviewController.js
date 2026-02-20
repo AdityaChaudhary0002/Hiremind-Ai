@@ -6,6 +6,9 @@ const pdf = require("pdf-parse");
 // --- INITIAL CONFIG ---
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
+// UPGRADE 7: IN-MEMORY CACHE
+const intelligenceCache = new Map();
+
 // Initialize Gemini if key exists, else null
 const genAI = process.env.GEMINI_API_KEY ? new GoogleGenerativeAI(process.env.GEMINI_API_KEY) : null;
 
@@ -166,6 +169,13 @@ const submitInterview = async (req, res, next) => {
         const interview = await Interview.findOne({ _id: interviewId, userId: req.auth.userId });
         if (!interview) return res.status(404).json({ message: 'Interview not found' });
 
+        // UPGRADE 5: IDEMPOTENCY PROTECTION
+        // Prevent duplicate AI analysis on re-submissions.
+        if (interview.status === 'Completed') {
+            console.log('[ENGINE] Idempotency Kick In: Returning cached feedback');
+            return res.status(200).json(interview.feedback);
+        }
+
         interview.answers = userAnswers;
 
         const prompt = `
@@ -206,7 +216,49 @@ const submitInterview = async (req, res, next) => {
             updateAnalyticsInternal(req.auth.userId, feedback.questionAnalysis).catch(console.error);
         }
 
-        res.status(200).json(feedback);
+        // GOAL-AWARE INTELLIGENCE: SUGGEST GOAL
+        let suggestedGoal = null;
+        try {
+            const lastInterviews = await Interview.find({ userId: req.auth.userId })
+                .sort({ createdAt: -1 })
+                .limit(5)
+                .select('feedback.questionAnalysis');
+
+            const weakTopicFreq = {};
+            lastInterviews.forEach(pastInt => {
+                const analysis = pastInt.feedback?.questionAnalysis || [];
+                analysis.forEach(q => {
+                    if (q.score <= 6) {
+                        const topic = q.topic || "General Knowledge";
+                        weakTopicFreq[topic] = (weakTopicFreq[topic] || 0) + 1;
+                    }
+                });
+            });
+
+            // Find first topic that appears >= 3 times
+            const chronicWeakness = Object.keys(weakTopicFreq).find(topic => weakTopicFreq[topic] >= 3);
+
+            if (chronicWeakness) {
+                suggestedGoal = {
+                    title: `Master ${chronicWeakness}`,
+                    category: "daily"
+                };
+            }
+        } catch (goalErr) {
+            console.error("Error computing suggested goal:", goalErr);
+        }
+
+        const responsePayload = {
+            ...feedback,
+            ...(suggestedGoal && { suggestedGoal })
+        };
+
+        // Cache the full payload to the interview doc and mark completed
+        interview.feedback = responsePayload;
+        interview.status = 'Completed';
+        await interview.save();
+
+        res.status(200).json(responsePayload);
     } catch (error) {
         next(error);
     }
@@ -366,6 +418,147 @@ const clearHistory = async (req, res, next) => {
     }
 };
 
+const getIntelligence = async (req, res, next) => {
+    try {
+        const userId = req.auth.userId;
+
+        // UPGRADE 7: CHECK CACHE (30s TTL)
+        if (intelligenceCache.has(userId)) {
+            const cached = intelligenceCache.get(userId);
+            if (Date.now() - cached.timestamp < 30000) {
+                console.log('[ENGINE] Cache Hit: Returning intelligence for', userId);
+                return res.status(200).json(cached.data);
+            }
+        }
+
+        const interviews = await Interview.find({ userId })
+            .sort({ createdAt: -1 })
+            .limit(10)
+            .select('feedback.overallScore feedback.questionAnalysis createdAt');
+
+        if (!interviews || interviews.length === 0) {
+            const emptyData = {
+                recentAvg: 0,
+                previousAvg: 0,
+                improvement: 0,
+                weakTopics: {},
+                trend: [],
+                projection: { possible: false, message: "No data for projection.", velocity: 0, nextLevel: "Recruit", estimatedDays: 0 }
+            };
+            intelligenceCache.set(userId, { timestamp: Date.now(), data: emptyData });
+            return res.status(200).json(emptyData);
+        }
+
+        const validInterviews = interviews.filter(i => i.feedback && typeof i.feedback.overallScore === 'number');
+
+        if (validInterviews.length === 0) {
+            const emptyData = {
+                recentAvg: 0,
+                previousAvg: 0,
+                improvement: 0,
+                weakTopics: {},
+                trend: [],
+                projection: { possible: false, message: "No data for projection.", velocity: 0, nextLevel: "Recruit", estimatedDays: 0 }
+            };
+            intelligenceCache.set(userId, { timestamp: Date.now(), data: emptyData });
+            return res.status(200).json(emptyData);
+        }
+
+        const recent = validInterviews.slice(0, 5);
+        const previous = validInterviews.slice(5, 10);
+
+        const calcAvg = (arr) => arr.length > 0 ? (arr.reduce((acc, curr) => acc + curr.feedback.overallScore, 0) / arr.length) : 0;
+
+        let recentAvg = calcAvg(recent);
+        let previousAvg = calcAvg(previous);
+
+        recentAvg = Math.round(recentAvg);
+        previousAvg = Math.round(previousAvg);
+
+        let improvement = 0;
+        if (previousAvg > 0) {
+            improvement = Math.round(((recentAvg - previousAvg) / previousAvg) * 100);
+        } else if (previousAvg === 0 && recentAvg > 0) {
+            improvement = 100;
+        }
+
+        const weakTopics = {};
+        validInterviews.forEach(interview => {
+            const analysis = interview.feedback.questionAnalysis || [];
+            analysis.forEach(q => {
+                if (q.score <= 6) {
+                    const topic = q.topic || "General Knowledge";
+                    weakTopics[topic] = (weakTopics[topic] || 0) + 1;
+                }
+            });
+        });
+
+        const trend = validInterviews.map(i => i.feedback.overallScore).reverse();
+
+        // UPGRADE 3: PREDICTIVE TRAJECTORY ENGINE
+        const getClearanceLevel = (score) => {
+            if (score < 50) return { level: 'Recruit', next: 'Operative', threshold: 50 };
+            if (score < 66) return { level: 'Operative', next: 'Specialist', threshold: 66 };
+            if (score <= 80) return { level: 'Specialist', next: 'Architect', threshold: 81 };
+            return { level: 'Architect', next: 'System Legend', threshold: 100 };
+        };
+
+        const currentScore = trend.length > 0 ? trend[trend.length - 1] : 0;
+        const clearanceInfo = getClearanceLevel(currentScore);
+
+        // Calculate Velocity (Average change per timeline step)
+        let velocity = 0;
+        let predictionPossible = false;
+        let estimatedDays = 0;
+        let predictionMessage = "Calibration required (min 5 sims)";
+
+        if (trend.length >= 5) {
+            let totalChange = 0;
+            for (let i = 1; i < trend.length; i++) {
+                totalChange += (trend[i] - trend[i - 1]);
+            }
+            velocity = totalChange / (trend.length - 1);
+
+            if (velocity > 0 && currentScore < 100) {
+                predictionPossible = true;
+                const scoreDiff = clearanceInfo.threshold - currentScore;
+                estimatedDays = Math.ceil(scoreDiff / velocity);
+                predictionMessage = `On track for ${clearanceInfo.next} in ~${estimatedDays} Sims`;
+            } else if (velocity <= 0 && currentScore < 100) {
+                predictionMessage = "Trajectory plateau. Push harder.";
+            } else if (currentScore === 100) {
+                predictionMessage = "Maximum trajectory. Maintaining status.";
+            }
+        }
+
+        const projection = {
+            possible: predictionPossible,
+            message: predictionMessage,
+            velocity: Number(velocity.toFixed(1)),
+            nextLevel: clearanceInfo.next,
+            estimatedDays
+        };
+
+        // Set combined projection
+        const finalIntelligenceData = {
+            recentAvg,
+            previousAvg,
+            improvement,
+            weakTopics,
+            trend,
+            projection // Added projection object
+        };
+
+        // Cache before sending
+        intelligenceCache.set(userId, { timestamp: Date.now(), data: finalIntelligenceData });
+
+        res.status(200).json(finalIntelligenceData);
+    } catch (error) {
+        console.error('[INTELLIGENCE ERROR]:', error);
+        next(error);
+    }
+};
+
 module.exports = {
     generateQuestions,
     addMoreQuestions,
@@ -375,5 +568,6 @@ module.exports = {
     parseResume,
     generateFollowUp,
     deleteInterview,
-    clearHistory
+    clearHistory,
+    getIntelligence
 };

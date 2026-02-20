@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState, Suspense, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +27,7 @@ const InsightSkeleton = () => (
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    const { interviews, latestFull, stats, insight, loading, insightLoading, orbState, greeting, user } = useDashboardEngine();
+    const { interviews, latestFull, stats, insight, intelligence, loading, insightLoading, orbState, greeting, user } = useDashboardEngine();
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [orbPanelOpen, setOrbPanelOpen] = useState(false);
 
@@ -46,6 +46,15 @@ const Dashboard = () => {
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
+
+    // Memoized weak zones computation
+    const weakZones = useMemo(() => {
+        if (!intelligence?.weakTopics) return [];
+        return Object.entries(intelligence.weakTopics)
+            .sort((a, b) => b[1] - a[1]) // highest frequency first
+            .slice(0, 3)
+            .map(([topic]) => topic);
+    }, [intelligence]);
 
     // Animation Variants
     const containerVariants = {
@@ -127,9 +136,37 @@ const Dashboard = () => {
                                 className="relative"
                             >
                                 <div className={`absolute -left-[27px] top-0 bottom-0 w-1 ${insight?.type === 'warning' ? 'bg-amber-500' : 'bg-emerald-500'}`} />
-                                <p className="text-xl text-white/90 font-light leading-relaxed max-w-md">
-                                    {insight?.message}
-                                </p>
+                                <div className="space-y-4">
+                                    <p className="text-xl text-white/90 font-light leading-relaxed max-w-md">
+                                        {insight?.message}
+                                    </p>
+
+                                    {/* INTELLIGENCE VISIBILITY */}
+                                    {(intelligence && (intelligence.improvement !== 0 || weakZones.length > 0)) && (
+                                        <div className="pt-2">
+                                            {/* Improvement Metric */}
+                                            {intelligence.improvement !== 0 && (
+                                                <div className="flex items-center gap-2 mb-3">
+                                                    <TrendingUp className={`w-4 h-4 ${intelligence.improvement > 0 ? 'text-emerald-500' : 'text-amber-500'}`} />
+                                                    <span className={`text-sm font-mono ${intelligence.improvement > 0 ? 'text-emerald-400' : 'text-amber-400'}`}>
+                                                        {intelligence.improvement > 0 ? '+' : ''}{intelligence.improvement}% vs previous average
+                                                    </span>
+                                                </div>
+                                            )}
+
+                                            {/* Weak Zones Minimal */}
+                                            {weakZones.length > 0 && (
+                                                <div className="flex flex-wrap gap-2">
+                                                    {weakZones.map(zone => (
+                                                        <span key={zone} className="text-[10px] font-mono text-white/50 bg-white/5 border border-white/10 px-2 py-1 rounded-sm">
+                                                            Needs Focus: {zone}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
                             </motion.div>
                         )}
                     </div>
@@ -251,6 +288,39 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                     </div>
+
+                                    {/* PREDICTIVE ENGINE UI */}
+                                    {intelligence?.projection && (
+                                        <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between">
+                                            <div className="flex gap-2 items-center">
+                                                <Zap className={`w-3 h-3 ${intelligence.projection.possible ? 'text-blue-400' : 'text-white/30'}`} />
+                                                <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/50">Trajectory</div>
+                                            </div>
+                                            <div className={`text-[10px] font-mono font-medium ${intelligence.projection.possible ? 'text-blue-400' : 'text-white/40'}`}>
+                                                {intelligence.projection.message}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* SMALL SPARKLINE */}
+                                    {intelligence?.trend && intelligence.trend.length > 0 && (
+                                        <div className="mt-6 pt-5 border-t border-white/10">
+                                            <div className="flex justify-between items-center mb-2">
+                                                <div className="text-[9px] font-mono text-white/40 uppercase">Performance Trend</div>
+                                                <div className="text-[9px] font-mono text-white/30">Last {intelligence.trend.length} Series</div>
+                                            </div>
+                                            <div className="flex items-end gap-1.5 h-10 w-full">
+                                                {intelligence.trend.map((score, i) => (
+                                                    <div
+                                                        key={i}
+                                                        className="flex-1 rounded-t-[2px] transition-all bg-emerald-500/20 hover:bg-emerald-500/40"
+                                                        style={{ height: `${Math.max(10, score)}%` }}
+                                                        title={`Score: ${score}`}
+                                                    />
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                 </motion.div>
                             )}
                         </AnimatePresence>
