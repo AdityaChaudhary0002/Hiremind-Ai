@@ -60,7 +60,8 @@ const ResumeScan = () => {
             const formData = new FormData();
             formData.append('resume', uploadedFile);
 
-            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/resume/upload`, formData, {
+            const apiUrl = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
+            const res = await axios.post(`${apiUrl}/api/resume/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`
@@ -271,7 +272,8 @@ const CoverLetterGenerator = ({ resumeText }) => {
         setLoading(true);
         try {
             const token = await getToken();
-            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/resume/cover-letter`, {
+            const apiUrl = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
+            const res = await axios.post(`${apiUrl}/api/resume/cover-letter`, {
                 resumeText,
                 jobRole: role,
                 companyName: company

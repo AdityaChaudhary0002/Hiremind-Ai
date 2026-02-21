@@ -7,7 +7,7 @@ import axios from 'axios'
 
 // Config Axios for Production
 if (import.meta.env.VITE_API_URL) {
-  axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+  axios.defaults.baseURL = import.meta.env.VITE_API_URL.replace(/\/+$/, '');
 }
 
 import { ClerkProvider } from '@clerk/clerk-react'
