@@ -99,7 +99,7 @@ const LevelUpOverlay = ({ newLevel, onClose }) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2 }}
-                    className="mt-12 text-white/30 text-sm animate-pulse cursor-pointer"
+                    className="mt-12 text-muted-text text-sm animate-pulse cursor-pointer"
                 >
                     Click anywhere to continue_
                 </motion.p>

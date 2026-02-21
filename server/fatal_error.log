@@ -1190,3 +1190,195 @@ Stack: CastError: Cast to ObjectId failed for value "intelligence" (type string)
     at model.Query.exec (/Users/adityaadi/Hiremind-ai/server/node_modules/mongoose/lib/query.js:4687:80)
     at async getInterview (/Users/adityaadi/Hiremind-ai/server/src/controllers/interviewController.js:291:27)
 
+[2026-02-21T08:15:53.404Z] 500 - Cannot read properties of undefined (reading 'map')
+Stack: TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/adityaadi/Hiremind-ai/server/src/middlewares/validationMiddleware.js:12:47
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:295:15
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:220:9
+
+[2026-02-21T08:15:55.464Z] 500 - Cannot read properties of undefined (reading 'map')
+Stack: TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/adityaadi/Hiremind-ai/server/src/middlewares/validationMiddleware.js:12:47
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:295:15
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:220:9
+
+[2026-02-21T08:15:56.179Z] 500 - Cannot read properties of undefined (reading 'map')
+Stack: TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/adityaadi/Hiremind-ai/server/src/middlewares/validationMiddleware.js:12:47
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:295:15
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:220:9
+
+[2026-02-21T08:15:57.511Z] 500 - Cannot read properties of undefined (reading 'map')
+Stack: TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/adityaadi/Hiremind-ai/server/src/middlewares/validationMiddleware.js:12:47
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:295:15
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:220:9
+
+[2026-02-21T08:20:55.127Z] 500 - Cannot read properties of undefined (reading 'map')
+Stack: TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/adityaadi/Hiremind-ai/server/src/middlewares/validationMiddleware.js:12:47
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:295:15
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:220:9
+
+[2026-02-21T08:21:18.898Z] 500 - Cannot read properties of undefined (reading 'map')
+Stack: TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/adityaadi/Hiremind-ai/server/src/middlewares/validationMiddleware.js:12:47
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:295:15
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:220:9
+
+[2026-02-21T08:30:47.145Z] 500 - Cannot read properties of undefined (reading 'map')
+Stack: TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/adityaadi/Hiremind-ai/server/src/middlewares/validationMiddleware.js:12:47
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:295:15
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:220:9
+
+[2026-02-21T08:30:55.912Z] 500 - Cannot read properties of undefined (reading 'map')
+Stack: TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/adityaadi/Hiremind-ai/server/src/middlewares/validationMiddleware.js:12:47
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:295:15
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:220:9
+
+[2026-02-21T08:32:00.751Z] 404 - Not Found - /api/resume/upload
+Stack: Error: Not Found - /api/resume/upload
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-21T11:24:27.566Z] 404 - Not Found - /api/resume/upload
+Stack: Error: Not Found - /api/resume/upload
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-21T11:28:01.112Z] 404 - Not Found - /api/resume/upload
+Stack: Error: Not Found - /api/resume/upload
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-21T11:28:54.911Z] 404 - Not Found - /api/resume/upload
+Stack: Error: Not Found - /api/resume/upload
+    at notFound (/Users/adityaadi/Hiremind-ai/server/src/middlewares/errorMiddleware.js:2:19)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at logger (/Users/adityaadi/Hiremind-ai/server/node_modules/morgan/index.js:144:5)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:342:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:297:9
+
+[2026-02-21T11:31:21.556Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+[2026-02-21T11:41:22.040Z] 500 - Cannot read properties of undefined (reading 'map')
+Stack: TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/adityaadi/Hiremind-ai/server/src/middlewares/validationMiddleware.js:12:47
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:295:15
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:220:9
+
+[2026-02-21T11:41:24.303Z] 500 - Cannot read properties of undefined (reading 'map')
+Stack: TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/adityaadi/Hiremind-ai/server/src/middlewares/validationMiddleware.js:12:47
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:295:15
+    at processParams (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:582:12)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/index.js:291:5)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:220:9
+
+[2026-02-21T11:43:17.017Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+

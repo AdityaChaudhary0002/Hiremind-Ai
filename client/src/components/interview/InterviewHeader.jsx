@@ -7,16 +7,16 @@ const InterviewHeader = ({ role, difficulty, currentQuestionIndex }) => {
     const navigate = useNavigate();
 
     return (
-        <header className="h-14 border-b border-white/5 bg-black/50 backdrop-blur-md flex items-center justify-between px-6 z-50 fixed top-0 w-full">
+        <header className="h-14 border-b border-[var(--border-subtle)] bg-glass backdrop-blur-md flex items-center justify-between px-6 z-50 fixed top-0 w-full">
             <div className="flex items-center gap-4">
                 <Logo className="scale-75 origin-left" />
-                <div className="h-4 w-[1px] bg-white/10 mx-2" />
-                <div className="flex items-center gap-2 text-[10px] font-mono text-white/40 uppercase tracking-widest">
-                    <span className="px-1.5 py-0.5 rounded bg-white/5 border border-white/5">{role}</span>
+                <div className="h-4 w-[1px] bg-[var(--border-medium)] mx-2" />
+                <div className="flex items-center gap-2 text-[10px] font-mono text-muted-text uppercase tracking-widest">
+                    <span className="px-1.5 py-0.5 rounded bg-glass-hover border border-[var(--border-subtle)]">{role}</span>
                     <span>/</span>
-                    <span className="px-1.5 py-0.5 rounded bg-white/5 border border-white/5">{difficulty}</span>
+                    <span className="px-1.5 py-0.5 rounded bg-glass-hover border border-[var(--border-subtle)]">{difficulty}</span>
                     <span>/</span>
-                    <span className="text-white/60">Q{currentQuestionIndex + 1}</span>
+                    <span className="text-subtle">Q{currentQuestionIndex + 1}</span>
                 </div>
             </div>
 

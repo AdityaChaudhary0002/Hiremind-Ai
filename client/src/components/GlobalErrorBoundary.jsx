@@ -19,14 +19,14 @@ class GlobalErrorBoundary extends React.Component {
     render() {
         if (this.state.hasError) {
             return (
-                <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center p-6 text-white font-sans text-center">
-                    <div className="w-full max-w-md bg-[#0a0a0c] border border-white/10 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+                <div className="min-h-screen bg-page-alt flex flex-col items-center justify-center p-6 text-white font-sans text-center">
+                    <div className="w-full max-w-md bg-surface border border-[var(--border-medium)] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
                         <div className="absolute inset-0 bg-red-500/5 pointer-events-none" />
 
                         <CircleAlert className="w-16 h-16 text-red-500 mx-auto mb-6" />
 
                         <h1 className="text-2xl font-bold mb-2">System Malfunction</h1>
-                        <p className="text-white/50 mb-6 text-sm leading-relaxed">
+                        <p className="text-subtle mb-6 text-sm leading-relaxed">
                             The application encountered a critical error. Diagnostics have been logged.
                             Please attempt a system restart.
                         </p>

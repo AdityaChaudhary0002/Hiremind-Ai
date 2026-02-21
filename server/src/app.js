@@ -16,11 +16,13 @@ const healthRoutes = require('./routes/healthRoutes');
 const interviewRoutes = require('./routes/interviewRoutes');
 const goalsRoutes = require('./routes/goalsRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
+const resumeRoutes = require('./routes/resumeRoutes');
 
 app.use('/api/health', healthRoutes);
 app.use('/api/interview', interviewRoutes);
 app.use('/api/goals', goalsRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/resume', resumeRoutes);
 app.get('/', (req, res) => {
     res.json({ message: 'API is running...' });
 });

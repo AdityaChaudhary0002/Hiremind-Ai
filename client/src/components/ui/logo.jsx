@@ -34,7 +34,7 @@ const Logo = ({ className = "" }) => {
                 </h1>
                 <div className="flex justify-between items-center w-full mt-1">
                     <div className="h-[1px] w-full bg-gradient-to-r from-white/40 to-transparent" />
-                    <span className="text-[8px] font-mono text-white/50 ml-2 tracking-widest">AI.OS</span>
+                    <span className="text-[8px] font-mono text-subtle ml-2 tracking-widest">AI.OS</span>
                 </div>
             </div>
         </div>

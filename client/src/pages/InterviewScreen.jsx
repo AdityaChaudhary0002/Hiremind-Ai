@@ -19,10 +19,10 @@ class ErrorBoundary extends React.Component {
     render() {
         if (this.state.hasError) {
             return (
-                <div className="w-full h-full flex items-center justify-center bg-black/50 border border-white/10 rounded-xl p-4">
+                <div className="w-full h-full flex items-center justify-center bg-black/50 border border-[var(--border-medium)] rounded-xl p-4">
                     <div className="text-center">
                         <CircleAlert className="w-8 h-8 text-red-500 mx-auto mb-2" />
-                        <div className="text-xs font-mono text-white/50">SYSTEM FAILURE</div>
+                        <div className="text-xs font-mono text-subtle">SYSTEM FAILURE</div>
                     </div>
                 </div>
             );
@@ -48,31 +48,31 @@ const InterviewScreen = () => {
     // Destructure Actions
     const {
         setTranscript, setCode, setLanguage, setMode, setOutput,
-        startSession, submitAnswer, executeCode, speakQuestion
+        startSession, submitAnswer, executeCode, speakQuestion, setIsRecording
     } = actions;
 
 
     // --- RENDER: Loading / Error ---
     if (status === INTERVIEW_STATUS.GENERATING) return (
-        <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center text-white font-sans">
+        <div className="min-h-screen bg-page-alt flex flex-col items-center justify-center text-heading font-sans">
             <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
-            <div className="text-xs font-mono uppercase tracking-widest text-white/50">
+            <div className="text-xs font-mono uppercase tracking-widest text-subtle">
                 Initializing Environment...
             </div>
         </div>
     );
 
     if (status === INTERVIEW_STATUS.EVALUATING && questions.length === 0) return (
-        <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center text-white font-sans">
+        <div className="min-h-screen bg-page-alt flex flex-col items-center justify-center text-heading font-sans">
             <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
-            <div className="text-xs font-mono uppercase tracking-widest text-white/50">
+            <div className="text-xs font-mono uppercase tracking-widest text-subtle">
                 Generating Performance Report...
             </div>
         </div>
     );
 
     if (status === INTERVIEW_STATUS.ERROR || error) return (
-        <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center text-white font-sans">
+        <div className="min-h-screen bg-page-alt flex flex-col items-center justify-center text-heading font-sans">
             <CircleAlert className="w-12 h-12 text-red-500 mb-4" />
             <div className="text-lg font-medium">{error}</div>
             <Button onClick={() => navigate('/dashboard')} variant="ghost" className="mt-4">Return to Dashboard</Button>
@@ -82,18 +82,18 @@ const InterviewScreen = () => {
     // --- RENDER: Start Overlay (only after questions load) ---
     if (status === INTERVIEW_STATUS.IDLE && questions.length > 0) {
         return (
-            <div className="flex items-center justify-center h-screen bg-black relative overflow-hidden">
+            <div className="flex items-center justify-center h-screen bg-page relative overflow-hidden">
                 <div className="absolute inset-0 bg-[url('/assets/noise.svg')] opacity-20 pointer-events-none" />
                 <div className="z-10 text-center space-y-8 p-6">
-                    <h1 className="text-4xl md:text-6xl font-heading font-bold text-white tracking-tighter">
+                    <h1 className="text-4xl md:text-6xl font-heading font-bold text-heading tracking-tighter">
                         System Online
                     </h1>
-                    <p className="text-white/60 max-w-md mx-auto">
+                    <p className="text-subtle max-w-md mx-auto">
                         Neural Core initialized. Click below to establish audio link and begin session.
                     </p>
                     <Button
                         onClick={() => startSession()}
-                        className="h-16 px-12 rounded-full text-xl font-bold bg-white text-black hover:bg-white/90 shadow-[0_0_50px_rgba(255,255,255,0.3)] hover:scale-105 transition-all"
+                        className="h-16 px-12 rounded-full text-xl font-bold bg-primary text-primary-foreground hover:opacity-90 shadow-lg hover:scale-105 transition-all"
                     >
                         START INTERVIEW
                     </Button>
@@ -104,12 +104,12 @@ const InterviewScreen = () => {
 
     // --- RENDER: Main Screen ---
     return (
-        <div className="h-screen bg-[#050505] text-white overflow-hidden flex flex-col font-sans selection:bg-purple-500/30">
+        <div className="h-screen bg-page-alt text-heading overflow-hidden flex flex-col font-sans selection:bg-purple-500/30">
             <InterviewHeader role={role} difficulty={difficulty} currentQuestionIndex={currentQuestionIndex} />
 
-            <div className="flex-1 flex flex-col lg:flex-row pt-14 relative bg-[#050505] overflow-hidden">
+            <div className="flex-1 flex flex-col lg:flex-row pt-14 relative bg-page-alt overflow-hidden">
                 {/* Unified Noise Overlay */}
-                <div className="bg-noise !absolute !inset-0 !z-0 !opacity-[0.05] mix-blend-overlay pointer-events-none" />
+                <div className="bg-noise !absolute !inset-0 !z-0" style={{ opacity: 'var(--noise-opacity)' }} />
 
                 <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-br from-purple-900/5 via-transparent to-blue-900/5" />
 
@@ -128,7 +128,7 @@ const InterviewScreen = () => {
                     <InterviewRightPanel
                         mode={mode} setMode={setMode}
                         transcript={transcript} setTranscript={setTranscript}
-                        isRecording={isRecording} setIsRecording={() => { }} // Controlled strictly by FSM Engine now
+                        isRecording={isRecording} setIsRecording={setIsRecording}
                         code={code} setCode={setCode}
                         language={language} setLanguage={setLanguage}
                         output={output} setOutput={setOutput}

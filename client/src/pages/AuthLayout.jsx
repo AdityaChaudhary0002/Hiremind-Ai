@@ -12,7 +12,7 @@ const AuthLayout = () => {
         <div className="min-h-screen w-full flex bg-background text-foreground overflow-hidden font-sans">
 
             {/* Left Panel: System Features (Hidden on Mobile) */}
-            <div className="hidden lg:flex w-1/2 relative flex-col justify-between p-12 bg-[#050505] border-r border-white/5">
+            <div className="hidden lg:flex w-1/2 relative flex-col justify-between p-12 bg-page-alt border-r border-[var(--border-subtle)]">
 
                 {/* Tactical Effects */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
@@ -24,10 +24,10 @@ const AuthLayout = () => {
                 <div className="relative z-10 h-full flex flex-col justify-between">
                     {/* Logo area */}
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center">
-                            <BrainCircuit className="w-5 h-5 text-white/80" />
+                        <div className="w-10 h-10 rounded-sm bg-glass-hover border border-[var(--border-medium)] flex items-center justify-center">
+                            <BrainCircuit className="w-5 h-5 text-body" />
                         </div>
-                        <span className="text-xl font-mono tracking-[0.2em] uppercase text-white/90">
+                        <span className="text-xl font-mono tracking-[0.2em] uppercase text-heading">
                             Hiremind
                         </span>
                     </div>
@@ -38,10 +38,10 @@ const AuthLayout = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="text-4xl lg:text-5xl font-heading font-bold leading-[1.1] text-white/90"
+                            className="text-4xl lg:text-5xl font-heading font-bold leading-[1.1] text-heading"
                         >
                             Neural simulation <br />
-                            <span className="text-white/40">environment online.</span>
+                            <span className="text-muted-text">environment online.</span>
                         </motion.h1>
 
                         <div className="space-y-4">
@@ -52,13 +52,13 @@ const AuthLayout = () => {
                                 delay={0.3}
                             />
                             <FeatureItem
-                                icon={<Code2 className="w-4 h-4 text-white/70" />}
+                                icon={<Code2 className="w-4 h-4 text-body" />}
                                 title="Code Verification"
                                 description="Interactive IDE matrix for logic and algorithm stress tests."
                                 delay={0.4}
                             />
                             <FeatureItem
-                                icon={<Users className="w-4 h-4 text-white/70" />}
+                                icon={<Users className="w-4 h-4 text-body" />}
                                 title="Synthetic Agents"
                                 description="Adversarial network of AI personas generating adaptive queries."
                                 delay={0.5}
@@ -70,7 +70,7 @@ const AuthLayout = () => {
                     <div className="space-y-4">
                         <div className="flex -space-x-3">
                             {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="w-10 h-10 rounded-full border-2 border-black bg-zinc-800 flex items-center justify-center text-xs font-medium text-white/50">
+                                <div key={i} className="w-10 h-10 rounded-full border-2 border-black bg-zinc-800 flex items-center justify-center text-xs font-medium text-subtle">
                                     U{i}
                                 </div>
                             ))}
@@ -84,7 +84,7 @@ const AuthLayout = () => {
             </div>
 
             {/* Right Panel: Auth Form */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-black relative">
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-page relative">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] z-0 pointer-events-none" />
 
                 <div className="w-full max-w-md relative z-10">
@@ -95,7 +95,7 @@ const AuthLayout = () => {
                     >
                         {/* Centered Logo for Mobile */}
                         <div className="lg:hidden flex justify-center mb-8">
-                            <div className="w-10 h-10 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-sm bg-glass-hover border border-[var(--border-medium)] flex items-center justify-center">
                                 <BrainCircuit className="w-5 h-5 text-emerald-500" />
                             </div>
                         </div>
@@ -107,18 +107,18 @@ const AuthLayout = () => {
                                 appearance={{
                                     elements: {
                                         rootBox: "w-full",
-                                        card: "bg-[#0a0a0a] border border-white/10 shadow-2xl rounded-sm w-full",
-                                        headerTitle: "text-white font-mono uppercase tracking-widest text-sm",
-                                        headerSubtitle: "text-white/40 font-mono text-xs mt-2",
-                                        socialButtonsBlockButton: "bg-white/5 hover:bg-white/10 border-white/10 text-white rounded-none",
-                                        socialButtonsBlockButtonText: "text-white font-mono text-xs uppercase tracking-wider",
-                                        dividerLine: "bg-white/10",
-                                        dividerText: "text-white/30 font-mono text-xs",
-                                        formFieldLabel: "text-white/50 font-mono text-[10px] uppercase tracking-widest",
-                                        formFieldInput: "bg-black border-white/10 text-white focus:border-white/30 rounded-none h-10 font-mono text-sm shadow-none",
-                                        footerActionLink: "text-white hover:text-white/70 font-mono text-xs underline decoration-white/30 underline-offset-4",
-                                        footerActionText: "text-white/50 font-mono text-xs",
-                                        formButtonPrimary: "bg-white hover:bg-white/90 text-black font-mono text-xs uppercase tracking-widest rounded-none h-12 mt-4"
+                                        card: "bg-surface border border-[var(--border-medium)] shadow-2xl rounded-sm w-full",
+                                        headerTitle: "text-heading font-mono uppercase tracking-widest text-sm",
+                                        headerSubtitle: "text-muted-text font-mono text-xs mt-2",
+                                        socialButtonsBlockButton: "bg-glass-hover hover:bg-[var(--glass-hover)] border-[var(--border-medium)] text-heading rounded-none",
+                                        socialButtonsBlockButtonText: "text-heading font-mono text-xs uppercase tracking-wider",
+                                        dividerLine: "bg-[var(--border-medium)]",
+                                        dividerText: "text-muted-text font-mono text-xs",
+                                        formFieldLabel: "text-subtle font-mono text-[10px] uppercase tracking-widest",
+                                        formFieldInput: "bg-surface border-[var(--border-medium)] text-heading focus:border-[var(--border-medium)] rounded-none h-10 font-mono text-sm shadow-none",
+                                        footerActionLink: "text-heading hover:text-body font-mono text-xs underline decoration-[var(--border-medium)] underline-offset-4",
+                                        footerActionText: "text-subtle font-mono text-xs",
+                                        formButtonPrimary: "bg-primary hover:opacity-90 text-primary-foreground font-mono text-xs uppercase tracking-widest rounded-none h-12 mt-4"
                                     }
                                 }}
                             />
@@ -128,18 +128,18 @@ const AuthLayout = () => {
                                 appearance={{
                                     elements: {
                                         rootBox: "w-full",
-                                        card: "bg-[#0a0a0a] border border-white/10 shadow-2xl rounded-sm w-full",
-                                        headerTitle: "text-white font-mono uppercase tracking-widest text-sm",
-                                        headerSubtitle: "text-white/40 font-mono text-xs mt-2",
-                                        socialButtonsBlockButton: "bg-white/5 hover:bg-white/10 border-white/10 text-white rounded-none",
-                                        socialButtonsBlockButtonText: "text-white font-mono text-xs uppercase tracking-wider",
-                                        dividerLine: "bg-white/10",
-                                        dividerText: "text-white/30 font-mono text-xs",
-                                        formFieldLabel: "text-white/50 font-mono text-[10px] uppercase tracking-widest",
-                                        formFieldInput: "bg-black border-white/10 text-white focus:border-white/30 rounded-none h-10 font-mono text-sm shadow-none",
-                                        footerActionLink: "text-white hover:text-white/70 font-mono text-xs underline decoration-white/30 underline-offset-4",
-                                        footerActionText: "text-white/50 font-mono text-xs",
-                                        formButtonPrimary: "bg-white hover:bg-white/90 text-black font-mono text-xs uppercase tracking-widest rounded-none h-12 mt-4"
+                                        card: "bg-surface border border-[var(--border-medium)] shadow-2xl rounded-sm w-full",
+                                        headerTitle: "text-heading font-mono uppercase tracking-widest text-sm",
+                                        headerSubtitle: "text-muted-text font-mono text-xs mt-2",
+                                        socialButtonsBlockButton: "bg-glass-hover hover:bg-[var(--glass-hover)] border-[var(--border-medium)] text-heading rounded-none",
+                                        socialButtonsBlockButtonText: "text-heading font-mono text-xs uppercase tracking-wider",
+                                        dividerLine: "bg-[var(--border-medium)]",
+                                        dividerText: "text-muted-text font-mono text-xs",
+                                        formFieldLabel: "text-subtle font-mono text-[10px] uppercase tracking-widest",
+                                        formFieldInput: "bg-surface border-[var(--border-medium)] text-heading focus:border-[var(--border-medium)] rounded-none h-10 font-mono text-sm shadow-none",
+                                        footerActionLink: "text-heading hover:text-body font-mono text-xs underline decoration-[var(--border-medium)] underline-offset-4",
+                                        footerActionText: "text-subtle font-mono text-xs",
+                                        formButtonPrimary: "bg-primary hover:opacity-90 text-primary-foreground font-mono text-xs uppercase tracking-widest rounded-none h-12 mt-4"
                                     }
                                 }}
                             />
@@ -156,14 +156,14 @@ const FeatureItem = ({ icon, title, description, delay }) => (
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay }}
-        className="flex items-start gap-4 p-4 rounded-sm bg-[#0a0a0a] border border-white/5 hover:border-white/20 transition-colors"
+        className="flex items-start gap-4 p-4 rounded-sm bg-surface border border-[var(--border-subtle)] hover:border-white/20 transition-colors"
     >
         <div className="mt-1">
             {icon}
         </div>
         <div>
-            <h3 className="text-sm font-mono tracking-wide text-white/90 mb-1">{title}</h3>
-            <p className="text-xs font-mono text-white/40 leading-relaxed uppercase tracking-widest">
+            <h3 className="text-sm font-mono tracking-wide text-heading mb-1">{title}</h3>
+            <p className="text-xs font-mono text-muted-text leading-relaxed uppercase tracking-widest">
                 {description}
             </p>
         </div>

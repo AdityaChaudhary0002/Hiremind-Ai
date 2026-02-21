@@ -34,19 +34,19 @@ const FeedbackScreen = () => {
     }, [interviewId, getToken]);
 
     if (loading) return (
-        <div className="min-h-screen flex items-center justify-center bg-black/50">
+        <div className="min-h-screen flex items-center justify-center bg-glass">
             <div className="text-center">
                 <Loader2 className="w-10 h-10 animate-spin text-primary mx-auto mb-4" />
-                <div className="text-xs font-mono text-white/50 uppercase tracking-widest">Compiling Mission Report...</div>
+                <div className="text-xs font-mono text-subtle uppercase tracking-widest">Compiling Mission Report...</div>
             </div>
         </div>
     );
 
     if (!feedback || !feedback.questions) return (
-        <div className="min-h-screen flex items-center justify-center text-white">
+        <div className="min-h-screen flex items-center justify-center text-heading">
             <div className="text-center">
                 <div className="text-xl font-bold mb-2">Analysis Pending</div>
-                <div className="text-white/50">The report is still being generated or is unavailable.</div>
+                <div className="text-subtle">The report is still being generated or is unavailable.</div>
                 <Button onClick={() => navigate('/dashboard')} className="mt-4 bg-white text-black">Return Home</Button>
             </div>
         </div>
@@ -64,7 +64,7 @@ const FeedbackScreen = () => {
                 <div className="pointer-events-auto">
                     <Logo className="scale-75 origin-top-left opacity-50 hover:opacity-100 transition-opacity" />
                 </div>
-                <div className="text-[10px] font-mono text-white/30 uppercase tracking-[0.2em]">Mission Debrief // ID: {interviewId.slice(-6)}</div>
+                <div className="text-[10px] font-mono text-muted-text uppercase tracking-[0.2em]">Mission Debrief // ID: {interviewId.slice(-6)}</div>
             </div>
 
             <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-24">
@@ -87,22 +87,22 @@ const FeedbackScreen = () => {
                         className="lg:col-span-1"
                     >
                         <div className={`${STYLES.glass_card} p-8 text-center flex flex-col items-center justify-center h-fit sticky top-24`}>
-                            <div className="text-xs font-mono text-white/40 uppercase tracking-widest mb-6">Overall Rating</div>
+                            <div className="text-xs font-mono text-muted-text uppercase tracking-widest mb-6">Overall Rating</div>
 
-                            <div className={`w-40 h-40 rounded-full flex items-center justify-center border-4 ${scoreBorder} mb-6 shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-black/20`}>
+                            <div className={`w-40 h-40 rounded-full flex items-center justify-center border-4 ${scoreBorder} mb-6 shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-glass`}>
                                 <div className={`text-6xl font-heading font-bold ${scoreColor}`}>
                                     {feedback.overallScore}
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4 w-full mt-4">
-                                <div className="bg-white/5 p-4 rounded-xl">
-                                    <div className="text-xs text-white/40 uppercase mb-1">Duration</div>
-                                    <div className="text-xl font-mono text-white">24m</div>
+                                <div className="bg-glass-hover p-4 rounded-xl">
+                                    <div className="text-xs text-muted-text uppercase mb-1">Duration</div>
+                                    <div className="text-xl font-mono text-heading">24m</div>
                                 </div>
-                                <div className="bg-white/5 p-4 rounded-xl">
-                                    <div className="text-xs text-white/40 uppercase mb-1">Status</div>
-                                    <div className="text-xl font-mono text-white">PASSED</div>
+                                <div className="bg-glass-hover p-4 rounded-xl">
+                                    <div className="text-xs text-muted-text uppercase mb-1">Status</div>
+                                    <div className="text-xl font-mono text-heading">PASSED</div>
                                 </div>
                             </div>
 
@@ -125,13 +125,13 @@ const FeedbackScreen = () => {
                                     <div className="flex items-center gap-2 text-[10px] font-mono text-primary uppercase tracking-widest mb-4">
                                         <Zap className="w-3 h-3 fill-primary" /> System Suggestion
                                     </div>
-                                    <h4 className="text-white text-lg font-medium mb-2 pr-8 leading-snug">
+                                    <h4 className="text-heading text-lg font-medium mb-2 pr-8 leading-snug">
                                         Focus Area Identified: <br /> {feedback.suggestedGoal.title}
                                     </h4>
-                                    <p className="text-white/50 text-xs font-mono mb-6">
+                                    <p className="text-subtle text-xs font-mono mb-6">
                                         This topic has been flagged in your recent simulations.
                                     </p>
-                                    <Button variant="outline" className="w-full border-white/10 hover:bg-white hover:text-black hover:border-white font-mono text-xs uppercase transition-all flex items-center gap-2">
+                                    <Button variant="outline" className="w-full border-[var(--border-medium)] hover:bg-white hover:text-black hover:border-white font-mono text-xs uppercase transition-all flex items-center gap-2">
                                         <Target className="w-3 h-3" /> SET AS GOAL
                                     </Button>
                                 </div>
@@ -152,22 +152,22 @@ const FeedbackScreen = () => {
                                 variants={MOTION.drift}
                                 className={`${STYLES.glass_card} p-6 relative overflow-hidden group`}
                             >
-                                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-10 transition-opacity" />
+                                <div className="absolute inset-0 bg-glass-hover opacity-0 group-hover:opacity-10 transition-opacity" />
 
                                 <div className="flex items-start gap-4 mb-4">
-                                    <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white/60">
+                                    <div className="w-8 h-8 rounded-full bg-[var(--glass-hover)] flex items-center justify-center text-xs font-bold text-subtle">
                                         Q{i + 1}
                                     </div>
-                                    <h3 className="text-lg font-medium text-white/90 leading-relaxed">
+                                    <h3 className="text-lg font-medium text-heading leading-relaxed">
                                         {q.question}
                                     </h3>
                                 </div>
 
-                                <div className="bg-black/30 rounded-xl p-4 mb-4 border-l-2 border-primary/50">
+                                <div className="bg-glass rounded-xl p-4 mb-4 border-l-2 border-primary/50">
                                     <div className="flex items-center gap-2 text-xs font-mono text-primary uppercase tracking-widest mb-2">
                                         <MessageSquare className="w-3 h-3" /> Your Response
                                     </div>
-                                    <p className="text-white/70 italic text-sm">"{q.userAnswer}"</p>
+                                    <p className="text-body italic text-sm">"{q.userAnswer}"</p>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -175,13 +175,13 @@ const FeedbackScreen = () => {
                                         <div className="flex items-center gap-2 text-xs font-mono text-green-400 uppercase tracking-widest mb-2">
                                             <CheckCircle className="w-3 h-3" /> Strengths
                                         </div>
-                                        <p className="text-sm text-white/80">{q.feedback}</p>
+                                        <p className="text-sm text-body">{q.feedback}</p>
                                     </div>
                                     <div className="bg-yellow-500/10 rounded-xl p-4 border border-yellow-500/10">
                                         <div className="flex items-center gap-2 text-xs font-mono text-yellow-400 uppercase tracking-widest mb-2">
                                             <Brain className="w-3 h-3" /> Improvement
                                         </div>
-                                        <p className="text-sm text-white/80">{q.improvement}</p>
+                                        <p className="text-sm text-body">{q.improvement}</p>
                                     </div>
                                 </div>
                             </motion.div>

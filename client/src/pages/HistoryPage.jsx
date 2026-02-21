@@ -65,14 +65,14 @@ const HistoryPage = () => {
     };
 
     if (loading) return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#050505] text-white/50">
-            <Loader2 className="w-10 h-10 animate-spin mb-4 text-white/80" />
+        <div className="min-h-screen flex flex-col items-center justify-center bg-page-alt text-subtle">
+            <Loader2 className="w-10 h-10 animate-spin mb-4 text-body" />
             <span className="font-mono text-xs tracking-[0.2em] uppercase">Retrieving Archives...</span>
         </div>
     );
 
     return (
-        <div className="min-h-screen relative flex flex-col selection:bg-white/20 pb-20 bg-black overflow-x-hidden font-sans">
+        <div className="min-h-screen relative flex flex-col selection:bg-white/20 pb-20 bg-page overflow-x-hidden font-sans">
 
             {/* AMBIENT ORBS */}
             <div className="fixed inset-0 pointer-events-none z-0">
@@ -89,30 +89,30 @@ const HistoryPage = () => {
             </div>
 
             {/* Minimal Header */}
-            <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 pt-16 flex flex-col md:flex-row justify-between items-end gap-8 mb-16 border-b border-white/[0.05] pb-8">
+            <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 pt-16 flex flex-col md:flex-row justify-between items-end gap-8 mb-16 border-b border-[var(--border-subtle)] pb-8">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-                    <div className="flex items-center gap-3 text-xs font-mono text-white/50 mb-4 uppercase tracking-[0.2em] font-medium">
+                    <div className="flex items-center gap-3 text-xs font-mono text-subtle mb-4 uppercase tracking-[0.2em] font-medium">
                         <History className="w-3 h-3" />
                         <span>System Archives</span>
                     </div>
-                    <h1 className="text-5xl md:text-6xl font-heading font-bold text-white tracking-tighter mb-4">
+                    <h1 className="text-5xl md:text-6xl font-heading font-bold text-heading tracking-tighter mb-4">
                         Operation Logs.
                     </h1>
-                    <p className="text-white/60 max-w-xl text-lg font-light leading-relaxed">
+                    <p className="text-subtle max-w-xl text-lg font-light leading-relaxed">
                         Analyze past simulations. Identify fail-states and optimize for future execution.
                     </p>
                 </motion.div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-6">
                     {/* Floating Pill Tabs */}
-                    <div className="flex p-1 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm">
+                    <div className="flex p-1 bg-glass-hover rounded-full border border-[var(--border-medium)] backdrop-blur-sm">
                         {['Technical', 'Non-Technical'].map(tab => (
                             <button
                                 key={tab}
                                 onClick={() => { setActiveTab(tab); setPage(1); }}
                                 className={`px-6 py-2 text-[10px] font-mono uppercase tracking-widest rounded-full transition-all ${activeTab === tab
                                     ? 'bg-white text-black shadow-lg scale-105 font-bold'
-                                    : 'text-white/50 hover:text-white'
+                                    : 'text-subtle hover:text-heading'
                                     }`}
                             >
                                 {tab}
@@ -124,7 +124,7 @@ const HistoryPage = () => {
                     <Button
                         variant="ghost"
                         onClick={handleClearHistory}
-                        className="text-[10px] font-mono text-white/30 hover:text-red-500 uppercase tracking-widest flex items-center gap-2 hover:bg-transparent"
+                        className="text-[10px] font-mono text-muted-text hover:text-red-500 uppercase tracking-widest flex items-center gap-2 hover:bg-transparent"
                     >
                         <Trash2 className="w-3 h-3" /> Purge Data
                     </Button>
@@ -137,7 +137,7 @@ const HistoryPage = () => {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="w-full h-96 flex flex-col items-center justify-center border border-dashed border-white/10 text-white/30 rounded-[3rem] bg-white/[0.01]"
+                        className="w-full h-96 flex flex-col items-center justify-center border border-dashed border-[var(--border-medium)] text-muted-text rounded-[3rem] bg-glass-hover"
                     >
                         <Search className="w-8 h-8 mb-4 opacity-50" />
                         <span className="font-mono text-xs tracking-widest uppercase">
@@ -163,38 +163,38 @@ const HistoryPage = () => {
                                         exit={{ opacity: 0, scale: 0.9 }}
                                         transition={{ delay: index * 0.05, type: "spring", stiffness: 50, damping: 20 }}
                                         whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                                        className="group relative bg-[#050505] border border-white/10 p-8 hover:bg-white/[0.05] hover:border-white/20 transition-all cursor-pointer overflow-hidden rounded-[2.5rem]"
+                                        className="group relative bg-page-alt border border-[var(--border-medium)] p-8 hover:bg-glass-hover hover:border-white/20 transition-all cursor-pointer overflow-hidden rounded-[2.5rem]"
                                         onClick={() => navigate(`/history/${log._id}`)}
                                     >
                                         <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                                             <button
                                                 onClick={(e) => handleDelete(e, log._id)}
-                                                className="text-white/20 hover:text-red-500 transition-colors"
+                                                className="text-faint hover:text-red-500 transition-colors"
                                             >
                                                 <Trash2 className="w-4 h-4" />
                                             </button>
                                         </div>
 
                                         <div className="flex justify-between items-start mb-12">
-                                            <div className="w-12 h-12 rounded-full bg-white/5 border border-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                                <Activity className="w-5 h-5 text-white/60" />
+                                            <div className="w-12 h-12 rounded-full bg-glass-hover border border-[var(--border-subtle)] flex items-center justify-center group-hover:scale-110 transition-transform">
+                                                <Activity className="w-5 h-5 text-subtle" />
                                             </div>
-                                            <div className="font-mono text-xl font-light text-white opacity-80">
+                                            <div className="font-mono text-xl font-light text-heading opacity-80">
                                                 {log.feedback?.overallScore || '0'}%
                                             </div>
                                         </div>
 
-                                        <h3 className="text-2xl font-heading font-light text-white mb-2 line-clamp-1 group-hover:text-white/90 transition-colors">
+                                        <h3 className="text-2xl font-heading font-light text-heading mb-2 line-clamp-1 group-hover:text-heading transition-colors">
                                             {log.role}
                                         </h3>
 
-                                        <div className="flex items-center gap-4 text-[10px] text-white/50 font-mono uppercase tracking-widest mb-8">
-                                            <span className="px-3 py-1 rounded-full border border-white/10">{log.difficulty}</span>
+                                        <div className="flex items-center gap-4 text-[10px] text-subtle font-mono uppercase tracking-widest mb-8">
+                                            <span className="px-3 py-1 rounded-full border border-[var(--border-medium)]">{log.difficulty}</span>
                                             <span>{new Date(log.createdAt).toLocaleDateString()}</span>
                                         </div>
 
-                                        <div className="flex items-center gap-2 text-xs font-mono text-white/50 group-hover:text-white transition-colors border-t border-white/10 pt-6 uppercase tracking-widest font-medium">
-                                            View Breakdown <span className="ml-2 text-[8px] bg-red-500 text-white px-1.5 py-0.5 rounded-full animate-pulse">NEW</span> <ArrowRight className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0" />
+                                        <div className="flex items-center gap-2 text-xs font-mono text-subtle group-hover:text-heading transition-colors border-t border-[var(--border-medium)] pt-6 uppercase tracking-widest font-medium">
+                                            View Breakdown <span className="ml-2 text-[8px] bg-red-500 text-heading px-1.5 py-0.5 rounded-full animate-pulse">NEW</span> <ArrowRight className="w-3 h-3 ml-auto opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0" />
                                         </div>
                                     </motion.div>
                                 ))}
@@ -207,17 +207,17 @@ const HistoryPage = () => {
                                 <button
                                     onClick={() => setPage(p => Math.max(1, p - 1))}
                                     disabled={page === 1}
-                                    className="text-xs font-mono uppercase tracking-widest text-white/50 hover:text-white disabled:opacity-20 transition-colors"
+                                    className="text-xs font-mono uppercase tracking-widest text-subtle hover:text-heading disabled:opacity-20 transition-colors"
                                 >
                                     &lt; Previous
                                 </button>
-                                <span className="font-mono text-xs text-white/30 tracking-widest">
+                                <span className="font-mono text-xs text-muted-text tracking-widest">
                                     PAGE {page} / {totalPages}
                                 </span>
                                 <button
                                     onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                                     disabled={page === totalPages}
-                                    className="text-xs font-mono uppercase tracking-widest text-white/50 hover:text-white disabled:opacity-20 transition-colors"
+                                    className="text-xs font-mono uppercase tracking-widest text-subtle hover:text-heading disabled:opacity-20 transition-colors"
                                 >
                                     Next &gt;
                                 </button>

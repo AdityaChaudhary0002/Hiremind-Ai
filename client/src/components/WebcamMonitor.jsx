@@ -87,8 +87,8 @@ const WebcamMonitor = () => {
 
     if (!cameraActive) {
         return (
-            <div className="w-full h-full flex items-center justify-center bg-black/40 backdrop-blur-sm rounded-xl border border-white/5">
-                <Button variant="ghost" size="icon" className="rounded-full h-12 w-12 hover:bg-white/10 text-white/50 hover:text-white" onClick={() => setCameraActive(true)}>
+            <div className="w-full h-full flex items-center justify-center bg-black/40 backdrop-blur-sm rounded-xl border border-[var(--border-subtle)]">
+                <Button variant="ghost" size="icon" className="rounded-full h-12 w-12 hover:bg-white/10 text-subtle hover:text-white" onClick={() => setCameraActive(true)}>
                     <CameraOff className="w-6 h-6" />
                 </Button>
             </div>
@@ -96,14 +96,14 @@ const WebcamMonitor = () => {
     }
 
     return (
-        <div className="relative w-full h-full bg-black/80 backdrop-blur-md rounded-xl border border-white/10 shadow-2xl overflow-hidden font-mono group">
+        <div className="relative w-full h-full bg-black/80 backdrop-blur-md rounded-xl border border-[var(--border-medium)] shadow-2xl overflow-hidden font-mono group">
             {/* Header */}
             <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-3 py-2 bg-gradient-to-b from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                    <span className="text-[10px] text-white/60 uppercase tracking-wider">REC</span>
+                    <span className="text-[10px] text-subtle uppercase tracking-wider">REC</span>
                 </div>
-                <button onClick={() => setCameraActive(false)} className="text-white/40 hover:text-white transition-colors">
+                <button onClick={() => setCameraActive(false)} className="text-muted-text hover:text-white transition-colors">
                     <Camera className="w-3 h-3" />
                 </button>
             </div>
@@ -122,7 +122,7 @@ const WebcamMonitor = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent">
                     <div className="flex items-end justify-between">
                         <div>
-                            <div className="text-[10px] text-white/40 mb-0.5">Confidence</div>
+                            <div className="text-[10px] text-muted-text mb-0.5">Confidence</div>
                             <div className={`text-lg font-bold leading-none ${getStatusColor()}`}>
                                 {confidence}%
                             </div>
@@ -133,7 +133,7 @@ const WebcamMonitor = () => {
                             ) : (
                                 <AlertTriangle className="w-4 h-4 text-yellow-500 mb-1 ml-auto" />
                             )}
-                            <div className="text-[9px] text-white/40 uppercase">{status}</div>
+                            <div className="text-[9px] text-muted-text uppercase">{status}</div>
                         </div>
                     </div>
                 </div>

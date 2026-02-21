@@ -94,7 +94,7 @@ const AppLayout = () => {
 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--star-color').trim();
                 ctx.fill();
             });
 
@@ -112,13 +112,13 @@ const AppLayout = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-background font-sans text-foreground selection:bg-primary/30 relative flex flex-col overflow-x-hidden">
+        <div className="min-h-screen bg-page font-sans text-foreground selection:bg-primary/30 relative flex flex-col overflow-x-hidden">
             {/* AMBIENT CURSOR LIGHT */}
             <div
                 ref={spotlightRef}
                 className="fixed top-0 left-0 w-[800px] h-[800px] rounded-full pointer-events-none z-[1] opacity-100 transition-opacity duration-500"
                 style={{
-                    background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%)',
+                    background: `radial-gradient(circle, var(--glow-color) 0%, transparent 60%)`,
                     filter: 'blur(80px)',
                     mixBlendMode: 'plus-lighter',
                     marginLeft: '-400px',
@@ -137,13 +137,13 @@ const AppLayout = () => {
                 <div
                     className="absolute inset-0 z-0 pointer-events-none"
                     style={{
-                        background: 'radial-gradient(circle at 50% 50%, #050505 0%, #000000 100%)',
+                        background: `radial-gradient(circle at 50% 50%, var(--vignette-from) 0%, var(--vignette-to) 100%)`,
                         opacity: 1
                     }}
                 />
 
                 {/* 2.5 Living Atmosphere (The Slow Drift - Globalized) */}
-                <div className="absolute inset-0 overflow-hidden opacity-80">
+                <div className="absolute inset-0 overflow-hidden" style={{ opacity: 'var(--atmos-opacity)' }}>
                     <motion.div
                         animate={{
                             scale: [1, 1.2, 1],
@@ -167,11 +167,11 @@ const AppLayout = () => {
                 {/* 3. Floating Dust Particles (Subtle) */}
                 <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-20" />
 
-                {/* 4. Top Light Source (Barely Visible) */}
-                <div className="absolute top-0 left-0 right-0 h-[300px] bg-gradient-to-b from-white/5 via-transparent to-transparent blur-3xl opacity-5" />
+                {/* 4. Top Light Source */}
+                <div className="absolute top-0 left-0 right-0 h-[300px] bg-gradient-to-b from-[var(--glow-color)] via-transparent to-transparent blur-3xl opacity-5" />
 
                 {/* 5. Noise Texture Overlay (Film Grain) */}
-                <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none z-[1]"></div>
+                <div className="absolute inset-0 bg-noise pointer-events-none z-[1]" style={{ opacity: 'var(--noise-opacity)' }}></div>
             </div>
 
             <Navbar />

@@ -6,11 +6,11 @@ const AiCore3D = ({ className }) => {
         <div className={`w-full h-full flex items-center justify-center ${className}`}>
             <div className="relative w-[420px] h-[420px]">
                 {/* Outer glow ring */}
-                <div className="absolute inset-0 rounded-full border border-white/5 animate-[spin_20s_linear_infinite]" />
+                <div className="absolute inset-0 rounded-full border border-[var(--border-subtle)] animate-[spin_20s_linear_infinite]" />
 
                 {/* Mid ring with pulse */}
                 <div
-                    className="absolute inset-[10%] rounded-full border border-white/10"
+                    className="absolute inset-[10%] rounded-full border border-[var(--border-medium)]"
                     style={{ animation: 'spin 12s linear infinite reverse' }}
                 />
 

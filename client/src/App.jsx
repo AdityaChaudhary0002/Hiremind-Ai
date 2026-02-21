@@ -103,7 +103,7 @@ class GlobalErrorBoundary extends React.Component {
       return (
         <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-8 text-center">
           <h1 className="text-4xl font-bold text-red-500 mb-4">CRITICAL SYSTEM FAILURE</h1>
-          <p className="text-white/60 mb-8 max-w-md">
+          <p className="text-subtle mb-8 max-w-md">
             The neural link has encountered an unrecoverable error.
           </p>
           <pre className="bg-red-900/20 text-red-200 p-4 rounded text-left text-xs mb-8 overflow-auto max-w-2xl w-full border border-red-500/30">

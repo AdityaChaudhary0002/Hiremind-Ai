@@ -101,7 +101,7 @@ const ResumeScan = () => {
                 </div>
                 <button
                     onClick={() => navigate('/dashboard')}
-                    className="p-2 text-white/20 hover:text-white transition-colors cursor-pointer pointer-events-auto"
+                    className="p-2 text-faint hover:text-white transition-colors cursor-pointer pointer-events-auto"
                 >
                     <X className="w-6 h-6" />
                 </button>
@@ -129,7 +129,7 @@ const ResumeScan = () => {
                                 exit={{ opacity: 0, scale: 0.95 }}
                                 className={`
                                     relative border-2 border-dashed rounded-3xl p-16 flex flex-col items-center justify-center transition-all cursor-pointer group
-                                    ${isDragging ? 'border-primary bg-primary/5 shadow-[0_0_50px_rgba(139,92,246,0.2)]' : 'border-white/10 hover:border-white/30 bg-white/5 hover:bg-white/10'}
+                                    ${isDragging ? 'border-primary bg-primary/5 shadow-[0_0_50px_rgba(139,92,246,0.2)]' : 'border-[var(--border-medium)] hover:border-white/30 bg-glass-hover hover:bg-white/10'}
                                 `}
                                 onDragOver={handleDragOver}
                                 onDragLeave={handleDragLeave}
@@ -138,11 +138,11 @@ const ResumeScan = () => {
                             >
                                 <input type="file" ref={fileInputRef} className="hidden" accept=".pdf" onChange={handleFileSelect} />
 
-                                <div className="p-6 rounded-full bg-white/5 mb-6 group-hover:scale-110 transition-transform border border-white/5 shadow-inner">
-                                    <Upload className="w-10 h-10 text-white/60" />
+                                <div className="p-6 rounded-full bg-glass-hover mb-6 group-hover:scale-110 transition-transform border border-[var(--border-subtle)] shadow-inner">
+                                    <Upload className="w-10 h-10 text-subtle" />
                                 </div>
                                 <h3 className="text-xl font-heading font-medium text-white mb-2">Initiate Data Transfer</h3>
-                                <p className="text-sm font-mono text-white/40 uppercase tracking-widest">Drop PDF or Click to Browse</p>
+                                <p className="text-sm font-mono text-muted-text uppercase tracking-widest">Drop PDF or Click to Browse</p>
                             </motion.div>
                         )}
 
@@ -152,11 +152,11 @@ const ResumeScan = () => {
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0 }}
-                                className="w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-12 relative overflow-hidden flex flex-col items-center"
+                                className="w-full bg-black/40 backdrop-blur-xl border border-[var(--border-medium)] rounded-3xl p-12 relative overflow-hidden flex flex-col items-center"
                             >
                                 {/* File Icon with Scanner */}
-                                <div className="relative w-24 h-32 bg-white/5 rounded-lg border border-white/20 flex items-center justify-center mb-8 overflow-hidden">
-                                    <FileText className="w-10 h-10 text-white/40" />
+                                <div className="relative w-24 h-32 bg-glass-hover rounded-lg border border-white/20 flex items-center justify-center mb-8 overflow-hidden">
+                                    <FileText className="w-10 h-10 text-muted-text" />
 
                                     {/* Laser Scan Line */}
                                     <motion.div
@@ -170,7 +170,7 @@ const ResumeScan = () => {
                                 </div>
 
                                 <div className="w-full max-w-md space-y-4 text-center">
-                                    <div className="flex justify-between text-xs font-mono text-white/50 uppercase tracking-widest">
+                                    <div className="flex justify-between text-xs font-mono text-subtle uppercase tracking-widest">
                                         <span>Status: {status === 'error' ? 'FAILED' : 'DECRYPTING'}</span>
                                         <span>{scanProgress}%</span>
                                     </div>
@@ -180,13 +180,13 @@ const ResumeScan = () => {
                                             animate={{ width: `${scanProgress}%` }}
                                         />
                                     </div>
-                                    <p className="text-sm text-white/40 animate-pulse">
+                                    <p className="text-sm text-muted-text animate-pulse">
                                         {status === 'error' ? 'Data packet corrupted. Please retry.' : 'Analyzing semantic structures...'}
                                     </p>
                                 </div>
 
                                 {status === 'error' && (
-                                    <Button onClick={() => setStatus('idle')} variant="ghost" className="mt-8 text-white/60 hover:text-white">
+                                    <Button onClick={() => setStatus('idle')} variant="ghost" className="mt-8 text-subtle hover:text-white">
                                         Try Again
                                     </Button>
                                 )}
@@ -208,17 +208,17 @@ const ResumeScan = () => {
                                             <ShieldCheck className="w-8 h-8 text-green-500" />
                                         </div>
                                         <h3 className="text-2xl font-heading font-medium text-white mb-2">Identity Verified</h3>
-                                        <p className="text-white/60 text-sm">Resume data has been successfully integrated into the simulation matrix.</p>
+                                        <p className="text-subtle text-sm">Resume data has been successfully integrated into the simulation matrix.</p>
 
                                         <div className="mt-8 grid grid-cols-2 gap-4 w-full">
-                                            <div className="bg-white/5 p-3 rounded-lg border border-white/5">
-                                                <div className="text-xs text-white/40 uppercase mb-1">Keywords</div>
+                                            <div className="bg-glass-hover p-3 rounded-lg border border-[var(--border-subtle)]">
+                                                <div className="text-xs text-muted-text uppercase mb-1">Keywords</div>
                                                 <div className="text-lg font-mono text-white">
                                                     {analysis?.skills?.length || 12}
                                                 </div>
                                             </div>
-                                            <div className="bg-white/5 p-3 rounded-lg border border-white/5">
-                                                <div className="text-xs text-white/40 uppercase mb-1">Parse Time</div>
+                                            <div className="bg-glass-hover p-3 rounded-lg border border-[var(--border-subtle)]">
+                                                <div className="text-xs text-muted-text uppercase mb-1">Parse Time</div>
                                                 <div className="text-lg font-mono text-white">0.8s</div>
                                             </div>
                                         </div>
@@ -227,7 +227,7 @@ const ResumeScan = () => {
                                     {/* Action Card */}
                                     <div className="flex flex-col gap-4">
                                         <div className={`${STYLES.glass_card} p-6 flex-1 flex flex-col justify-center`}>
-                                            <h4 className="text-sm font-mono text-white/50 uppercase tracking-widest mb-4">Recommended Next Step</h4>
+                                            <h4 className="text-sm font-mono text-subtle uppercase tracking-widest mb-4">Recommended Next Step</h4>
                                             <p className="text-lg text-white mb-6">
                                                 Based on your profile, we recommend simulating a <strong className="text-primary">Senior Frontend</strong> scenario.
                                             </p>
@@ -241,7 +241,7 @@ const ResumeScan = () => {
 
                                         <button
                                             onClick={() => setStatus('idle')}
-                                            className="p-4 rounded-xl border border-white/5 hover:bg-white/5 text-sm text-white/40 hover:text-white transition-colors text-center"
+                                            className="p-4 rounded-xl border border-[var(--border-subtle)] hover:bg-glass-hover text-sm text-muted-text hover:text-white transition-colors text-center"
                                         >
                                             Scan Another Document
                                         </button>
@@ -289,14 +289,14 @@ const CoverLetterGenerator = ({ resumeText }) => {
 
     return (
         <div className="mt-8 w-full">
-            <div className={`${STYLES.glass_card} p-8 border border-white/10`}>
+            <div className={`${STYLES.glass_card} p-8 border border-[var(--border-medium)]`}>
                 <div className="flex items-center gap-3 mb-6">
                     <div className="p-2 bg-purple-500/10 rounded-lg border border-purple-500/20">
                         <FileText className="w-5 h-5 text-purple-400" />
                     </div>
                     <div>
                         <h3 className="text-lg font-heading font-bold text-white">AI Cover Letter Generator</h3>
-                        <p className="text-xs text-white/40 font-mono">Instant semantic generation based on your resume.</p>
+                        <p className="text-xs text-muted-text font-mono">Instant semantic generation based on your resume.</p>
                     </div>
                 </div>
 
@@ -308,14 +308,14 @@ const CoverLetterGenerator = ({ resumeText }) => {
                                 placeholder="Target Role (e.g. Senior Developer)"
                                 value={role}
                                 onChange={(e) => setRole(e.target.value)}
-                                className="bg-[#0a0a0c] border border-white/10 rounded-lg p-3 text-white text-sm outline-none focus:border-primary transition-colors"
+                                className="bg-surface border border-[var(--border-medium)] rounded-lg p-3 text-white text-sm outline-none focus:border-primary transition-colors"
                             />
                             <input
                                 type="text"
                                 placeholder="Company Name (Optional)"
                                 value={company}
                                 onChange={(e) => setCompany(e.target.value)}
-                                className="bg-[#0a0a0c] border border-white/10 rounded-lg p-3 text-white text-sm outline-none focus:border-primary transition-colors"
+                                className="bg-surface border border-[var(--border-medium)] rounded-lg p-3 text-white text-sm outline-none focus:border-primary transition-colors"
                             />
                         </div>
                         <Button
@@ -329,17 +329,17 @@ const CoverLetterGenerator = ({ resumeText }) => {
                     </div>
                 ) : (
                     <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <div className="bg-[#0a0a0c] border border-white/10 rounded-xl p-6 relative group">
+                        <div className="bg-surface border border-[var(--border-medium)] rounded-xl p-6 relative group">
                             <textarea
                                 readOnly
                                 value={coverLetter}
-                                className="w-full h-64 bg-transparent resize-none outline-none text-white/80 text-sm leading-relaxed font-sans custom-scrollbar"
+                                className="w-full h-64 bg-transparent resize-none outline-none text-body text-sm leading-relaxed font-sans custom-scrollbar"
                             />
                             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <Button
                                     size="sm"
                                     onClick={() => navigator.clipboard.writeText(coverLetter)}
-                                    className="bg-white/10 hover:bg-white/20 text-white text-xs border border-white/10 backdrop-blur-md"
+                                    className="bg-white/10 hover:bg-white/20 text-white text-xs border border-[var(--border-medium)] backdrop-blur-md"
                                 >
                                     Copy Text
                                 </Button>
@@ -348,7 +348,7 @@ const CoverLetterGenerator = ({ resumeText }) => {
                         <Button
                             onClick={() => setCoverLetter('')}
                             variant="ghost"
-                            className="text-white/40 hover:text-white text-xs"
+                            className="text-muted-text hover:text-white text-xs"
                         >
                             Generate New
                         </Button>

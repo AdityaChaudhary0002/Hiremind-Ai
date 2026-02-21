@@ -41,6 +41,9 @@ const useInterviewEngine = () => {
     // UPGRADE 5: STRICT SESSION IDEMPOTENCY
     const sessionId = useRef(crypto.randomUUID());
 
+    // --- MIC STATE ---
+    const [isMicActive, setIsMicActive] = useState(false);
+
     // ====================
     //   INITIALIZATION (FSM: GENERATING -> IDLE)
     // ====================
@@ -161,6 +164,7 @@ const useInterviewEngine = () => {
         return () => clearTimeout(timer);
     }, [status, questions.length, currentQuestionIndex, speakCurrentQuestion]);
 
+
     // ====================
     //   ACTIONS: START
     // ====================
@@ -191,7 +195,20 @@ const useInterviewEngine = () => {
     const [memory, setMemory] = useState([]);
 
     const submitAnswer = useCallback(async () => {
-        if (!transcript.trim()) return;
+        const DEFAULT_CODE = '// Write your solution here...';
+        const hasRealCode = isCodingInterview && code && code.trim() && code.trim() !== DEFAULT_CODE;
+
+        let currentA = transcript;
+
+        // If it's a coding interview and user has written real code, include it
+        if (hasRealCode) {
+            currentA = `[Code Submission]:\n\`\`\`${language}\n${code}\n\`\`\`\n\n[Verbal Explanation]:\n${transcript}`;
+        }
+
+        // Prevent truly empty submissions
+        if (!currentA.trim() && !hasRealCode) {
+            return;
+        }
 
         // FSM: Shift to EVALUATING
         setStatus(INTERVIEW_STATUS.EVALUATING);
@@ -199,7 +216,6 @@ const useInterviewEngine = () => {
 
         try {
             const currentQ = questions[currentQuestionIndex];
-            const currentA = transcript;
             setTranscript('');
 
             let nextIndex = currentQuestionIndex + 1;
@@ -249,7 +265,7 @@ const useInterviewEngine = () => {
             setCurrentQuestionIndex(prev => prev + 1);
             setStatus(INTERVIEW_STATUS.RECORDING);
         }
-    }, [transcript, questions, currentQuestionIndex, interviewId, getToken, role, difficulty, memory]);
+    }, [transcript, code, language, isCodingInterview, questions, currentQuestionIndex, interviewId, getToken, role, difficulty, memory]);
 
     // FSM: Handle generic Completion
     useEffect(() => {
@@ -297,7 +313,7 @@ const useInterviewEngine = () => {
             difficulty,
             isSpeaking: status === INTERVIEW_STATUS.ASKING,
             isAnalyzing: status === INTERVIEW_STATUS.EVALUATING,
-            isRecording: status === INTERVIEW_STATUS.RECORDING,
+            isRecording: isMicActive,
             code,
             language,
             output,
@@ -320,7 +336,8 @@ const useInterviewEngine = () => {
             setMode,
             setOutput,
             executeCode,
-            startSession
+            startSession,
+            setIsRecording: setIsMicActive
         }
     };
 };

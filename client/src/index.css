@@ -24,28 +24,49 @@
         --input: 240 5.9% 90%;
         --ring: 240 5.9% 10%;
         --radius: 0.5rem;
+
+        /* === CUSTOM THEME TOKENS === */
+        --page: #ffffff;
+        --page-alt: #f8f9fa;
+        --surface: #ffffff;
+        --surface-elevated: #f9fafb;
+        --heading: #111827;
+        --body: #374151;
+        --subtle: #6b7280;
+        --muted-text: #9ca3af;
+        --faint: rgba(156, 163, 175, 0.5);
+        --border-subtle: rgba(0, 0, 0, 0.08);
+        --border-medium: rgba(0, 0, 0, 0.12);
+        --glass: rgba(255, 255, 255, 0.7);
+        --glass-border: rgba(0, 0, 0, 0.06);
+        --glass-hover: rgba(0, 0, 0, 0.03);
+        --glow-color: rgba(0, 0, 0, 0.05);
+        --glow-accent: rgba(16, 185, 129, 0.1);
+        --star-color: rgba(0, 0, 0, 0.15);
+        --grid-color: rgba(0, 0, 0, 0.04);
+        --noise-opacity: 0;
+        --orb-stroke: #111827;
+        --orb-fill: #111827;
+        --vignette-from: #f8f9fa;
+        --vignette-to: #ffffff;
+        --atmos-opacity: 0.05;
     }
 
     .dark {
         /* Ultra-Premium Monochrome / Cinematic Depth */
         --background: 0 0% 0%;
-        /* #000000 Pure Void */
         --foreground: 0 0% 95%;
 
         --card: 240 2% 7%;
-        /* #121212 Surface */
         --card-foreground: 0 0% 95%;
 
         --popover: 240 2% 9%;
-        /* Elevated Surface */
         --popover-foreground: 0 0% 95%;
 
         --primary: 0 0% 100%;
-        /* White Primary */
         --primary-foreground: 0 0% 0%;
 
         --secondary: 240 2% 10%;
-        /* Secondary Surface */
         --secondary-foreground: 0 0% 98%;
 
         --muted: 240 2% 12%;
@@ -60,12 +81,62 @@
         --border: 240 2% 12%;
         --input: 240 2% 12%;
         --ring: 0 0% 80%;
+
+        /* === CUSTOM THEME TOKENS (DARK) === */
+        --page: #000000;
+        --page-alt: #050505;
+        --surface: #0a0a0a;
+        --surface-elevated: #121212;
+        --heading: #f3f4f6;
+        --body: rgba(255, 255, 255, 0.8);
+        --subtle: rgba(255, 255, 255, 0.5);
+        --muted-text: rgba(255, 255, 255, 0.3);
+        --faint: rgba(255, 255, 255, 0.1);
+        --border-subtle: rgba(255, 255, 255, 0.05);
+        --border-medium: rgba(255, 255, 255, 0.1);
+        --glass: rgba(10, 10, 10, 0.8);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-hover: rgba(255, 255, 255, 0.05);
+        --glow-color: rgba(255, 255, 255, 0.03);
+        --glow-accent: rgba(16, 185, 129, 0.1);
+        --star-color: rgba(255, 255, 255, 0.5);
+        --grid-color: rgba(255, 255, 255, 0.03);
+        --noise-opacity: 0.05;
+        --orb-stroke: white;
+        --orb-fill: white;
+        --vignette-from: #050505;
+        --vignette-to: #000000;
+        --atmos-opacity: 0.8;
     }
 }
 
 @layer base {
     * {
         border-color: hsl(var(--border));
+    }
+
+    /* Global pointer cursor on all interactive elements */
+    a,
+    button,
+    [role="button"],
+    [type="button"],
+    [type="submit"],
+    [type="reset"],
+    select,
+    summary,
+    label[for],
+    .cursor-pointer,
+    [onclick],
+    [tabindex]:not([tabindex="-1"]) {
+        cursor: pointer !important;
+    }
+
+    /* Interactive form elements */
+    input[type="checkbox"],
+    input[type="radio"],
+    input[type="file"],
+    input[type="range"] {
+        cursor: pointer !important;
     }
 
     body {
@@ -92,44 +163,32 @@
     /* Cinematic Card Design - Enhanced Depth */
     .card-luminous,
     .card-premium {
-        background-color: hsl(240 2% 7%);
-        /* Elevated Surface */
-
-        /* Physical Edge + Shadow System */
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-top-color: rgba(255, 255, 255, 0.12);
-        /* Light catch on top */
-
+        background-color: var(--surface-elevated);
+        border: 1px solid var(--glass-border);
+        border-top-color: var(--border-medium);
         border-radius: var(--radius);
         position: relative;
         overflow: hidden;
         transition: all 0.3s cubic-bezier(0.25, 0.4, 0.25, 1);
-
-        /* Layered Shadows for Realism */
         box-shadow:
-            0 0 0 1px rgba(0, 0, 0, 1),
-            /* Sharp dark ring for separation */
-            0 8px 24px -4px rgba(0, 0, 0, 0.6),
-            /* Ambient shadow */
-            inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-        /* Inner light lip */
+            0 1px 3px rgba(0, 0, 0, 0.08),
+            0 4px 12px -2px rgba(0, 0, 0, 0.1);
     }
 
     .card-luminous:hover,
     .card-premium:hover {
         transform: translateY(-2px);
-        background-color: hsl(240 2% 8%);
-        border-color: rgba(255, 255, 255, 0.15);
+        background-color: var(--surface-elevated);
+        border-color: var(--border-medium);
         box-shadow:
-            0 0 0 1px rgba(0, 0, 0, 1),
-            0 20px 40px -8px rgba(0, 0, 0, 0.7),
-            inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+            0 4px 12px rgba(0, 0, 0, 0.12),
+            0 12px 24px -4px rgba(0, 0, 0, 0.15);
     }
 
     .card-luminous.cursor-pointer:active,
     .card-premium.cursor-pointer:active {
         transform: scale(0.98);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         transition: all 50ms ease-out;
     }
 
@@ -168,4 +227,226 @@
             padding-bottom: 3rem;
         }
     }
+}
+
+/* ============================================
+   LIGHT THEME OVERRIDES
+   Flips hardcoded dark classes when .dark is absent.
+   Zero JSX changes required.
+   ============================================ */
+
+:root:not(.dark) {
+    --page-bg: #ffffff;
+    --page-bg-alt: #f8f9fa;
+    --surface: #ffffff;
+    --surface-hover: #f3f4f6;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+}
+
+.dark {
+    --page-bg: #000000;
+    --page-bg-alt: #050505;
+    --surface: #0a0a0a;
+    --surface-hover: #111111;
+    --text-primary: #f3f4f6;
+    --text-secondary: rgba(255, 255, 255, 0.6);
+    --text-muted: rgba(255, 255, 255, 0.3);
+}
+
+/* --- Page Backgrounds --- */
+:root:not(.dark) .bg-black {
+    background-color: var(--page-bg) !important;
+}
+
+:root:not(.dark) .bg-\[\#050505\] {
+    background-color: var(--page-bg-alt) !important;
+}
+
+:root:not(.dark) .bg-\[\#0a0a0a\] {
+    background-color: var(--surface) !important;
+}
+
+:root:not(.dark) .bg-\[\#0a0a0c\] {
+    background-color: var(--surface) !important;
+}
+
+:root:not(.dark) .bg-\[\#0c0c0e\] {
+    background-color: #f3f4f6 !important;
+}
+
+:root:not(.dark) .bg-\[\#18181b\] {
+    background-color: #f9fafb !important;
+}
+
+:root:not(.dark) .bg-\[\#050505\]\/80 {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+:root:not(.dark) .bg-\[\#050505\]\/50 {
+    background-color: rgba(248, 249, 250, 0.5) !important;
+}
+
+:root:not(.dark) .bg-\[\#0a0a0c\]\/80 {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* --- Text Colors --- */
+:root:not(.dark) .text-white {
+    color: var(--text-primary) !important;
+}
+
+:root:not(.dark) .text-white\/90 {
+    color: var(--text-primary) !important;
+}
+
+:root:not(.dark) .text-white\/80 {
+    color: rgba(17, 24, 39, 0.85) !important;
+}
+
+:root:not(.dark) .text-white\/60 {
+    color: var(--text-secondary) !important;
+}
+
+:root:not(.dark) .text-white\/50 {
+    color: var(--text-secondary) !important;
+}
+
+:root:not(.dark) .text-white\/40 {
+    color: var(--text-muted) !important;
+}
+
+:root:not(.dark) .text-white\/30 {
+    color: var(--text-muted) !important;
+}
+
+:root:not(.dark) .text-white\/20 {
+    color: rgba(156, 163, 175, 0.5) !important;
+}
+
+:root:not(.dark) .text-white\/10 {
+    color: rgba(156, 163, 175, 0.3) !important;
+}
+
+/* --- Borders --- */
+:root:not(.dark) .border-white\/5 {
+    border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+:root:not(.dark) .border-white\/10 {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+:root:not(.dark) .border-white\/20 {
+    border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+:root:not(.dark) .border-white\/30 {
+    border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* --- Semi-transparent BGs --- */
+:root:not(.dark) .bg-white\/5 {
+    background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+:root:not(.dark) .bg-white\/10 {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+:root:not(.dark) .bg-white\/20 {
+    background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* --- Card Overrides --- */
+:root:not(.dark) .card-luminous,
+:root:not(.dark) .card-premium {
+    background-color: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    border-top-color: rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+}
+
+:root:not(.dark) .card-luminous:hover,
+:root:not(.dark) .card-premium:hover {
+    background-color: #f9fafb !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* --- Gradient Text (Light Mode) --- */
+:root:not(.dark) .text-gradient-luminous {
+    background: linear-gradient(to right, #111827, #6b7280) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+:root:not(.dark) .text-glow {
+    text-shadow: none !important;
+}
+
+/* --- Glow/Shadow Overrides (Kill dark-specific glows in light mode) --- */
+:root:not(.dark) .shadow-\[0_0_20px_rgba\(255\,255\,255\,0\.2\)\] {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+:root:not(.dark) .shadow-\[0_0_30px_rgba\(255\,255\,255\,0\.4\)\] {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+:root:not(.dark) .shadow-\[0_0_50px_rgba\(255\,255\,255\,0\.3\)\] {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* --- Noise & Ambient (Hide in light mode) --- */
+:root:not(.dark) .bg-noise {
+    display: none !important;
+}
+
+/* --- Selection --- */
+:root:not(.dark) .selection\:bg-white\/20 ::selection {
+    background-color: rgba(99, 102, 241, 0.2) !important;
+}
+
+:root:not(.dark) .selection\:bg-primary\/30 ::selection {
+    background-color: rgba(99, 102, 241, 0.2) !important;
+}
+
+/* --- Inverted Primary Buttons (white bg + black text → dark bg + white text in light mode) --- */
+:root:not(.dark) button.bg-white.text-black,
+:root:not(.dark) a.bg-white.text-black {
+    background-color: #111827 !important;
+    color: #ffffff !important;
+}
+
+:root:not(.dark) button.bg-white.text-black:hover,
+:root:not(.dark) a.bg-white.text-black:hover {
+    background-color: #1f2937 !important;
+}
+
+/* --- SVG Logo in Light (invert Neural Orb to black) --- */
+:root:not(.dark) .text-white svg circle,
+:root:not(.dark) .text-white svg line {
+    stroke: #111827;
+    fill: #111827;
+}
+
+:root:not(.dark) .text-white svg circle[fill="none"] {
+    fill: none;
+}
+
+/* --- bg-clip-text gradient fix for light --- */
+:root:not(.dark) .bg-gradient-to-r.from-white {
+    --tw-gradient-from: #111827 !important;
+}
+
+:root:not(.dark) .bg-gradient-to-r.to-white\/40,
+:root:not(.dark) .bg-gradient-to-r.to-white\/50 {
+    --tw-gradient-to: #9ca3af !important;
+}
+
+:root:not(.dark) .bg-gradient-to-r.via-white {
+    --tw-gradient-via: #374151 !important;
 }

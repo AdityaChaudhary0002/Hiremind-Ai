@@ -13,9 +13,9 @@ const AiCore = () => {
             </div>
 
             {/* 3. The Gyroscope Rings (Sharp lines) */}
-            <div className="absolute inset-32 border border-white/10 rounded-full animate-[spin_8s_linear_infinite]"
+            <div className="absolute inset-32 border border-[var(--border-medium)] rounded-full animate-[spin_8s_linear_infinite]"
                 style={{ borderRadius: '45% 55% 40% 60% / 55% 40% 60% 40%' }} />
-            <div className="absolute inset-36 border border-white/5 rounded-full animate-[spin_12s_linear_infinite_reverse]"
+            <div className="absolute inset-36 border border-[var(--border-subtle)] rounded-full animate-[spin_12s_linear_infinite_reverse]"
                 style={{ borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' }} />
 
             {/* 4. The Core Sphere (Fake 3D) */}

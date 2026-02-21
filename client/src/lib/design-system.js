@@ -42,16 +42,16 @@ export const MOTION = {
 // 2. Common Tailwind Styling Classes
 export const STYLES = {
     // Typography
-    h1_hero: "text-7xl md:text-8xl font-heading font-bold tracking-tighter text-white",
-    h1_hero_gradient: "text-transparent bg-clip-text bg-gradient-to-r from-white/80 to-transparent",
-    h2: "text-4xl md:text-5xl font-heading font-bold text-white tracking-tight",
-    p_body: "text-lg text-white/60 font-light leading-relaxed",
+    h1_hero: "text-7xl md:text-8xl font-heading font-bold tracking-tighter text-heading",
+    h1_hero_gradient: "text-transparent bg-clip-text bg-gradient-to-r from-[var(--subtle)] to-transparent",
+    h2: "text-4xl md:text-5xl font-heading font-bold text-heading tracking-tight",
+    p_body: "text-lg text-subtle font-light leading-relaxed",
 
     // Components
-    glass_card: "border border-white/10 bg-black/20 backdrop-blur-md rounded-3xl",
-    glass_button: "px-8 py-4 bg-white/5 border border-white/10 text-white rounded-full font-heading font-bold tracking-wide transition-all hover:bg-white hover:text-black hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]",
+    glass_card: "border border-[var(--glass-border)] bg-glass backdrop-blur-md rounded-3xl",
+    glass_button: "px-8 py-4 bg-glass-hover border border-[var(--glass-border)] text-heading rounded-full font-heading font-bold tracking-wide transition-all hover:bg-primary hover:text-primary-foreground hover:scale-105 hover:shadow-lg",
 
     // Utilities
-    text_muted: "text-white/40",
-    border_subtle: "border-white/10"
+    text_muted: "text-muted-text",
+    border_subtle: "border-[var(--border-subtle)]"
 };

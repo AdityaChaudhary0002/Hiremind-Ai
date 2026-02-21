@@ -7,9 +7,9 @@ const Card = ({ title, icon: Icon, children, className }) => (
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className={`bg-[#0a0a0c]/80 backdrop-blur-md border border-white/10 rounded-2xl p-5 flex flex-col ${className}`}
+        className={`bg-surface/80 backdrop-blur-md border border-[var(--border-medium)] rounded-2xl p-5 flex flex-col ${className}`}
     >
-        <div className="flex items-center gap-2 mb-4 text-white/40 text-xs font-mono uppercase tracking-widest">
+        <div className="flex items-center gap-2 mb-4 text-muted-text text-xs font-mono uppercase tracking-widest">
             {Icon && <Icon className="w-3.5 h-3.5" />}
             {title}
         </div>
@@ -22,9 +22,9 @@ const Card = ({ title, icon: Icon, children, className }) => (
 const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-black/90 border border-white/10 p-2 rounded text-xs text-white shadow-xl">
+            <div className="bg-black/90 border border-[var(--border-medium)] p-2 rounded text-xs text-white shadow-xl">
                 <p className="font-bold">{label}</p>
-                <p className="text-white/70">{payload[0].value}</p>
+                <p className="text-body">{payload[0].value}</p>
             </div>
         );
     }
@@ -97,10 +97,10 @@ export const GoalTracker = ({ goals }) => {
                 {goals && goals.length > 0 ? goals.map((goal, i) => (
                     <div key={i} className="group">
                         <div className="flex justify-between text-xs mb-1.5">
-                            <span className="text-white/80 font-medium group-hover:text-white transition-colors">{goal.title}</span>
-                            <span className="text-white/40 font-mono">{Math.round((goal.current / goal.target) * 100)}%</span>
+                            <span className="text-body font-medium group-hover:text-white transition-colors">{goal.title}</span>
+                            <span className="text-muted-text font-mono">{Math.round((goal.current / goal.target) * 100)}%</span>
                         </div>
-                        <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-1.5 w-full bg-glass-hover rounded-full overflow-hidden">
                             <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: `${(goal.current / goal.target) * 100}%` }}
@@ -110,13 +110,13 @@ export const GoalTracker = ({ goals }) => {
                         </div>
                     </div>
                 )) : (
-                    <div className="text-center text-white/20 text-xs py-4 italic">
+                    <div className="text-center text-faint text-xs py-4 italic">
                         No active protocols initiated.
                     </div>
                 )}
 
                 {(!goals || goals.length === 0) && (
-                    <div className="mt-2 p-3 rounded bg-white/5 border border-white/5 text-[10px] text-white/50">
+                    <div className="mt-2 p-3 rounded bg-glass-hover border border-[var(--border-subtle)] text-[10px] text-subtle">
                         <span className="text-indigo-400 font-bold block mb-1">TIP:</span>
                         Define your target role to enable progress tracking.
                     </div>

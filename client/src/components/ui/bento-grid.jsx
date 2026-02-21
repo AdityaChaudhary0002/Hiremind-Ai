@@ -26,7 +26,7 @@ export const BentoGridItem = ({
         <motion.div
             whileHover={{ y: -5 }}
             className={cn(
-                "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-card dark:border-white/10 bg-white border border-transparent justify-between flex flex-col space-y-4 cursor-pointer overflow-hidden relative",
+                "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-card dark:border-[var(--border-medium)] bg-white border border-transparent justify-between flex flex-col space-y-4 cursor-pointer overflow-hidden relative",
                 className
             )}
             onClick={onClick}

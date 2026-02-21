@@ -8,6 +8,9 @@ const CodeEditor = ({ code, setCode, language = "javascript", setLanguage, outpu
 
     const [isRunning, setIsRunning] = React.useState(false);
 
+    // Detect theme from document
+    const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+
     const runCode = async () => {
         setIsRunning(true);
         setOutput(null);
@@ -31,17 +34,17 @@ const CodeEditor = ({ code, setCode, language = "javascript", setLanguage, outpu
     };
 
     return (
-        <div className="flex flex-col h-full bg-[#1e1e1e] text-white font-mono text-sm relative group">
-            <div className="flex items-center justify-between px-4 py-2 bg-[#252526] border-b border-white/5">
+        <div className="flex flex-col h-full bg-surface text-heading font-mono text-sm relative group">
+            <div className="flex items-center justify-between px-4 py-2 bg-surface-elevated border-b border-[var(--border-subtle)]">
                 <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-2 text-xs text-muted-text">
                         <FileCode className="w-4 h-4" /> Mode:
                     </div>
                     {/* Language Selector */}
                     <select
                         value={language}
                         onChange={(e) => setLanguage && setLanguage(e.target.value)}
-                        className="bg-transparent text-xs text-white border border-white/10 rounded px-2 py-1 outline-none focus:border-white/30"
+                        className="bg-surface text-xs text-heading border border-[var(--border-medium)] rounded px-2 py-1 outline-none focus:border-primary"
                     >
                         <option value="javascript">JavaScript</option>
                         <option value="python">Python</option>
@@ -68,7 +71,7 @@ const CodeEditor = ({ code, setCode, language = "javascript", setLanguage, outpu
                     defaultValue="// Write your code here"
                     value={code}
                     onChange={(value) => setCode(value)}
-                    theme="vs-dark"
+                    theme={isDark ? "vs-dark" : "light"}
                     options={{
                         minimap: { enabled: false },
                         fontSize: 14,
@@ -82,8 +85,8 @@ const CodeEditor = ({ code, setCode, language = "javascript", setLanguage, outpu
 
             {/* Output Panel */}
             {(output || isRunning) && (
-                <div className="border-t border-white/10 bg-[#1e1e1e] max-h-[30%] overflow-auto flex flex-col">
-                    <div className="px-4 py-1 bg-[#252526] text-xs font-semibold text-muted-foreground sticky top-0">
+                <div className="border-t border-[var(--border-medium)] bg-surface max-h-[30%] overflow-auto flex flex-col">
+                    <div className="px-4 py-1 bg-surface-elevated text-xs font-semibold text-muted-text sticky top-0">
                         Console Output
                     </div>
                     <div className="p-4 font-mono text-xs whitespace-pre-wrap">
