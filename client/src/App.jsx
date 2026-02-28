@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 import { AnimatePresence } from 'framer-motion';
-import LandingPage from './pages/LandingPage';
-import RoleSelection from './pages/RoleSelection';
-import InterviewScreen from './pages/InterviewScreen';
-import FeedbackScreen from './pages/FeedbackScreen';
-import AuthLayout from './pages/AuthLayout';
-import Dashboard from './pages/Dashboard';
-import HistoryPage from './pages/HistoryPage';
-import InterviewBreakdown from './pages/InterviewBreakdown';
-import GoalsPage from './pages/GoalsPage';
-import ResumeScanner from './pages/ResumeScanner';
+
+const LandingPage = React.lazy(() => import('./pages/LandingPage'));
+const RoleSelection = React.lazy(() => import('./pages/RoleSelection'));
+const InterviewScreen = React.lazy(() => import('./pages/InterviewScreen'));
+const FeedbackScreen = React.lazy(() => import('./pages/FeedbackScreen'));
+const AuthLayout = React.lazy(() => import('./pages/AuthLayout'));
+const Dashboard = React.lazy(() => import('./pages/Dashboard'));
+const HistoryPage = React.lazy(() => import('./pages/HistoryPage'));
+const InterviewBreakdown = React.lazy(() => import('./pages/InterviewBreakdown'));
+const GoalsPage = React.lazy(() => import('./pages/GoalsPage'));
+const ResumeScanner = React.lazy(() => import('./pages/ResumeScanner'));
+
 import AppLayout from './layouts/AppLayout';
 import PageTransition from './components/PageTransition';
 
@@ -127,7 +129,13 @@ function App() {
     <GlobalErrorBoundary>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Router>
-          <AnimatedRoutes />
+          <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-black">
+              <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+            </div>
+          }>
+            <AnimatedRoutes />
+          </Suspense>
         </Router>
       </ThemeProvider>
     </GlobalErrorBoundary>

@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import Logo from '@/components/ui/logo';
 import { useNavigate } from 'react-router-dom';
 
-const InterviewHeader = ({ role, difficulty, currentQuestionIndex }) => {
+const InterviewHeader = ({ role, difficulty, currentQuestionIndex, stopAudio }) => {
     const navigate = useNavigate();
 
     return (
@@ -24,7 +24,10 @@ const InterviewHeader = ({ role, difficulty, currentQuestionIndex }) => {
                 variant="outline"
                 size="sm"
                 className="h-9 border-red-500/50 text-red-400 hover:bg-red-500 hover:text-white transition-all font-bold tracking-wide"
-                onClick={() => navigate('/dashboard')}
+                onClick={() => {
+                    if (stopAudio) stopAudio();
+                    navigate('/dashboard');
+                }}
             >
                 END INTERVIEW
             </Button>

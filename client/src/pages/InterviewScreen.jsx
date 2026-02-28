@@ -105,7 +105,12 @@ const InterviewScreen = () => {
     // --- RENDER: Main Screen ---
     return (
         <div className="h-screen bg-page-alt text-heading overflow-hidden flex flex-col font-sans selection:bg-purple-500/30">
-            <InterviewHeader role={role} difficulty={difficulty} currentQuestionIndex={currentQuestionIndex} />
+            <InterviewHeader
+                role={role}
+                difficulty={difficulty}
+                currentQuestionIndex={currentQuestionIndex}
+                stopAudio={stopAudio}
+            />
 
             <div className="flex-1 flex flex-col lg:flex-row pt-14 relative bg-page-alt overflow-hidden">
                 {/* Unified Noise Overlay */}
