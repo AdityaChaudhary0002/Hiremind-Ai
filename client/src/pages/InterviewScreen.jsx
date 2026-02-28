@@ -45,10 +45,9 @@ const InterviewScreen = () => {
         isSpeaking, isAnalyzing, isRecording, error, isCodingInterview
     } = state;
 
-    // Destructure Actions
     const {
         setTranscript, setCode, setLanguage, setMode, setOutput,
-        startSession, submitAnswer, executeCode, speakQuestion, setIsRecording
+        startSession, submitAnswer, executeCode, speakQuestion, setIsRecording, stopAudio
     } = actions;
 
 
