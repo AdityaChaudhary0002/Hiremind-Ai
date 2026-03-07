@@ -194,14 +194,19 @@ const submitInterview = async (req, res, next) => {
         const interview = await Interview.findOne({ _id: interviewId, userId });
         if (!interview) return res.status(404).json({ message: 'Interview not found' });
 
-        interview.answers = userAnswers;
+        // Extract the full list of questions asked (including follow-ups) from the transcript
+        if (Array.isArray(userAnswers) && userAnswers.length > 0) {
+            interview.questions = userAnswers.map(item => item.question);
+            interview.answers = userAnswers.map(item => item.answer);
+        } else {
+            interview.answers = userAnswers;
+        }
 
         const prompt = `
-        Analyze this interview for a ${interview.role} (${interview.difficulty}).
-        Questions: ${JSON.stringify(interview.questions)}
-        Answers: ${JSON.stringify(userAnswers)}
+        Analyze this interview transcript for a ${interview.role} (${interview.difficulty}).
+        Transcript (Chronological Q&A): ${Array.isArray(userAnswers) ? JSON.stringify(userAnswers.map(ua => ({ Q: ua.question, A: ua.answer }))) : JSON.stringify(userAnswers)}
         
-        Provide detailed JSON report:
+        Provide detailed JSON report analyzing each Q&A pair:
         {
             "overallScore": 0-100,
             "summary": "Executive summary of performance.",

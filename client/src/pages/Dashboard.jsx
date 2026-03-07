@@ -63,14 +63,6 @@ const Dashboard = () => {
         visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
     };
 
-    if (loading) {
-        return (
-            <div className="min-h-screen flex flex-col items-center justify-center bg-page">
-                <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-            </div>
-        );
-    }
-
     return (
         <div className="min-h-screen relative flex flex-col overflow-x-hidden selection:bg-primary/20 bg-page">
 
@@ -123,7 +115,7 @@ const Dashboard = () => {
                         </div>
 
                         {/* STATE HANDLING */}
-                        {insightLoading ? (
+                        {(insightLoading || loading) ? (
                             <InsightSkeleton />
                         ) : interviews.length === 0 ? (
                             <div className="text-subtle text-lg font-light flex flex-col items-start gap-2">
@@ -212,7 +204,7 @@ const Dashboard = () => {
                             className="w-fit group relative px-8 py-4 bg-glass-hover border border-[var(--border-medium)] text-heading rounded-full font-heading font-bold text-lg tracking-wide overflow-hidden transition-all hover:bg-primary hover:text-primary-foreground hover:scale-105 hover:shadow-lg"
                         >
                             <span className="relative z-10 flex items-center gap-3">
-                                {interviews.length === 0 ? "Start Calibration" : "Initiate Simulation"}
+                                {loading ? "Initializing..." : (interviews.length === 0 ? "Start Calibration" : "Initiate Simulation")}
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </span>
                         </button>

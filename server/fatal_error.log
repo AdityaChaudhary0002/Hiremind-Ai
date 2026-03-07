@@ -1382,3 +1382,23 @@ Stack: Error: Unauthenticated
     at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
+[2026-02-28T10:34:10.784Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+[2026-02-28T10:34:10.795Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+[2026-02-28T10:34:10.799Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+[2026-02-28T10:34:10.800Z] 500 - Unauthenticated
+Stack: Error: Unauthenticated
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+

@@ -40,6 +40,7 @@ const useInterviewEngine = () => {
 
     // UPGRADE 5: STRICT SESSION IDEMPOTENCY
     const sessionId = useRef(crypto.randomUUID());
+    const followUpCountRef = useRef(0);
 
     // --- MIC STATE ---
     const [isMicActive, setIsMicActive] = useState(false);
@@ -246,13 +247,17 @@ const useInterviewEngine = () => {
                 ];
                 setMemory(newMemory);
 
-                if (followUp) {
+                if (followUp && followUpCountRef.current < 1) { // Limit to 1 follow-up max
                     console.log('[ENGINE] ⚡️ Adaptive Follow-up Triggered');
+                    followUpCountRef.current += 1;
                     setQuestions(prev => {
                         const updated = [...prev];
                         updated.splice(currentQuestionIndex + 1, 0, followUp);
                         return updated;
                     });
+                } else {
+                    if (followUp) console.log('[ENGINE] ⚡️ Follow-up Cap Reached.');
+                    followUpCountRef.current = 0; // Reset for next original question
                 }
             }
 
@@ -280,7 +285,7 @@ const useInterviewEngine = () => {
                 setStatus(INTERVIEW_STATUS.COMPLETED);
                 const token = await getToken();
                 try {
-                    await api.submitInterview(interviewId, {}, sessionId.current, token);
+                    await api.submitInterview(interviewId, memory, sessionId.current, token);
                 } catch (err) {
                     if (err.response?.status === 409) {
                         console.log('[ENGINE] Idempotency: Session already completed on server.');
@@ -291,7 +296,7 @@ const useInterviewEngine = () => {
             };
             finalize();
         }
-    }, [currentQuestionIndex, questions.length, status, interviewId, getToken]);
+    }, [currentQuestionIndex, questions.length, status, interviewId, getToken, memory]);
 
     // NO cleanup cancel on unmount — that was the whole bug!
     // WebGL Context Lost → unmount → cancel → audio dies.
