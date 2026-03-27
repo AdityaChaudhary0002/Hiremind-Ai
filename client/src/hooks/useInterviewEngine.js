@@ -217,10 +217,6 @@ const useInterviewEngine = () => {
 
         try {
             const currentQ = questions[currentQuestionIndex];
-            setTranscript('');
-
-            let nextIndex = currentQuestionIndex + 1;
-
             if (currentQuestionIndex < questions.length) {
                 console.log('[ENGINE] Evaluating response...');
 
@@ -262,6 +258,8 @@ const useInterviewEngine = () => {
             }
 
             // FSM: Evaluate next move (continue or finish)
+            setTranscript('');
+            if (isCodingInterview) setCode('// Write your solution here...');
             setCurrentQuestionIndex(prev => prev + 1);
             setStatus(INTERVIEW_STATUS.RECORDING);
 
@@ -297,6 +295,54 @@ const useInterviewEngine = () => {
             finalize();
         }
     }, [currentQuestionIndex, questions.length, status, interviewId, getToken, memory]);
+
+    const endInterview = useCallback(async () => {
+        if (status === INTERVIEW_STATUS.COMPLETED || status === INTERVIEW_STATUS.IDLE || status === INTERVIEW_STATUS.GENERATING) {
+            navigate('/dashboard');
+            return;
+        }
+        
+        setStatus(INTERVIEW_STATUS.EVALUATING);
+        TTS.stop();
+        
+        try {
+            const token = await getToken();
+            
+            // Capture any pending answer that hasn't been submitted yet!
+            let finalMemory = [...memory];
+            const DEFAULT_CODE = '// Write your solution here...';
+            const hasRealCode = isCodingInterview && code && code.trim() && code.trim() !== DEFAULT_CODE;
+            
+            let pendingA = transcript;
+            if (hasRealCode) {
+                pendingA = `[Code Submission]:\n\`\`\`${language}\n${code}\n\`\`\`\n\n[Verbal Explanation]:\n${transcript}`;
+            }
+
+            // Only append if there's actually something there and we haven't answered this current question yet
+            if (pendingA.trim() || hasRealCode) {
+                const currentQ = questions[currentQuestionIndex];
+                // Check if this question is already in memory
+                const alreadyAnswered = memory.some(m => m.question === currentQ);
+                
+                if (!alreadyAnswered && currentQ) {
+                    finalMemory.push({
+                        question: currentQ,
+                        answer: pendingA,
+                        feedback: "Session Ended",
+                        weakTopics: [],
+                        confidenceScore: 50
+                    });
+                }
+            }
+
+            await api.submitInterview(interviewId, finalMemory, sessionId.current, token);
+            setStatus(INTERVIEW_STATUS.COMPLETED);
+            navigate(`/history/${interviewId}`);
+        } catch (err) {
+            console.error('Finalization Error:', err);
+            navigate('/dashboard');
+        }
+    }, [status, memory, interviewId, getToken, navigate, transcript, code, language, isCodingInterview, questions, currentQuestionIndex]);
 
     // NO cleanup cancel on unmount — that was the whole bug!
     // WebGL Context Lost → unmount → cancel → audio dies.
@@ -342,7 +388,8 @@ const useInterviewEngine = () => {
             setOutput,
             executeCode,
             startSession,
-            setIsRecording: setIsMicActive
+            setIsRecording: setIsMicActive,
+            endInterview
         }
     };
 };

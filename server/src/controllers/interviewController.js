@@ -195,11 +195,11 @@ const submitInterview = async (req, res, next) => {
         if (!interview) return res.status(404).json({ message: 'Interview not found' });
 
         // Extract the full list of questions asked (including follow-ups) from the transcript
-        if (Array.isArray(userAnswers) && userAnswers.length > 0) {
+        if (Array.isArray(userAnswers)) {
             interview.questions = userAnswers.map(item => item.question);
             interview.answers = userAnswers.map(item => item.answer);
         } else {
-            interview.answers = userAnswers;
+            interview.answers = userAnswers || [];
         }
 
         const prompt = `

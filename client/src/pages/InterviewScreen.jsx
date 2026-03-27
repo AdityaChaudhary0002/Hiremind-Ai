@@ -47,7 +47,7 @@ const InterviewScreen = () => {
 
     const {
         setTranscript, setCode, setLanguage, setMode, setOutput,
-        startSession, submitAnswer, executeCode, speakQuestion, setIsRecording, stopAudio
+        startSession, submitAnswer, executeCode, speakQuestion, setIsRecording, stopAudio, endInterview
     } = actions;
 
 
@@ -109,6 +109,7 @@ const InterviewScreen = () => {
                 difficulty={difficulty}
                 currentQuestionIndex={currentQuestionIndex}
                 stopAudio={stopAudio}
+                endInterview={endInterview}
             />
 
             <div className="flex-1 flex flex-col lg:flex-row pt-14 relative bg-page-alt overflow-hidden">

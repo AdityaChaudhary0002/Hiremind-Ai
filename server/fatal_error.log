@@ -1402,3 +1402,10 @@ Stack: Error: Unauthenticated
     at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:223:12
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 
+[2026-03-27T15:01:45.800Z] 500 - Cannot read properties of undefined (reading 'map')
+Stack: TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/adityaadi/Hiremind-ai/server/src/middlewares/validationMiddleware.js:12:47
+    at Layer.handleRequest (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/adityaadi/Hiremind-ai/server/node_modules/router/lib/route.js:157:13)
+    at /Users/adityaadi/Hiremind-ai/server/node_modules/@clerk/clerk-sdk-node/dist/cjs/index.js:220:9
+

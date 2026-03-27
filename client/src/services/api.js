@@ -49,7 +49,7 @@ const api = {
     submitInterview: async (interviewId, answers, sessionId, token) => {
         return client.post(
             `/api/interview/submit`,
-            { interviewId, answers, sessionId },
+            { interviewId, userAnswers: answers, sessionId },
             getAuthHeaders(token)
         );
     },
